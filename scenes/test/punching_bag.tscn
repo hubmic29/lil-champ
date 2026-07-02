@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d28mxi54b2u4r"]
+
+[ext_resource type="Script" uid="uid://8ao26fkwjvrl" path="res://punching_bag.gd" id="1_ti4dy"]
+[ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://models/assets/punching bag.png" id="2_nmu55"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t56ki"]
+radius = 14.0
+height = 66.0
+
+[node name="PunchingBag" type="Area2D" unique_id=1781405265]
+script = ExtResource("1_ti4dy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1247812112]
+texture_filter = 1
+position = Vector2(-2, -2.0000002)
+scale = Vector2(0.2, 0.2025)
+texture = ExtResource("2_nmu55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=831462943]
+shape = SubResource("CapsuleShape2D_t56ki")

@@ -5,22 +5,22 @@ extends CharacterBody2D
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	
-	# Klasyczne, proste kierunki na ekranie
-	if Input.is_key_pressed(KEY_D):  # Prawo
+	# Basic movement directions
+	if Input.is_key_pressed(KEY_D):  # Right
 		input_vector.x += 1
-	if Input.is_key_pressed(KEY_A):  # Lewo
+	if Input.is_key_pressed(KEY_A):  # Left
 		input_vector.x -= 1
-	if Input.is_key_pressed(KEY_S):  # Dół
+	if Input.is_key_pressed(KEY_S):  # Down
 		input_vector.y += 1
-	if Input.is_key_pressed(KEY_W):  # Góra
+	if Input.is_key_pressed(KEY_W):  # Up
 		input_vector.y -= 1
 		
 	if input_vector != Vector2.ZERO:
-		# Zabezpieczenie, żeby postać nie biegała szybciej na skosach
+		# Normalize vector to prevent faster diagonal movement
 		velocity = input_vector.normalized() * SPEED
 	else:
-		# Zatrzymanie postaci po puszczeniu klawiszy
+		# Stop movement when no keys are pressed
 		velocity = Vector2.ZERO
 
-	# Wykonanie klasycznego ruchu i obsługa kolizji ze ścianami
+	# Apply movement and handle wall collisions
 	move_and_slide()

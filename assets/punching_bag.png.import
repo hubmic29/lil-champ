@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ttpcp7cuwek"
-path="res://.godot/imported/human2.png-136b3c547175e11812e7cb797c92f22a.ctex"
+uid="uid://dnp0hgflk2hsq"
+path="res://.godot/imported/punching_bag.png-37cfee7859c7311b918f5b7c3e571dc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/assets/human2.png"
-dest_files=["res://.godot/imported/human2.png-136b3c547175e11812e7cb797c92f22a.ctex"]
+source_file="res://assets/punching_bag.png"
+dest_files=["res://.godot/imported/punching_bag.png-37cfee7859c7311b918f5b7c3e571dc8.ctex"]
 
 [params]
 

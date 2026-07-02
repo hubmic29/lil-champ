@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcyu366je8br0"
-path="res://.godot/imported/gym.png-da45efdbda14dd9bd5a6f0fce46bf72c.ctex"
+uid="uid://dliftasset12"
+path="res://.godot/imported/deadlift.png-6d6b509bc7478b8edba2273f88014ea6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/gym.png"
-dest_files=["res://.godot/imported/gym.png-da45efdbda14dd9bd5a6f0fce46bf72c.ctex"]
+source_file="res://assets/deadlift.png"
+dest_files=["res://.godot/imported/deadlift.png-6d6b509bc7478b8edba2273f88014ea6.ctex"]
 
 [params]
 

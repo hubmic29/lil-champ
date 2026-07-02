@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn3j0u87ns2fx"]
 
-[ext_resource type="Script" uid="uid://cdf0y21l7dgkj" path="res://scenes/test/space_minigame.gd" id="1_0lg18"]
+[ext_resource type="Script" uid="uid://cdf0y21l7dgkj" path="res://scenes/minigames/space_minigame.gd" id="1_0lg18"]
 
 [node name="TrainingScreen" type="Control" unique_id=400232105]
 layout_mode = 3

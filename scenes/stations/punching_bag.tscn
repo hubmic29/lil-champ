@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d28mxi54b2u4r"]
 
-[ext_resource type="Script" uid="uid://8ao26fkwjvrl" path="res://punching_bag.gd" id="1_ti4dy"]
-[ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://models/assets/punching bag.png" id="2_nmu55"]
+[ext_resource type="Script" uid="uid://8ao26fkwjvrl" path="res://scenes/stations/punching_bag.gd" id="1_ti4dy"]
+[ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://assets/punching_bag.png" id="2_nmu55"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t56ki"]
 radius = 14.0

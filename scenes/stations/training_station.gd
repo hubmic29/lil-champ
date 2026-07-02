@@ -1,7 +1,7 @@
 extends Area2D
 
 # Allows you to easily choose the minigame scene directly in the Inspector panel
-@export var minigame_path: String = "res://scenes/test/boxing_minigame.tscn"
+@export var minigame_path: String = "res://scenes/minigames/space_minigame.tscn"
 
 var player_in_range: bool = false
 

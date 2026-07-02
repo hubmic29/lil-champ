@@ -1,12 +1,17 @@
-[gd_scene format=3 uid="uid://dd2ke2yos44a5"]
+[gd_scene format=3 uid="uid://d1wttq73skkhw"]
+
+[ext_resource type="Script" uid="uid://bxh41ld8qeq5c" path="res://scenes/stations/training_station.gd" id="1_gfr1s"]
+[ext_resource type="Texture2D" uid="uid://bpressasset1" path="res://assets/bench_press.png" id="2_gfr1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7vv0i"]
 radius = 31.06445
 
 [node name="TestTraining" type="Area2D" unique_id=1779609867]
+script = ExtResource("1_gfr1s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1347461496]
 texture_filter = 1
+texture = ExtResource("2_gfr1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1131994382]
 position = Vector2(-5, -2)

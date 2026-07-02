@@ -1,0 +1,226 @@
+[gd_scene format=4 uid="uid://c8akogknnfnd1"]
+
+[ext_resource type="Texture2D" uid="uid://champgymbg01" path="res://assets/gym_map_bg.png" id="1_bg"]
+[ext_resource type="PackedScene" uid="uid://b7l6a48tmurqk" path="res://player/player.tscn" id="2_4xk5c"]
+[ext_resource type="PackedScene" uid="uid://d28mxi54b2u4r" path="res://scenes/stations/punching_bag.tscn" id="3_bag"]
+[ext_resource type="PackedScene" uid="uid://d1wttq73skkhw" path="res://scenes/stations/bench_press_station.tscn" id="4_bench"]
+[ext_resource type="PackedScene" uid="uid://bdlftsttn012" path="res://scenes/stations/deadlift_station.tscn" id="5_dlift"]
+[ext_resource type="Script" uid="uid://bugshv3l4afwx" path="res://ui/hud.gd" id="6_hud"]
+
+[sub_resource type="RectangleShape2D" id="RS_0"]
+size = Vector2(960, 64)
+[sub_resource type="RectangleShape2D" id="RS_1"]
+size = Vector2(16, 640)
+[sub_resource type="RectangleShape2D" id="RS_2"]
+size = Vector2(16, 640)
+[sub_resource type="RectangleShape2D" id="RS_3"]
+size = Vector2(960, 32)
+[sub_resource type="RectangleShape2D" id="RS_4"]
+size = Vector2(36, 64)
+[sub_resource type="RectangleShape2D" id="RS_5"]
+size = Vector2(36, 64)
+[sub_resource type="RectangleShape2D" id="RS_6"]
+size = Vector2(36, 64)
+[sub_resource type="RectangleShape2D" id="RS_7"]
+size = Vector2(12, 200)
+[sub_resource type="RectangleShape2D" id="RS_8"]
+size = Vector2(44, 128)
+[sub_resource type="RectangleShape2D" id="RS_9"]
+size = Vector2(96, 72)
+[sub_resource type="RectangleShape2D" id="RS_10"]
+size = Vector2(224, 56)
+[sub_resource type="RectangleShape2D" id="RS_11"]
+size = Vector2(18, 36)
+[sub_resource type="RectangleShape2D" id="RS_12"]
+size = Vector2(240, 52)
+[sub_resource type="RectangleShape2D" id="RS_13"]
+size = Vector2(120, 40)
+[sub_resource type="RectangleShape2D" id="RS_14"]
+size = Vector2(36, 64)
+[sub_resource type="RectangleShape2D" id="RS_15"]
+size = Vector2(48, 152)
+[sub_resource type="RectangleShape2D" id="RS_16"]
+size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_17"]
+size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_18"]
+size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_19"]
+size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_20"]
+size = Vector2(48, 16)
+[sub_resource type="RectangleShape2D" id="RS_21"]
+size = Vector2(48, 16)
+
+[node name="GymMap" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+centered = false
+texture = ExtResource("1_bg")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="WallTop0" type="CollisionShape2D" parent="Walls"]
+position = Vector2(480.0, 32.0)
+shape = SubResource("RS_0")
+[node name="WallLeft1" type="CollisionShape2D" parent="Walls"]
+position = Vector2(8.0, 320.0)
+shape = SubResource("RS_1")
+[node name="WallRight2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(952.0, 320.0)
+shape = SubResource("RS_2")
+[node name="WallBottom3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(480.0, 624.0)
+shape = SubResource("RS_3")
+[node name="Treadmill4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(390.0, 128.0)
+shape = SubResource("RS_4")
+[node name="Treadmill5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(450.0, 128.0)
+shape = SubResource("RS_5")
+[node name="Treadmill6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(510.0, 128.0)
+shape = SubResource("RS_6")
+[node name="Mirror7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(22.0, 212.0)
+shape = SubResource("RS_7")
+[node name="DumbbellRack8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(38.0, 416.0)
+shape = SubResource("RS_8")
+[node name="SquatCage9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(792.0, 128.0)
+shape = SubResource("RS_9")
+[node name="ReceptionDesk10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(256.0, 480.0)
+shape = SubResource("RS_10")
+[node name="WaterCooler11" type="CollisionShape2D" parent="Walls"]
+position = Vector2(401.0, 488.0)
+shape = SubResource("RS_11")
+[node name="ShopShelves12" type="CollisionShape2D" parent="Walls"]
+position = Vector2(736.0, 478.0)
+shape = SubResource("RS_12")
+[node name="ShopCounter13" type="CollisionShape2D" parent="Walls"]
+position = Vector2(700.0, 548.0)
+shape = SubResource("RS_13")
+[node name="Vending14" type="CollisionShape2D" parent="Walls"]
+position = Vector2(926.0, 384.0)
+shape = SubResource("RS_14")
+[node name="Lockers15" type="CollisionShape2D" parent="Walls"]
+position = Vector2(920.0, 252.0)
+shape = SubResource("RS_15")
+[node name="Plant16" type="CollisionShape2D" parent="Walls"]
+position = Vector2(36.0, 83.0)
+shape = SubResource("RS_16")
+[node name="Plant17" type="CollisionShape2D" parent="Walls"]
+position = Vector2(920.0, 83.0)
+shape = SubResource("RS_17")
+[node name="Plant18" type="CollisionShape2D" parent="Walls"]
+position = Vector2(36.0, 579.0)
+shape = SubResource("RS_18")
+[node name="Plant19" type="CollisionShape2D" parent="Walls"]
+position = Vector2(920.0, 579.0)
+shape = SubResource("RS_19")
+[node name="Bench20" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144.0, 268.0)
+shape = SubResource("RS_20")
+[node name="Bench21" type="CollisionShape2D" parent="Walls"]
+position = Vector2(244.0, 268.0)
+shape = SubResource("RS_21")
+
+[node name="BenchPressStation" parent="." instance=ExtResource("4_bench")]
+position = Vector2(540, 250)
+
+[node name="DeadliftStation" parent="." instance=ExtResource("5_dlift")]
+position = Vector2(670, 250)
+
+[node name="PunchingBag" parent="." instance=ExtResource("3_bag")]
+position = Vector2(805, 245)
+
+[node name="Player" parent="." instance=ExtResource("2_4xk5c")]
+z_index = 1
+position = Vector2(480, 545)
+
+[node name="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 960
+limit_bottom = 640
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_hud")
+
+[node name="StatsPanel" type="Panel" parent="HUD"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 205.0
+offset_bottom = 220.0
+
+[node name="PanelTitle" type="Label" parent="HUD/StatsPanel"]
+offset_top = 6.0
+offset_right = 195.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 15
+text = "PLAYER STATS"
+horizontal_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 31.0
+offset_right = 187.0
+offset_bottom = 33.0
+color = Color(0.55, 0.55, 0.55, 1)
+
+[node name="EXPLabel" type="Label" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 38.0
+offset_right = 187.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 14
+text = "EXP:  0"
+
+[node name="STRLabel" type="Label" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 65.0
+offset_right = 187.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 14
+text = "STR:  10"
+
+[node name="ENDLabel" type="Label" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 95.0
+offset_right = 187.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 14
+text = "END:  10"
+
+[node name="AGILabel" type="Label" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 125.0
+offset_right = 187.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 14
+text = "AGI:  10"
+
+[node name="DEXLabel" type="Label" parent="HUD/StatsPanel"]
+offset_left = 8.0
+offset_top = 155.0
+offset_right = 187.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 14
+text = "DEX:  10"
+
+[node name="HintPanel" type="Panel" parent="HUD"]
+offset_left = 300.0
+offset_top = 585.0
+offset_right = 852.0
+offset_bottom = 615.0
+
+[node name="HintLabel" type="Label" parent="HUD/HintPanel"]
+offset_right = 552.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 14
+text = "Walk near equipment and press E to train"
+horizontal_alignment = 1
+vertical_alignment = 1

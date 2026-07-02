@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="lil-champ"
-run/main_scene="uid://ckl8wjl834jwi"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://c8akogknnfnd1"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalStats="*uid://j4dcq2ygx67l"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

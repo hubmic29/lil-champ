@@ -47,14 +47,15 @@ func check_hit() -> void:
 		# Perfect hit right in the center (15 pixels margin)
 		if abs(x_indicator - center) < 15.0:
 			message_label.text = "Juice! PERFECT! (+200% EXP)"
-			GlobalStats.player_exp += 20 # GLOBAL SAVE 
+			GlobalStats.player_exp += 20 # GLOBAL SAVE
 		else:
 			message_label.text = "GOOD! (+100% EXP)"
-			GlobalStats.player_exp += 10 # GLOBAL SAVE 
+			GlobalStats.player_exp += 10 # GLOBAL SAVE
+		speed += 30.0
 	else:
 		# Miss condition: If the indicator was completely outside the green zone
 		message_label.text = "MISS! The character stumbled..."
-		# Here we can decrease stamina in the future
+		speed = 400.0
 			
 	update_stats()
 
@@ -64,4 +65,4 @@ func update_stats() -> void:
 
 func _on_back_pressed() -> void:
 	# Return to the main gym map
-	get_tree().change_scene_to_file("res://scenes/test/test_map.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/gym_map.tscn")

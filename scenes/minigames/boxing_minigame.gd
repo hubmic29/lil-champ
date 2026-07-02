@@ -59,4 +59,4 @@ func update_ui() -> void:
 	score_label.text = "Earned EXP: " + str(GlobalStats.player_exp)
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/test/test_map.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/gym_map.tscn")

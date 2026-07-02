@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ggx02lofpdfg"]
 
-[ext_resource type="Script" uid="uid://cgelngxpmejsa" path="res://scenes/test/boxing_minigame.gd" id="1_0k2ju"]
-[ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://models/assets/punching bag.png" id="2_m0sa2"]
+[ext_resource type="Script" uid="uid://cgelngxpmejsa" path="res://scenes/minigames/boxing_minigame.gd" id="1_0k2ju"]
+[ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://assets/punching_bag.png" id="2_m0sa2"]
 
 [node name="BoxingMinigame" type="Control" unique_id=177228160]
 layout_mode = 3

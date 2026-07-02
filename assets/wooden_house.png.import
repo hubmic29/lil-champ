@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t0f5gcbhuun3"
-path="res://.godot/imported/Egg item.png-9cf07c7986e0c0362219fb67b3bc123a.ctex"
+uid="uid://buheqbrcytuw2"
+path="res://.godot/imported/wooden_house.png-c6e388ffc32148f0ce2df61ed7dba390.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/assets/Egg item.png"
-dest_files=["res://.godot/imported/Egg item.png-9cf07c7986e0c0362219fb67b3bc123a.ctex"]
+source_file="res://assets/wooden_house.png"
+dest_files=["res://.godot/imported/wooden_house.png-c6e388ffc32148f0ce2df61ed7dba390.ctex"]
 
 [params]
 

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cn3j0u87ns2fx"]
+
+[ext_resource type="Script" uid="uid://cdf0y21l7dgkj" path="res://scenes/test/training_screen.gd" id="1_0lg18"]
+
+[node name="TrainingScreen" type="Control" unique_id=400232105]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0lg18")
+
+[node name="BackgroundBelt" type="ColorRect" parent="." unique_id=2076166603]
+custom_minimum_size = Vector2(376, 0)
+layout_mode = 0
+offset_left = 376.0
+offset_top = 250.0
+offset_right = 776.0
+offset_bottom = 280.0
+color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+
+[node name="SweetSpot" type="ColorRect" parent="BackgroundBelt" unique_id=1279216516]
+layout_mode = 0
+offset_left = 170.0
+offset_right = 230.0
+offset_bottom = 30.0
+color = Color(0, 0.77768034, 0.292925, 1)
+
+[node name="Wskaznik" type="ColorRect" parent="BackgroundBelt" unique_id=898684214]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 35.0
+
+[node name="KomunikatLabel" type="Label" parent="." unique_id=965585327]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 310.0
+offset_right = 776.0
+offset_bottom = 340.0
+text = "Naciśnij SPACJĘ!"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="." unique_id=998614082]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 350.0
+offset_right = 776.0
+offset_bottom = 380.0
+text = "Zdobyty EXP: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowrotButton" type="Button" parent="." unique_id=435259382]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 420.0
+offset_right = 676.0
+offset_bottom = 460.0
+text = "Wróć na siłownię"

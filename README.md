@@ -15,6 +15,8 @@ Back button returns to the gym.
 | Deadlift | Timing bar with Perfect / Good / Miss windows (Space) | Back, Hamstrings (+ Strength) |
 | Squat Rack | Balance minigame — keep the marker centered with A/D, instability ramps up | Quadriceps (+ Strength) |
 | Sauna | No skill gameplay: restores energy, random small talk, grants a temporary +XP motivation buff | Recovery |
+| Competition Stage | Posing routine of Quick Time Events against AI bodybuilders; 4 tournament tiers with entry fees and prize money | Money (+ a little Stamina) |
+| Supplement Shop | Spend prize money on nutrients (energy, buffs) and steroids (instant XP, nasty side effects) | — |
 
 ## Progression
 
@@ -28,7 +30,10 @@ Back button returns to the gym.
   conditioning literally lets you work out longer. Low (but non-zero) energy
   halves XP gain. The energy bar is visible on the map HUD and in every
   minigame.
-- Progress persists to `user://lil_champ_save.json`.
+- Money: earned by placing top-3 in competitions (higher tiers pay far more
+  but their rivals roll near-perfect scores — you need both flawless QTE
+  timing and a high muscle bonus from total stat levels to take 1st).
+- Progress (stats, energy, money) persists to `user://lil_champ_save.json`.
 
 ## Architecture
 

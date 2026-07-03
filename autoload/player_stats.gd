@@ -21,6 +21,8 @@ signal evolution_changed(tier_index: int, tier_name: String)
 signal energy_changed(value: float, max_value: float)
 ## Emitted when the motivation buff turns on or off.
 signal motivation_changed(active: bool)
+## Emitted when the money balance changes.
+signal money_changed(amount: int)
 
 const SAVE_PATH := "user://lil_champ_save.json"
 const PROGRESSION_PATH := "res://resources/progression.tres"
@@ -50,6 +52,8 @@ var energy := 100.0
 var gym_level := 1
 ## Index into progression.evolution_tiers (character form).
 var evolution_tier := 0
+## Cash earned in competitions, spent in the shop.
+var money := 0
 
 ## Motivation buff expiry in msec ticks (-1 = never had one).
 var _buff_ends_at_msec := -1
@@ -162,6 +166,34 @@ func is_exhausted() -> bool:
 	return energy <= 0.0
 
 
+# ---------------------------------------------------------------------------
+# Money
+# ---------------------------------------------------------------------------
+
+func add_money(amount: int) -> void:
+	if amount <= 0:
+		return
+	money += amount
+	money_changed.emit(money)
+
+
+## Returns false (and changes nothing) if the player can't afford it.
+func spend_money(amount: int) -> bool:
+	if amount > money:
+		return false
+	money -= amount
+	money_changed.emit(money)
+	return true
+
+
+## Sum of all stat levels — used e.g. as the competition muscle bonus.
+func total_stat_levels() -> int:
+	var total := 0
+	for stat in STATS:
+		total += int(levels[stat])
+	return total
+
+
 func restore_energy(amount: float) -> void:
 	energy = clampf(energy + amount, 0.0, progression.max_energy)
 	energy_changed.emit(energy, progression.max_energy)
@@ -193,6 +225,7 @@ func save_game() -> void:
 		"xp": {},
 		"levels": {},
 		"energy": energy,
+		"money": money,
 	}
 	for stat in STATS:
 		data["xp"][String(stat)] = xp[stat]
@@ -219,3 +252,4 @@ func load_game() -> void:
 		xp[stat] = float(data.get("xp", {}).get(key, 0.0))
 		levels[stat] = int(data.get("levels", {}).get(key, 1))
 	energy = clampf(float(data.get("energy", progression.max_energy)), 0.0, progression.max_energy)
+	money = maxi(0, int(data.get("money", 0)))

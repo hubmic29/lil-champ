@@ -1,0 +1,262 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccompscene01"]
+
+[ext_resource type="Script" uid="uid://ccompexrc001" path="res://scenes/minigames/competition/competition_exercise.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://ccomptres001" path="res://scenes/minigames/competition/competition.tres" id="2_config"]
+[ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
+
+[sub_resource type="AtlasTexture" id="AT_char"]
+atlas = ExtResource("3_human")
+region = Rect2(0, 0, 32, 32)
+
+[node name="CompetitionExercise" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+config = ExtResource("2_config")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.08, 0.14, 1)
+
+[node name="StagePlatform" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 390.0
+offset_right = 930.0
+offset_bottom = 440.0
+mouse_filter = 2
+color = Color(0.45, 0.28, 0.12, 1)
+
+[node name="StagePlatformFront" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 440.0
+offset_right = 930.0
+offset_bottom = 465.0
+mouse_filter = 2
+color = Color(0.3, 0.18, 0.08, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 1152.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 28
+text = "BODYBUILDING COMPETITION"
+horizontal_alignment = 1
+
+[node name="Opponents" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(300, 300)
+
+[node name="Character" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(576, 350)
+scale = Vector2(4, 4)
+texture = SubResource("AT_char")
+
+[node name="StageUI" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PressCaption" type="Label" parent="StageUI"]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 84.0
+offset_right = 676.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 16
+text = "PRESS"
+horizontal_alignment = 1
+
+[node name="KeyLabel" type="Label" parent="StageUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 476.0
+offset_top = 108.0
+offset_right = 676.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+
+[node name="PoseLabel" type="Label" parent="StageUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 60.0
+offset_top = 120.0
+offset_right = 340.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 20
+text = "Pose 1 / 6"
+
+[node name="ScoreLabel" type="Label" parent="StageUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 60.0
+offset_top = 155.0
+offset_right = 340.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 20
+text = "Score: 0"
+
+[node name="BonusLabel" type="Label" parent="StageUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 60.0
+offset_top = 190.0
+offset_right = 340.0
+offset_bottom = 215.0
+theme_override_font_sizes/font_size = 14
+text = "Muscle bonus: +6%"
+
+[node name="Belt" type="ColorRect" parent="StageUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 276.0
+offset_top = 520.0
+offset_right = 876.0
+offset_bottom = 552.0
+mouse_filter = 2
+color = Color(0.35, 0.35, 0.38, 1)
+
+[node name="GoodZone" type="ColorRect" parent="StageUI/Belt"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 245.0
+offset_right = 355.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0, 0.75, 0.3, 0.7)
+
+[node name="PerfectZone" type="ColorRect" parent="StageUI/Belt/GoodZone"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_right = 68.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(1, 0.85, 0.2, 0.9)
+
+[node name="Indicator" type="ColorRect" parent="StageUI/Belt"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 36.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="MenuPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 326.0
+offset_top = 150.0
+offset_right = 826.0
+offset_bottom = 500.0
+
+[node name="MenuTitle" type="Label" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 500.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 22
+text = "CHOOSE A TOURNAMENT"
+horizontal_alignment = 1
+
+[node name="MenuMoneyLabel" type="Label" parent="MenuPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.65, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 16
+text = "Your wallet: $ 0"
+horizontal_alignment = 1
+
+[node name="TournamentList" type="VBoxContainer" parent="MenuPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 95.0
+offset_right = 460.0
+offset_bottom = 330.0
+theme_override_constants/separation = 12
+
+[node name="ResultsPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 326.0
+offset_top = 110.0
+offset_right = 826.0
+offset_bottom = 560.0
+
+[node name="ResultsTitle" type="Label" parent="ResultsPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 490.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 20
+text = "Results"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResultsList" type="VBoxContainer" parent="ResultsPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 430.0
+offset_bottom = 380.0
+theme_override_constants/separation = 6
+
+[node name="ContinueButton" type="Button" parent="ResultsPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 150.0
+offset_top = 395.0
+offset_right = 350.0
+offset_bottom = 435.0
+text = "Continue"
+
+[node name="MessageLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 176.0
+offset_top = 570.0
+offset_right = 976.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 18
+text = "Choose a tournament!"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 585.0
+offset_right = 190.0
+offset_bottom = 627.0
+text = "Leave Stage"

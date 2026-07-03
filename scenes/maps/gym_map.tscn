@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bdlftsttn012" path="res://scenes/stations/deadlift_station.tscn" id="5_dlift"]
 [ext_resource type="PackedScene" uid="uid://csquatstn001" path="res://scenes/stations/squat_station.tscn" id="6_squat"]
 [ext_resource type="PackedScene" uid="uid://csaunastn001" path="res://scenes/stations/sauna_station.tscn" id="7_sauna"]
+[ext_resource type="PackedScene" uid="uid://ccompstn0001" path="res://scenes/stations/competition_station.tscn" id="8_comp"]
+[ext_resource type="PackedScene" uid="uid://cshopstn0001" path="res://scenes/stations/shop_station.tscn" id="9_shop"]
 [ext_resource type="Script" uid="uid://bugshv3l4afwx" path="res://ui/hud.gd" id="6_hud"]
 
 [sub_resource type="RectangleShape2D" id="RS_0"]
@@ -149,6 +151,12 @@ position = Vector2(792, 165)
 
 [node name="SaunaStation" parent="." instance=ExtResource("7_sauna")]
 position = Vector2(110, 538)
+
+[node name="CompetitionStage" parent="." instance=ExtResource("8_comp")]
+position = Vector2(192, 215)
+
+[node name="ShopStation" parent="." instance=ExtResource("9_shop")]
+position = Vector2(700, 520)
 
 [node name="Player" parent="." instance=ExtResource("2_4xk5c")]
 z_index = 1

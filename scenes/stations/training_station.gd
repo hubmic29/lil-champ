@@ -7,6 +7,8 @@ extends Area2D
 @export var station_name := "Training Station"
 ## Shown under the name, e.g. "Trains: Chest, Strength".
 @export var trains_hint := ""
+## Interaction line of the prompt, e.g. "[E] Compete" or "[E] Browse".
+@export var action_hint := "[E] Train"
 @export_file("*.tscn") var minigame_path: String = ""
 ## Stations that cost energy refuse to start while the player is exhausted.
 ## Turn off for recovery stations like the sauna.
@@ -63,7 +65,7 @@ func _refresh_prompt() -> void:
 		lines.append("Too exhausted — rest in the sauna!")
 		_prompt.modulate = Color(1.0, 0.55, 0.55)
 	else:
-		lines.append("[E] Train")
+		lines.append(action_hint)
 		_prompt.modulate = Color.WHITE
 	_prompt.text = "\n".join(lines)
 

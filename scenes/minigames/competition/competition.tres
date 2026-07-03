@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CompetitionConfig" load_steps=2 format=3 uid="uid://ccomptres001"]
+
+[ext_resource type="Script" uid="uid://ccompcfg0001" path="res://scenes/minigames/competition/competition_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Bodybuilding Competition"
+base_xp = 5.0
+stat_rewards = {
+"stamina": 0.5
+}
+energy_cost_per_action = 0.0
+poses_per_tournament = 6
+qte_keys = Array[String](["A", "S", "D", "W", "F"])
+perfect_points = 100.0
+good_points = 60.0
+muscle_bonus_per_level = 0.01
+good_zone_width = 110.0
+perfect_zone_width = 28.0
+tournament_names = Array[String](["Local Show", "Regional Cup", "National Championship", "Mr. Universe"])
+entry_fees = Array[int]([0, 40, 120, 300])
+first_prizes = Array[int]([80, 250, 700, 2000])
+second_place_fraction = 0.4
+third_place_fraction = 0.15
+indicator_speeds = Array[float]([420.0, 520.0, 640.0, 780.0])
+opponent_counts = Array[int]([4, 5, 6, 7])
+opponent_pose_min = Array[float]([35.0, 55.0, 68.0, 80.0])
+opponent_pose_max = Array[float]([75.0, 90.0, 100.0, 110.0])
+opponent_names = Array[String](["Big Ron", "Hans Flex", "Quadzilla", "Bulk Hogan", "Sir Lat", "Marco Delts", "The Mountain", "Aleks Pecs", "Tiny Tim", "Arnie Jr.", "Mad Traps", "Captain Curl", "Don Pump", "Iron Igor"])

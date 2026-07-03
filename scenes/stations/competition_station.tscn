@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ccompstn0001"]
+
+[ext_resource type="Script" uid="uid://bxh41ld8qeq5c" path="res://scenes/stations/training_station.gd" id="1_cpstn"]
+[ext_resource type="Texture2D" path="res://assets/competition_podium.png" id="2_cpstn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpstn"]
+radius = 46.0
+
+[node name="CompetitionStage" type="Area2D"]
+script = ExtResource("1_cpstn")
+station_name = "Competition Stage"
+trains_hint = "Pose-off for prize money!"
+action_hint = "[E] Compete"
+minigame_path = "res://scenes/minigames/competition/competition_exercise.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_cpstn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cpstn")

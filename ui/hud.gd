@@ -8,6 +8,7 @@ extends CanvasLayer
 
 var _evolution_label: Label
 var _gym_label: Label
+var _money_label: Label
 var _energy_bar: ProgressBar
 var _buff_label: Label
 var _level_labels := {}
@@ -23,6 +24,7 @@ func _ready() -> void:
 	PlayerStats.evolution_changed.connect(_on_evolution_changed)
 	PlayerStats.energy_changed.connect(func(_v: float, _m: float) -> void: _refresh())
 	PlayerStats.motivation_changed.connect(func(_a: bool) -> void: _refresh())
+	PlayerStats.money_changed.connect(func(_m: int) -> void: _refresh())
 	_refresh()
 
 
@@ -38,6 +40,7 @@ func _build_panel() -> void:
 
 	_evolution_label = _add_label(vbox, 16, Color(1.0, 0.85, 0.3))
 	_gym_label = _add_label(vbox, 13)
+	_money_label = _add_label(vbox, 13, Color(0.65, 0.95, 0.55))
 	vbox.add_child(HSeparator.new())
 
 	for stat in PlayerStats.STATS:
@@ -86,6 +89,7 @@ func _add_label(parent: Node, font_size: int, color := Color.WHITE) -> Label:
 func _refresh() -> void:
 	_evolution_label.text = PlayerStats.evolution_tier_name()
 	_gym_label.text = "Gym Level %d" % PlayerStats.gym_level
+	_money_label.text = "$ %d" % PlayerStats.money
 	for stat in PlayerStats.STATS:
 		_level_labels[stat].text = "Lv %d" % PlayerStats.levels[stat]
 		_xp_bars[stat].value = 100.0 * PlayerStats.xp[stat] \

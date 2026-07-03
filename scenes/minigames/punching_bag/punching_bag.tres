@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PunchingBagConfig" load_steps=2 format=3 uid="uid://cpbagtres001"]
+
+[ext_resource type="Script" uid="uid://cpbagcfg0001" path="res://scenes/minigames/punching_bag/punching_bag_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Punching Bag"
+base_xp = 6.0
+stat_rewards = {
+"stamina": 1.0
+}
+energy_cost_per_action = 2.5
+target_size = 56.0
+target_lifetime = 2.0
+target_lifetime_min = 0.7
+target_lifetime_decay = 0.05
+combo_bonus = 0.05
+max_combo_for_bonus = 20

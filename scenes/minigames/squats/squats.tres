@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SquatsConfig" load_steps=2 format=3 uid="uid://csquattres01"]
+
+[ext_resource type="Script" uid="uid://csquatcfg001" path="res://scenes/minigames/squats/squats_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Squats"
+base_xp = 13.0
+stat_rewards = {
+"quadriceps": 1.0,
+"strength": 0.2
+}
+energy_cost_per_action = 10.0
+instability_start = 0.6
+instability_gain_per_second = 0.03
+instability_gain_per_rep = 0.25
+correction_strength = 1.6
+success_zone = 0.22
+hold_time_per_rep = 2.5
+hold_decay = 1.5
+xp_growth_per_rep = 0.1

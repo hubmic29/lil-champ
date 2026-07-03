@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d28mxi54b2u4r" path="res://scenes/stations/punching_bag.tscn" id="3_bag"]
 [ext_resource type="PackedScene" uid="uid://d1wttq73skkhw" path="res://scenes/stations/bench_press_station.tscn" id="4_bench"]
 [ext_resource type="PackedScene" uid="uid://bdlftsttn012" path="res://scenes/stations/deadlift_station.tscn" id="5_dlift"]
+[ext_resource type="PackedScene" uid="uid://csquatstn001" path="res://scenes/stations/squat_station.tscn" id="6_squat"]
+[ext_resource type="PackedScene" uid="uid://csaunastn001" path="res://scenes/stations/sauna_station.tscn" id="7_sauna"]
 [ext_resource type="Script" uid="uid://bugshv3l4afwx" path="res://ui/hud.gd" id="6_hud"]
 
 [sub_resource type="RectangleShape2D" id="RS_0"]
@@ -51,6 +53,8 @@ size = Vector2(24, 26)
 size = Vector2(48, 16)
 [sub_resource type="RectangleShape2D" id="RS_21"]
 size = Vector2(48, 16)
+[sub_resource type="RectangleShape2D" id="RS_22"]
+size = Vector2(58, 42)
 
 [node name="GymMap" type="Node2D"]
 
@@ -127,6 +131,9 @@ shape = SubResource("RS_20")
 [node name="Bench21" type="CollisionShape2D" parent="Walls"]
 position = Vector2(244.0, 268.0)
 shape = SubResource("RS_21")
+[node name="SaunaHut22" type="CollisionShape2D" parent="Walls"]
+position = Vector2(110.0, 528.0)
+shape = SubResource("RS_22")
 
 [node name="BenchPressStation" parent="." instance=ExtResource("4_bench")]
 position = Vector2(540, 250)
@@ -136,6 +143,12 @@ position = Vector2(670, 250)
 
 [node name="PunchingBag" parent="." instance=ExtResource("3_bag")]
 position = Vector2(805, 245)
+
+[node name="SquatStation" parent="." instance=ExtResource("6_squat")]
+position = Vector2(792, 165)
+
+[node name="SaunaStation" parent="." instance=ExtResource("7_sauna")]
+position = Vector2(110, 538)
 
 [node name="Player" parent="." instance=ExtResource("2_4xk5c")]
 z_index = 1
@@ -153,74 +166,5 @@ script = ExtResource("6_hud")
 [node name="StatsPanel" type="Panel" parent="HUD"]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 205.0
-offset_bottom = 220.0
-
-[node name="PanelTitle" type="Label" parent="HUD/StatsPanel"]
-offset_top = 6.0
-offset_right = 195.0
-offset_bottom = 28.0
-theme_override_font_sizes/font_size = 15
-text = "PLAYER STATS"
-horizontal_alignment = 1
-
-[node name="Divider" type="ColorRect" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 31.0
-offset_right = 187.0
-offset_bottom = 33.0
-color = Color(0.55, 0.55, 0.55, 1)
-
-[node name="EXPLabel" type="Label" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 38.0
-offset_right = 187.0
-offset_bottom = 60.0
-theme_override_font_sizes/font_size = 14
-text = "EXP:  0"
-
-[node name="STRLabel" type="Label" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 65.0
-offset_right = 187.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 14
-text = "STR:  10"
-
-[node name="ENDLabel" type="Label" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 95.0
-offset_right = 187.0
-offset_bottom = 117.0
-theme_override_font_sizes/font_size = 14
-text = "END:  10"
-
-[node name="AGILabel" type="Label" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 125.0
-offset_right = 187.0
-offset_bottom = 147.0
-theme_override_font_sizes/font_size = 14
-text = "AGI:  10"
-
-[node name="DEXLabel" type="Label" parent="HUD/StatsPanel"]
-offset_left = 8.0
-offset_top = 155.0
-offset_right = 187.0
-offset_bottom = 177.0
-theme_override_font_sizes/font_size = 14
-text = "DEX:  10"
-
-[node name="HintPanel" type="Panel" parent="HUD"]
-offset_left = 300.0
-offset_top = 585.0
-offset_right = 852.0
-offset_bottom = 615.0
-
-[node name="HintLabel" type="Label" parent="HUD/HintPanel"]
-offset_right = 552.0
-offset_bottom = 30.0
-theme_override_font_sizes/font_size = 14
-text = "Walk near equipment and press E to train"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_right = 260.0
+offset_bottom = 290.0

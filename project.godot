@@ -17,7 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalStats="*uid://j4dcq2ygx67l"
+PlayerStats="*res://autoload/player_stats.gd"
+AudioManager="*res://autoload/audio_manager.gd"
+SceneSwitcher="*res://autoload/scene_switcher.gd"
 
 [display]
 

@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://csquatscene1"]
+
+[ext_resource type="Script" uid="uid://csquatexrc01" path="res://scenes/minigames/squats/squats_exercise.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://csquattres01" path="res://scenes/minigames/squats/squats.tres" id="2_config"]
+[ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
+
+[sub_resource type="AtlasTexture" id="AT_char"]
+atlas = ExtResource("3_human")
+region = Rect2(0, 0, 32, 32)
+
+[node name="SquatsExercise" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+config = ExtResource("2_config")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.13, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 1152.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 28
+text = "SQUATS — Quadriceps Training"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 62.0
+offset_right = 976.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 16
+text = "Keep the marker in the green zone with A/D or Left/Right"
+horizontal_alignment = 1
+
+[node name="Character" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(576, 330)
+scale = Vector2(4, 4)
+texture = SubResource("AT_char")
+
+[node name="Track" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 326.0
+offset_top = 490.0
+offset_right = 826.0
+offset_bottom = 522.0
+color = Color(0.35, 0.35, 0.38, 1)
+
+[node name="Zone" type="ColorRect" parent="Track"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 200.0
+offset_right = 300.0
+offset_bottom = 32.0
+color = Color(0, 0.75, 0.3, 0.7)
+
+[node name="Marker" type="ColorRect" parent="Track"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 245.0
+offset_top = -5.0
+offset_right = 255.0
+offset_bottom = 37.0
+color = Color(1, 1, 1, 1)
+
+[node name="HoldBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 326.0
+offset_top = 535.0
+offset_right = 826.0
+offset_bottom = 550.0
+show_percentage = false
+
+[node name="HoldLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 552.0
+offset_right = 826.0
+offset_bottom = 574.0
+theme_override_font_sizes/font_size = 13
+text = "REP PROGRESS"
+horizontal_alignment = 1
+
+[node name="RepLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 60.0
+offset_top = 120.0
+offset_right = 340.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 22
+text = "Reps: 0"
+
+[node name="MessageLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 176.0
+offset_top = 590.0
+offset_right = 976.0
+offset_bottom = 620.0
+theme_override_font_sizes/font_size = 18
+text = "Hold A/D or Left/Right to stay balanced!"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 585.0
+offset_right = 190.0
+offset_bottom = 627.0
+text = "Back to Gym"

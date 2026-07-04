@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://csaunascene1"]
 
-[ext_resource type="Script" uid="uid://csaunaexrc01" path="res://scenes/minigames/sauna/sauna_exercise.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bjlchr8jexfu" path="res://scenes/minigames/sauna/sauna_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://csaunatres01" path="res://scenes/minigames/sauna/sauna.tres" id="2_config"]
-[ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
+[ext_resource type="Texture2D" uid="uid://dnet2wnxsuloe" path="res://assets/sauna_inside.png" id="3_uyrnx"]
+[ext_resource type="Texture2D" uid="uid://cselcn7uyglvs" path="res://assets/pawel.png" id="4_uyrnx"]
 
-[sub_resource type="AtlasTexture" id="AT_char"]
-atlas = ExtResource("3_human")
-region = Rect2(0, 0, 32, 32)
-
-[node name="SaunaExercise" type="Control"]
+[node name="SaunaExercise" type="Control" unique_id=85958842]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,16 +15,16 @@ grow_vertical = 2
 script = ExtResource("1_script")
 config = ExtResource("2_config")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=215676646]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.25, 0.15, 0.08, 1)
+texture = ExtResource("3_uyrnx")
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=2100423934]
 layout_mode = 0
 offset_top = 18.0
 offset_right = 1152.0
@@ -36,73 +33,50 @@ theme_override_font_sizes/font_size = 28
 text = "SAUNA — Rest & Recover"
 horizontal_alignment = 1
 
-[node name="BenchTop" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 390.0
-offset_right = 950.0
-offset_bottom = 420.0
-color = Color(0.5, 0.32, 0.14, 1)
-
-[node name="BenchFront" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 420.0
-offset_right = 950.0
-offset_bottom = 470.0
-color = Color(0.38, 0.24, 0.1, 1)
-
-[node name="Coals" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 830.0
-offset_top = 470.0
-offset_right = 930.0
-offset_bottom = 510.0
-color = Color(0.16, 0.14, 0.13, 1)
-
-[node name="Sitters" type="Node2D" parent="."]
+[node name="Sitters" type="Node2D" parent="." unique_id=1985036365]
 unique_name_in_owner = true
 
-[node name="Player" type="Sprite2D" parent="Sitters"]
+[node name="Player" type="Sprite2D" parent="Sitters" unique_id=68102995]
 texture_filter = 1
-position = Vector2(400, 355)
+position = Vector2(370, 398)
 scale = Vector2(4, 4)
-texture = SubResource("AT_char")
+texture = ExtResource("4_uyrnx")
 
-[node name="Friend1" type="Sprite2D" parent="Sitters"]
-texture_filter = 1
+[node name="Friend1" type="Sprite2D" parent="Sitters" unique_id=202057724]
 modulate = Color(0.9, 1, 0.8, 1)
-position = Vector2(520, 355)
-scale = Vector2(4, 4)
-texture = SubResource("AT_char")
-
-[node name="Friend2" type="Sprite2D" parent="Sitters"]
 texture_filter = 1
-modulate = Color(0.8, 0.9, 1, 1)
-position = Vector2(660, 355)
+position = Vector2(541, 395)
 scale = Vector2(4, 4)
-texture = SubResource("AT_char")
+texture = ExtResource("4_uyrnx")
 
-[node name="Steam1" type="CPUParticles2D" parent="." groups=["steam"]]
-position = Vector2(400, 320)
+[node name="Friend2" type="Sprite2D" parent="Sitters" unique_id=1636964202]
+modulate = Color(0.8, 0.9, 1, 1)
+texture_filter = 1
+position = Vector2(701, 397)
+scale = Vector2(4, 4)
+texture = ExtResource("4_uyrnx")
 
-[node name="Steam2" type="CPUParticles2D" parent="." groups=["steam"]]
-position = Vector2(660, 320)
+[node name="Steam1" type="CPUParticles2D" parent="." unique_id=418317234 groups=["steam"]]
+position = Vector2(157, 470)
 
-[node name="Steam3" type="CPUParticles2D" parent="." groups=["steam"]]
-position = Vector2(880, 470)
+[node name="Steam2" type="CPUParticles2D" parent="." unique_id=1492062020 groups=["steam"]]
+position = Vector2(100, 472)
 
-[node name="DialogueLabel" type="Label" parent="."]
+[node name="Steam3" type="CPUParticles2D" parent="." unique_id=2019678290 groups=["steam"]]
+position = Vector2(34, 470)
+
+[node name="DialogueLabel" type="Label" parent="." unique_id=524790293]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 200.0
 offset_top = 240.0
 offset_right = 950.0
 offset_bottom = 280.0
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
-[node name="InfoLabel" type="Label" parent="."]
+[node name="InfoLabel" type="Label" parent="." unique_id=1343241532]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 326.0
@@ -113,10 +87,10 @@ theme_override_font_sizes/font_size = 16
 text = "Relaxing..."
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=532932010]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 585.0
-offset_right = 190.0
-offset_bottom = 627.0
+offset_left = 14.0
+offset_top = 594.0
+offset_right = 164.0
+offset_bottom = 636.0
 text = "Leave Sauna"

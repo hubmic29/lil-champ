@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csaunastn001"]
 
-[ext_resource type="Script" uid="uid://bxh41ld8qeq5c" path="res://scenes/stations/training_station.gd" id="1_sastn"]
-[ext_resource type="Texture2D" path="res://assets/sauna.png" id="2_sastn"]
+[ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_sastn"]
+[ext_resource type="Texture2D" uid="uid://bsfgph1w5j22x" path="res://assets/sauna.png" id="2_sastn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sastn"]
 radius = 46.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://csquatscene1"]
 
-[ext_resource type="Script" uid="uid://csquatexrc01" path="res://scenes/minigames/squats/squats_exercise.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dljevjvvl0sl1" path="res://scenes/minigames/squats/squats_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://csquattres01" path="res://scenes/minigames/squats/squats.tres" id="2_config"]
 [ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
 

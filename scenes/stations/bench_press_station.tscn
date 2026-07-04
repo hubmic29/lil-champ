@@ -1,21 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1wttq73skkhw"]
+[gd_scene format=3 uid="uid://d1wttq73skkhw"]
 
-[ext_resource type="Script" uid="uid://bxh41ld8qeq5c" path="res://scenes/stations/training_station.gd" id="1_gfr1s"]
+[ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_gfr1s"]
 [ext_resource type="Texture2D" uid="uid://bpressasset1" path="res://assets/bench_press.png" id="2_gfr1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7vv0i"]
 radius = 31.06445
 
-[node name="BenchPressStation" type="Area2D"]
+[node name="BenchPressStation" type="Area2D" unique_id=1574491521]
 script = ExtResource("1_gfr1s")
 station_name = "Bench Press"
 trains_hint = "Trains: Chest, Strength"
 minigame_path = "res://scenes/minigames/bench_press/bench_press_exercise.tscn"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2067048310]
 texture_filter = 1
 texture = ExtResource("2_gfr1s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1086300894]
 position = Vector2(-5, -2)
 shape = SubResource("CircleShape2D_7vv0i")

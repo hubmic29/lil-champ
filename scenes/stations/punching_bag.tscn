@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d28mxi54b2u4r"]
+[gd_scene format=3 uid="uid://d28mxi54b2u4r"]
 
-[ext_resource type="Script" uid="uid://bxh41ld8qeq5c" path="res://scenes/stations/training_station.gd" id="1_ti4dy"]
+[ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_ti4dy"]
 [ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://assets/punching_bag.png" id="2_nmu55"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t56ki"]

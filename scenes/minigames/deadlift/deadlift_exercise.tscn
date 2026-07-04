@@ -1,14 +1,10 @@
 [gd_scene format=3 uid="uid://cdlftscene01"]
 
-[ext_resource type="Script" uid="uid://cdlftexrc001" path="res://scenes/minigames/deadlift/deadlift_exercise.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dopgsnyce72ja" path="res://scenes/minigames/deadlift/deadlift_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://cdlfttres001" path="res://scenes/minigames/deadlift/deadlift.tres" id="2_config"]
-[ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
+[ext_resource type="Texture2D" uid="uid://cselcn7uyglvs" path="res://assets/pawel.png" id="3_asiqk"]
 
-[sub_resource type="AtlasTexture" id="AT_char"]
-atlas = ExtResource("3_human")
-region = Rect2(0, 0, 32, 32)
-
-[node name="DeadliftExercise" type="Control"]
+[node name="DeadliftExercise" type="Control" unique_id=1261813980]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_script")
 config = ExtResource("2_config")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1957746880]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.13, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1673402210]
 layout_mode = 0
 offset_top = 18.0
 offset_right = 1152.0
@@ -36,22 +32,22 @@ theme_override_font_sizes/font_size = 28
 text = "DEADLIFT — Back & Hamstrings"
 horizontal_alignment = 1
 
-[node name="Character" type="Sprite2D" parent="."]
+[node name="Character" type="Sprite2D" parent="." unique_id=1642436051]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(576, 330)
-scale = Vector2(4, 4)
-texture = SubResource("AT_char")
+position = Vector2(576, 379.00003)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("3_asiqk")
 
-[node name="Barbell" type="Control" parent="."]
+[node name="Barbell" type="Control" parent="." unique_id=1011189628]
 unique_name_in_owner = true
-layout_mode = 0
+anchors_preset = 0
 offset_left = 456.0
 offset_top = 420.0
 offset_right = 696.0
 offset_bottom = 428.0
 
-[node name="BarRect" type="ColorRect" parent="Barbell"]
+[node name="BarRect" type="ColorRect" parent="Barbell" unique_id=611817361]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,14 +56,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.75, 0.75, 0.78, 1)
 
-[node name="PlateL" type="ColorRect" parent="Barbell"]
+[node name="PlateL" type="ColorRect" parent="Barbell" unique_id=858223496]
 layout_mode = 0
 offset_top = -36.0
 offset_right = 24.0
 offset_bottom = 44.0
 color = Color(0.2, 0.2, 0.22, 1)
 
-[node name="PlateR" type="ColorRect" parent="Barbell"]
+[node name="PlateR" type="ColorRect" parent="Barbell" unique_id=1954623796]
 layout_mode = 0
 offset_left = 216.0
 offset_top = -36.0
@@ -75,7 +71,7 @@ offset_right = 240.0
 offset_bottom = 44.0
 color = Color(0.2, 0.2, 0.22, 1)
 
-[node name="Belt" type="ColorRect" parent="."]
+[node name="Belt" type="ColorRect" parent="." unique_id=2027712292]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 276.0
@@ -84,7 +80,7 @@ offset_right = 876.0
 offset_bottom = 542.0
 color = Color(0.35, 0.35, 0.38, 1)
 
-[node name="GoodZone" type="ColorRect" parent="Belt"]
+[node name="GoodZone" type="ColorRect" parent="Belt" unique_id=371228262]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 245.0
@@ -92,7 +88,7 @@ offset_right = 355.0
 offset_bottom = 32.0
 color = Color(0, 0.75, 0.3, 0.7)
 
-[node name="PerfectZone" type="ColorRect" parent="Belt/GoodZone"]
+[node name="PerfectZone" type="ColorRect" parent="Belt/GoodZone" unique_id=61995947]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 40.0
@@ -100,15 +96,14 @@ offset_right = 70.0
 offset_bottom = 32.0
 color = Color(1, 0.85, 0.2, 0.9)
 
-[node name="Indicator" type="ColorRect" parent="Belt"]
+[node name="Indicator" type="ColorRect" parent="Belt" unique_id=1935057304]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = -4.0
 offset_right = 6.0
 offset_bottom = 36.0
-color = Color(1, 1, 1, 1)
 
-[node name="WeightLabel" type="Label" parent="."]
+[node name="WeightLabel" type="Label" parent="." unique_id=662493817]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 60.0
@@ -118,7 +113,7 @@ offset_bottom = 155.0
 theme_override_font_sizes/font_size = 22
 text = "Weight: 100 kg"
 
-[node name="StreakLabel" type="Label" parent="."]
+[node name="StreakLabel" type="Label" parent="." unique_id=354500820]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 60.0
@@ -128,7 +123,7 @@ offset_bottom = 195.0
 theme_override_font_sizes/font_size = 22
 text = "Streak: 0"
 
-[node name="MessageLabel" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="." unique_id=1746017054]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
@@ -139,7 +134,7 @@ theme_override_font_sizes/font_size = 18
 text = "Press SPACE when the marker is in the zone!"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1654831639]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 585.0

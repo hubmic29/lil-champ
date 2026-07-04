@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccompscene01"]
+[gd_scene format=3 uid="uid://ccompscene01"]
 
-[ext_resource type="Script" uid="uid://ccompexrc001" path="res://scenes/minigames/competition/competition_exercise.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://eidgoi1q7thc" path="res://scenes/minigames/competition/competition_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://ccomptres001" path="res://scenes/minigames/competition/competition.tres" id="2_config"]
-[ext_resource type="Texture2D" uid="uid://5ttpcp7cuwek" path="res://assets/human.png" id="3_human"]
+[ext_resource type="Texture2D" uid="uid://cselcn7uyglvs" path="res://assets/pawel.png" id="3_vo4ch"]
 
-[sub_resource type="AtlasTexture" id="AT_char"]
-atlas = ExtResource("3_human")
-region = Rect2(0, 0, 32, 32)
-
-[node name="CompetitionExercise" type="Control"]
+[node name="CompetitionExercise" type="Control" unique_id=400762247]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_script")
 config = ExtResource("2_config")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1545596110]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +24,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.08, 0.14, 1)
 
-[node name="StagePlatform" type="ColorRect" parent="."]
+[node name="StagePlatform" type="ColorRect" parent="." unique_id=1113228979]
 layout_mode = 0
 offset_left = 220.0
 offset_top = 390.0
@@ -37,7 +33,7 @@ offset_bottom = 440.0
 mouse_filter = 2
 color = Color(0.45, 0.28, 0.12, 1)
 
-[node name="StagePlatformFront" type="ColorRect" parent="."]
+[node name="StagePlatformFront" type="ColorRect" parent="." unique_id=1187820099]
 layout_mode = 0
 offset_left = 220.0
 offset_top = 440.0
@@ -46,7 +42,7 @@ offset_bottom = 465.0
 mouse_filter = 2
 color = Color(0.3, 0.18, 0.08, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1336424192]
 layout_mode = 0
 offset_top = 18.0
 offset_right = 1152.0
@@ -55,18 +51,18 @@ theme_override_font_sizes/font_size = 28
 text = "BODYBUILDING COMPETITION"
 horizontal_alignment = 1
 
-[node name="Opponents" type="Node2D" parent="."]
+[node name="Opponents" type="Node2D" parent="." unique_id=199562388]
 unique_name_in_owner = true
 position = Vector2(300, 300)
 
-[node name="Character" type="Sprite2D" parent="."]
+[node name="Character" type="Sprite2D" parent="." unique_id=1680358165]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(576, 350)
-scale = Vector2(4, 4)
-texture = SubResource("AT_char")
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("3_vo4ch")
 
-[node name="StageUI" type="Control" parent="."]
+[node name="StageUI" type="Control" parent="." unique_id=599138086]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -77,7 +73,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PressCaption" type="Label" parent="StageUI"]
+[node name="PressCaption" type="Label" parent="StageUI" unique_id=793482525]
 layout_mode = 0
 offset_left = 476.0
 offset_top = 84.0
@@ -87,7 +83,7 @@ theme_override_font_sizes/font_size = 16
 text = "PRESS"
 horizontal_alignment = 1
 
-[node name="KeyLabel" type="Label" parent="StageUI"]
+[node name="KeyLabel" type="Label" parent="StageUI" unique_id=1974897602]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 476.0
@@ -99,7 +95,7 @@ theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
 
-[node name="PoseLabel" type="Label" parent="StageUI"]
+[node name="PoseLabel" type="Label" parent="StageUI" unique_id=1394093552]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 60.0
@@ -109,7 +105,7 @@ offset_bottom = 150.0
 theme_override_font_sizes/font_size = 20
 text = "Pose 1 / 6"
 
-[node name="ScoreLabel" type="Label" parent="StageUI"]
+[node name="ScoreLabel" type="Label" parent="StageUI" unique_id=759770076]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 60.0
@@ -119,7 +115,7 @@ offset_bottom = 185.0
 theme_override_font_sizes/font_size = 20
 text = "Score: 0"
 
-[node name="BonusLabel" type="Label" parent="StageUI"]
+[node name="BonusLabel" type="Label" parent="StageUI" unique_id=599256563]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 60.0
@@ -129,7 +125,7 @@ offset_bottom = 215.0
 theme_override_font_sizes/font_size = 14
 text = "Muscle bonus: +6%"
 
-[node name="Belt" type="ColorRect" parent="StageUI"]
+[node name="Belt" type="ColorRect" parent="StageUI" unique_id=2135737811]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 276.0
@@ -139,7 +135,7 @@ offset_bottom = 552.0
 mouse_filter = 2
 color = Color(0.35, 0.35, 0.38, 1)
 
-[node name="GoodZone" type="ColorRect" parent="StageUI/Belt"]
+[node name="GoodZone" type="ColorRect" parent="StageUI/Belt" unique_id=1223241322]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 245.0
@@ -148,7 +144,7 @@ offset_bottom = 32.0
 mouse_filter = 2
 color = Color(0, 0.75, 0.3, 0.7)
 
-[node name="PerfectZone" type="ColorRect" parent="StageUI/Belt/GoodZone"]
+[node name="PerfectZone" type="ColorRect" parent="StageUI/Belt/GoodZone" unique_id=2086295310]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 40.0
@@ -157,16 +153,15 @@ offset_bottom = 32.0
 mouse_filter = 2
 color = Color(1, 0.85, 0.2, 0.9)
 
-[node name="Indicator" type="ColorRect" parent="StageUI/Belt"]
+[node name="Indicator" type="ColorRect" parent="StageUI/Belt" unique_id=856586029]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = -4.0
 offset_right = 6.0
 offset_bottom = 36.0
 mouse_filter = 2
-color = Color(1, 1, 1, 1)
 
-[node name="MenuPanel" type="Panel" parent="."]
+[node name="MenuPanel" type="Panel" parent="." unique_id=364503384]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 326.0
@@ -174,7 +169,7 @@ offset_top = 150.0
 offset_right = 826.0
 offset_bottom = 500.0
 
-[node name="MenuTitle" type="Label" parent="MenuPanel"]
+[node name="MenuTitle" type="Label" parent="MenuPanel" unique_id=2018450026]
 layout_mode = 0
 offset_top = 15.0
 offset_right = 500.0
@@ -183,7 +178,7 @@ theme_override_font_sizes/font_size = 22
 text = "CHOOSE A TOURNAMENT"
 horizontal_alignment = 1
 
-[node name="MenuMoneyLabel" type="Label" parent="MenuPanel"]
+[node name="MenuMoneyLabel" type="Label" parent="MenuPanel" unique_id=1147286364]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 50.0
@@ -194,7 +189,7 @@ theme_override_font_sizes/font_size = 16
 text = "Your wallet: $ 0"
 horizontal_alignment = 1
 
-[node name="TournamentList" type="VBoxContainer" parent="MenuPanel"]
+[node name="TournamentList" type="VBoxContainer" parent="MenuPanel" unique_id=1512510282]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 40.0
@@ -203,7 +198,7 @@ offset_right = 460.0
 offset_bottom = 330.0
 theme_override_constants/separation = 12
 
-[node name="ResultsPanel" type="Panel" parent="."]
+[node name="ResultsPanel" type="Panel" parent="." unique_id=1710377268]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -212,7 +207,7 @@ offset_top = 110.0
 offset_right = 826.0
 offset_bottom = 560.0
 
-[node name="ResultsTitle" type="Label" parent="ResultsPanel"]
+[node name="ResultsTitle" type="Label" parent="ResultsPanel" unique_id=646470935]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
@@ -224,7 +219,7 @@ text = "Results"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ResultsList" type="VBoxContainer" parent="ResultsPanel"]
+[node name="ResultsList" type="VBoxContainer" parent="ResultsPanel" unique_id=255009275]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 70.0
@@ -233,7 +228,7 @@ offset_right = 430.0
 offset_bottom = 380.0
 theme_override_constants/separation = 6
 
-[node name="ContinueButton" type="Button" parent="ResultsPanel"]
+[node name="ContinueButton" type="Button" parent="ResultsPanel" unique_id=243836410]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 150.0
@@ -242,7 +237,7 @@ offset_right = 350.0
 offset_bottom = 435.0
 text = "Continue"
 
-[node name="MessageLabel" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="." unique_id=489647533]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
@@ -253,7 +248,7 @@ theme_override_font_sizes/font_size = 18
 text = "Choose a tournament!"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1348537075]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 585.0

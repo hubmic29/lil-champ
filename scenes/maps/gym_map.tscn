@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8akogknnfnd1"]
 
 [ext_resource type="Texture2D" uid="uid://champgymbg01" path="res://assets/gym_map_bg.png" id="1_bg"]
-[ext_resource type="PackedScene" uid="uid://b7l6a48tmurqk" path="res://player/player.tscn" id="2_4xk5c"]
+[ext_resource type="PackedScene" uid="uid://b7l6a48tmurqk" path="res://player/Player.tscn" id="2_4xk5c"]
 [ext_resource type="PackedScene" uid="uid://d28mxi54b2u4r" path="res://scenes/stations/punching_bag.tscn" id="3_bag"]
 [ext_resource type="PackedScene" uid="uid://d1wttq73skkhw" path="res://scenes/stations/bench_press_station.tscn" id="4_bench"]
 [ext_resource type="PackedScene" uid="uid://bdlftsttn012" path="res://scenes/stations/deadlift_station.tscn" id="5_dlift"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://csaunastn001" path="res://scenes/stations/sauna_station.tscn" id="7_sauna"]
 [ext_resource type="PackedScene" uid="uid://ccompstn0001" path="res://scenes/stations/competition_station.tscn" id="8_comp"]
 [ext_resource type="PackedScene" uid="uid://cshopstn0001" path="res://scenes/stations/shop_station.tscn" id="9_shop"]
+[ext_resource type="PackedScene" uid="uid://dm4bmujaxa8r0" path="res://pause_menu.tscn" id="11_50g18"]
 
 [sub_resource type="RectangleShape2D" id="RS_0"]
 size = Vector2(960, 64)
@@ -214,3 +215,5 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 260.0
 offset_bottom = 290.0
+
+[node name="PauseMenu" parent="." unique_id=1655045054 instance=ExtResource("11_50g18")]

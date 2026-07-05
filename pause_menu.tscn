@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dm4bmujaxa8r0"]
+
+[ext_resource type="Script" uid="uid://cbwbslavr1677" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://cpbgxcdk005fn" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="2_05uyy"]
+[ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_p81d2"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1655045054]
+process_mode = 3
+script = ExtResource("1_hdmo1")
+
+[node name="BackgroundDim" type="ColorRect" parent="." unique_id=1016991754]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1435787827]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.5
+offset_right = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1550638530]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_05uyy")
+theme_override_font_sizes/font_size = 32
+text = "CONTINUE"
+
+[node name="SaveQuitButton" type="Button" parent="VBoxContainer" unique_id=1588766976]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_p81d2")
+theme_override_font_sizes/font_size = 32
+text = "SAVE AND QUIT"
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]

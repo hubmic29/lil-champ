@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dskwtm8k0jqcp"]
 
-[ext_resource type="Texture2D" uid="uid://cbtihu810gh6o" path="res://assets/character/m/mid - s.png" id="1_eog6l"]
-[ext_resource type="Texture2D" uid="uid://dymyxripl1t5n" path="res://assets/character/m/mid s-w.png" id="2_7siti"]
-[ext_resource type="Texture2D" uid="uid://dtfn43tty07ej" path="res://assets/character/m/mid s-e.png" id="3_isoch"]
-[ext_resource type="Texture2D" uid="uid://dt5m5o5q1egya" path="res://assets/character/m/mid w.png" id="4_hf4g0"]
-[ext_resource type="Texture2D" uid="uid://baunm14s8frfx" path="res://assets/character/m/mid e.png" id="5_2eeq8"]
-[ext_resource type="Texture2D" uid="uid://doddkrjmjtb35" path="res://assets/character/m/mid n.png" id="6_ekvpo"]
-[ext_resource type="Texture2D" uid="uid://qjts3pha75pm" path="res://assets/character/m/mid n-w.png" id="7_evygu"]
-[ext_resource type="Texture2D" uid="uid://bymmnarannanj" path="res://assets/character/m/mid n-e.png" id="8_aq8xb"]
+[ext_resource type="Texture2D" uid="uid://cbtihu810gh6o" path="res://assets/character/M/mid - s.png" id="1_eog6l"]
+[ext_resource type="Texture2D" uid="uid://dymyxripl1t5n" path="res://assets/character/M/mid s-w.png" id="2_7siti"]
+[ext_resource type="Texture2D" uid="uid://dtfn43tty07ej" path="res://assets/character/M/mid s-e.png" id="3_isoch"]
+[ext_resource type="Texture2D" uid="uid://dt5m5o5q1egya" path="res://assets/character/M/mid w.png" id="4_hf4g0"]
+[ext_resource type="Texture2D" uid="uid://baunm14s8frfx" path="res://assets/character/M/mid e.png" id="5_2eeq8"]
+[ext_resource type="Texture2D" uid="uid://doddkrjmjtb35" path="res://assets/character/M/mid n.png" id="6_ekvpo"]
+[ext_resource type="Texture2D" uid="uid://qjts3pha75pm" path="res://assets/character/M/mid n-w.png" id="7_evygu"]
+[ext_resource type="Texture2D" uid="uid://bymmnarannanj" path="res://assets/character/M/mid n-e.png" id="8_aq8xb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3qwo"]
 atlas = ExtResource("1_eog6l")

@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://bdh5y3cghaj8v"]
 
-[ext_resource type="Texture2D" uid="uid://7ghs3u1log05" path="res://assets/character/l/l s.png" id="1_uuqev"]
-[ext_resource type="Texture2D" uid="uid://bpbcxrwr35swp" path="res://assets/character/l/l w.png" id="2_1u1mk"]
-[ext_resource type="Texture2D" uid="uid://twf64ect5vej" path="res://assets/character/l/l s-w.png" id="3_63j88"]
-[ext_resource type="Texture2D" uid="uid://cq6bmt08lle1p" path="res://assets/character/l/l e.png" id="4_s6qer"]
-[ext_resource type="Texture2D" uid="uid://cs0kmh8syaele" path="res://assets/character/l/l s-e.png" id="5_3aja1"]
-[ext_resource type="Texture2D" uid="uid://61anmioq44ov" path="res://assets/character/l/l n.png" id="6_wfq5p"]
-[ext_resource type="Texture2D" uid="uid://dc4pwm5ybv0cw" path="res://assets/character/l/l n-w.png" id="7_vwmc1"]
-[ext_resource type="Texture2D" uid="uid://dc44e2rmcdl0p" path="res://assets/character/l/l n-e.png" id="8_qwnhw"]
+[ext_resource type="Texture2D" uid="uid://7ghs3u1log05" path="res://assets/character/L/l s.png" id="1_uuqev"]
+[ext_resource type="Texture2D" uid="uid://bpbcxrwr35swp" path="res://assets/character/L/l w.png" id="2_1u1mk"]
+[ext_resource type="Texture2D" uid="uid://twf64ect5vej" path="res://assets/character/L/l s-w.png" id="3_63j88"]
+[ext_resource type="Texture2D" uid="uid://cq6bmt08lle1p" path="res://assets/character/L/l e.png" id="4_s6qer"]
+[ext_resource type="Texture2D" uid="uid://cs0kmh8syaele" path="res://assets/character/L/l s-e.png" id="5_3aja1"]
+[ext_resource type="Texture2D" uid="uid://61anmioq44ov" path="res://assets/character/L/l n.png" id="6_wfq5p"]
+[ext_resource type="Texture2D" uid="uid://dc4pwm5ybv0cw" path="res://assets/character/L/l n-w.png" id="7_vwmc1"]
+[ext_resource type="Texture2D" uid="uid://dc44e2rmcdl0p" path="res://assets/character/L/l n-e.png" id="8_qwnhw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_buj7t"]
 atlas = ExtResource("1_uuqev")

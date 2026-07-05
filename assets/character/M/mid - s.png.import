@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cselcn7uyglvs"
-path="res://.godot/imported/pawel.png-d7b4008b9ccef2c8a1ffafbbcf08862e.ctex"
+uid="uid://cbtihu810gh6o"
+path="res://.godot/imported/mid - s.png-eda13055bb550fc354a0148cc7a2df45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pawel.png"
-dest_files=["res://.godot/imported/pawel.png-d7b4008b9ccef2c8a1ffafbbcf08862e.ctex"]
+source_file="res://assets/character/M/mid - s.png"
+dest_files=["res://.godot/imported/mid - s.png-eda13055bb550fc354a0148cc7a2df45.ctex"]
 
 [params]
 

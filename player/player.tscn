@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://b7l6a48tmurqk"]
 
 [ext_resource type="Script" uid="uid://l5n5mspf8yoc" path="res://player/player.gd" id="1_3c3w1"]
-[ext_resource type="Texture2D" uid="uid://ba5yh5d7hpovn" path="res://assets/s-w.png" id="2_mhpjh"]
-[ext_resource type="Texture2D" uid="uid://bs43vat48x1no" path="res://assets/e.png" id="3_g1dw6"]
-[ext_resource type="Texture2D" uid="uid://1e2xmmeyspko" path="res://assets/s.png" id="3_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://ldobrhxw5ae6" path="res://assets/s-wgit.png" id="4_8t03j"]
+[ext_resource type="Texture2D" uid="uid://ba5yh5d7hpovn" path="res://assets/character/S/s-w.png" id="2_mhpjh"]
+[ext_resource type="Texture2D" uid="uid://bs43vat48x1no" path="res://assets/character/S/e.png" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://1e2xmmeyspko" path="res://assets/character/S/s.png" id="3_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://ldobrhxw5ae6" path="res://assets/character/S/s-wgit.png" id="4_8t03j"]
 [ext_resource type="Texture2D" uid="uid://bmocmm4gwxikq" path="res://assets/w.png" id="5_2ieo8"]
-[ext_resource type="Texture2D" uid="uid://bo4pa1giithox" path="res://assets/n.png" id="7_ebec5"]
-[ext_resource type="Texture2D" uid="uid://bhb7jayugo4j3" path="res://assets/n-w.png" id="8_yllr7"]
-[ext_resource type="Texture2D" uid="uid://dlhd6kpgi8fev" path="res://assets/n-e.png" id="9_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://bo4pa1giithox" path="res://assets/character/S/n.png" id="7_ebec5"]
+[ext_resource type="Texture2D" uid="uid://bhb7jayugo4j3" path="res://assets/character/S/n-w.png" id="8_yllr7"]
+[ext_resource type="Texture2D" uid="uid://dlhd6kpgi8fev" path="res://assets/character/S/n-e.png" id="9_kb6p2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
 atlas = ExtResource("2_mhpjh")

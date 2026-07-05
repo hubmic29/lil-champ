@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgq0x72gyqygs"
-path="res://.godot/imported/pawe-sidel.png-9050bdf556c8de9ead7719bec750a01e.ctex"
+uid="uid://bpbcxrwr35swp"
+path="res://.godot/imported/l w.png-94c472d2a06c94ce22c2a63bf480e701.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pawe-sidel.png"
-dest_files=["res://.godot/imported/pawe-sidel.png-9050bdf556c8de9ead7719bec750a01e.ctex"]
+source_file="res://assets/character/L/l w.png"
+dest_files=["res://.godot/imported/l w.png-94c472d2a06c94ce22c2a63bf480e701.ctex"]
 
 [params]
 

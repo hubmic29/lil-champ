@@ -3,6 +3,7 @@ extends Control
 @onready var main_music: AudioStreamPlayer = $MainMusic
 @onready var grow_sound: AudioStreamPlayer = $GrowSound
 @onready var shrink_sound: AudioStreamPlayer = $ShrinkSound
+@onready var red_dot: ColorRect = $RedDot
 
 var obroty = 0
 var oryginalna_skala = Vector2.ONE
@@ -11,6 +12,12 @@ func _ready():
 	oryginalna_skala = $AnimatedSprite2D.scale
 	$AnimatedSprite2D.play("s_spin")
 	main_music.play()
+	
+	if red_dot != null:
+		var dot_tween = get_tree().create_tween().set_loops()
+		
+		dot_tween.tween_property(red_dot, "modulate:a", 0.0, 0.5)
+		dot_tween.tween_property(red_dot, "modulate:a", 1.0, 0.5)
 
 func _on_animated_sprite_2d_animation_looped():
 	obroty += 1

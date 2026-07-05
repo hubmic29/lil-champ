@@ -23,7 +23,7 @@ enum State { MENU, POSING, RESULTS }
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
 @onready var message_label: Label = %MessageLabel
-@onready var character: Sprite2D = %Character
+@onready var character: AnimatedSprite2D = %Character
 @onready var opponents_row: Node2D = %Opponents
 @onready var results_panel: Panel = %ResultsPanel
 @onready var results_title: Label = %ResultsTitle

@@ -275,6 +275,15 @@ volume_db = -16.0
 stream = ExtResource("12_iotk1")
 volume_db = -16.0
 
+[node name="RedDot" type="ColorRect" parent="." unique_id=1610377797]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 0
+offset_left = 801.0
+offset_top = 384.0
+offset_right = 805.0
+offset_bottom = 388.0
+color = Color(1, 0, 0, 1)
+
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]

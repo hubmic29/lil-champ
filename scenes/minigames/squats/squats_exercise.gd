@@ -10,7 +10,7 @@ extends BaseExercise
 @onready var zone: ColorRect = %Zone
 @onready var marker: ColorRect = %Marker
 @onready var hold_bar: ProgressBar = %HoldBar
-@onready var character: Sprite2D = %Character
+@onready var character: AnimatedSprite2D = %Character
 @onready var rep_label: Label = %RepLabel
 @onready var message_label: Label = %MessageLabel
 

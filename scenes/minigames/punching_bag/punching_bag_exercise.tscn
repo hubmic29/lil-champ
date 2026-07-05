@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b5bgk7lryipp6" path="res://scenes/minigames/punching_bag/punching_bag_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://cpbagtres001" path="res://scenes/minigames/punching_bag/punching_bag.tres" id="2_config"]
-[ext_resource type="Texture2D" uid="uid://dgq0x72gyqygs" path="res://assets/character/S/pawe-sidel.png" id="3_7rce7"]
 [ext_resource type="Texture2D" uid="uid://dnp0hgflk2hsq" path="res://assets/punching_bag.png" id="3_bag"]
 
 [sub_resource type="AtlasTexture" id="AT_bag_body"]
@@ -28,7 +27,7 @@ corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
 
-[node name="PunchingBagExercise" type="Control" unique_id=1030106227]
+[node name="PunchingBagExercise" type="Control" unique_id=1030106227 node_paths=PackedStringArray("player_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 config = ExtResource("2_config")
+player_sprite = NodePath("Character")
 
 [node name="Background" type="ColorRect" parent="." unique_id=2086789358]
 layout_mode = 1
@@ -56,12 +56,11 @@ theme_override_font_sizes/font_size = 28
 text = "PUNCHING BAG — Stamina Training"
 horizontal_alignment = 1
 
-[node name="Character" type="Sprite2D" parent="." unique_id=2016174885]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=2074027224]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(440, 400)
 scale = Vector2(4, 4)
-texture = ExtResource("3_7rce7")
 
 [node name="Bag" type="TextureRect" parent="." unique_id=2020561314]
 unique_name_in_owner = true

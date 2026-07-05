@@ -25,7 +25,7 @@ const STAT_COLORS := {
 
 ## Balancing resource for this exercise (assign the matching .tres).
 @export var config: ExerciseConfig
-
+@export var player_sprite: AnimatedSprite2D
 ## True once the player has run out of energy; minigames must stop accepting
 ## gameplay input while this is set (the Back button keeps working).
 var exhausted := false
@@ -35,11 +35,11 @@ var _shake_tween: Tween
 var _back_button: Button
 var _energy_bar: ProgressBar
 
-
 func _ready() -> void:
 	modulate.a = 0.0
 	create_tween().tween_property(self, "modulate:a", 1.0, 0.25)
 	PlayerStats.stat_leveled_up.connect(_on_stat_leveled_up)
+	_apply_player_form()
 	_back_button = find_child("BackButton", true, false) as Button
 	if _back_button:
 		_back_button.pressed.connect(finish_exercise)
@@ -207,3 +207,13 @@ func _on_stat_leveled_up(stat: StringName, new_level: int) -> void:
 		STAT_COLORS.get(stat, Color.GOLD),
 		34
 	)
+func _apply_player_form() -> void:
+	if player_sprite == null:
+		return 
+	var current_tier: int = PlayerStats.evolution_tier
+	
+	var form_path := "res://player/form_%d.tres" % current_tier
+	
+	if ResourceLoader.exists(form_path):
+		player_sprite.sprite_frames = load(form_path)
+		player_sprite.play("idle")

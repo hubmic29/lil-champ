@@ -7,7 +7,7 @@ extends BaseExercise
 
 @onready var bag: TextureRect = %Bag
 @onready var hit_zone: Button = %HitZone
-@onready var character: Sprite2D = %Character
+@onready var character: AnimatedSprite2D = %Character
 @onready var combo_label: Label = %ComboLabel
 @onready var accuracy_label: Label = %AccuracyLabel
 @onready var message_label: Label = %MessageLabel

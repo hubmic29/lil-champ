@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://eidgoi1q7thc" path="res://scenes/minigames/competition/competition_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://ccomptres001" path="res://scenes/minigames/competition/competition.tres" id="2_config"]
-[ext_resource type="Texture2D" uid="uid://cselcn7uyglvs" path="res://assets/character/S/pawel.png" id="3_vo4ch"]
 
-[node name="CompetitionExercise" type="Control" unique_id=400762247]
+[node name="CompetitionExercise" type="Control" unique_id=400762247 node_paths=PackedStringArray("player_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 config = ExtResource("2_config")
+player_sprite = NodePath("Character")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1545596110]
 layout_mode = 1
@@ -55,12 +55,11 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(300, 300)
 
-[node name="Character" type="Sprite2D" parent="." unique_id=1680358165]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=603830312]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(576, 350)
 scale = Vector2(2.4, 2.4)
-texture = ExtResource("3_vo4ch")
 
 [node name="StageUI" type="Control" parent="." unique_id=599138086]
 unique_name_in_owner = true

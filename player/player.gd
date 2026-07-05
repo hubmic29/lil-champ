@@ -1,15 +1,14 @@
 extends CharacterBody2D
 
 @export var SPEED: float = 300.0
-
-# Tablica, do której wrzucimy pliki SpriteFrames dla kolejnych poziomów ewolucji
 @export var evolution_frames: Array[SpriteFrames] 
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+var last_anim: String = "walk_down"
+
 func _ready() -> void:
 	PlayerStats.evolution_changed.connect(_on_evolution_changed)
-	
 	_update_appearance(PlayerStats.evolution_tier)
 
 func _physics_process(_delta: float) -> void:
@@ -25,9 +24,9 @@ func _physics_process(_delta: float) -> void:
 		_play_walk(input_vector)
 	else:
 		velocity = Vector2.ZERO
-		if anim.is_playing():
-			anim.stop()
-			anim.frame = 0   
+		anim.animation = last_anim
+		anim.stop()
+		anim.frame = 0 
 
 	move_and_slide()
 
@@ -51,12 +50,13 @@ func _play_walk(dir: Vector2) -> void:
 	elif dir.y < 0:
 		anim_name = "walk_up"
 
-	if anim.animation != anim_name and anim_name != "":
-		anim.play(anim_name)
+	if anim_name != "":
+		if anim.animation != anim_name or not anim.is_playing():
+			anim.play(anim_name)
+			last_anim = anim_name
 
-
-func _on_evolution_changed(tier_index: int, tier_name: String) -> void:
-	print("Ewolucja postaci! Nowa forma: ", tier_name)
+# ---- evolution func -------
+func _on_evolution_changed(tier_index: int, _tier_name: String) -> void:
 	_update_appearance(tier_index)
 
 func _update_appearance(tier_index: int) -> void:

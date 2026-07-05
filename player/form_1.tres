@@ -277,7 +277,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -306,7 +306,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -335,7 +335,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down_left",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -364,7 +364,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down_right",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -393,7 +393,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -422,7 +422,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -451,7 +451,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -480,7 +480,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up_left",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -509,5 +509,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up_right",
-"speed": 10.0
+"speed": 30.0
 }]

@@ -2,7 +2,15 @@ extends CharacterBody2D
 
 @export var SPEED: float = 300.0
 
+# Tablica, do której wrzucimy pliki SpriteFrames dla kolejnych poziomów ewolucji
+@export var evolution_frames: Array[SpriteFrames] 
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	PlayerStats.evolution_changed.connect(_on_evolution_changed)
+	
+	_update_appearance(PlayerStats.evolution_tier)
 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -14,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 
 	if input_vector != Vector2.ZERO:
 		velocity = input_vector.normalized() * SPEED
-		_play_walk(input_vector) 
+		_play_walk(input_vector)
 	else:
 		velocity = Vector2.ZERO
 		if anim.is_playing():
@@ -26,7 +34,6 @@ func _physics_process(_delta: float) -> void:
 func _play_walk(dir: Vector2) -> void:
 	var anim_name: String = ""
 	
-	# Sprawdzamy przekątne
 	if dir.x > 0 and dir.y < 0:
 		anim_name = "walk_up_right"
 	elif dir.x > 0 and dir.y > 0:
@@ -46,3 +53,15 @@ func _play_walk(dir: Vector2) -> void:
 
 	if anim.animation != anim_name and anim_name != "":
 		anim.play(anim_name)
+
+
+func _on_evolution_changed(tier_index: int, tier_name: String) -> void:
+	print("Ewolucja postaci! Nowa forma: ", tier_name)
+	_update_appearance(tier_index)
+
+func _update_appearance(tier_index: int) -> void:
+	if tier_index < evolution_frames.size() and evolution_frames[tier_index] != null:
+		anim.sprite_frames = evolution_frames[tier_index]
+		
+		if anim.is_playing():
+			anim.play(anim.animation)

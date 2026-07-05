@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://b7l6a48tmurqk"]
 
 [ext_resource type="Script" uid="uid://l5n5mspf8yoc" path="res://player/player.gd" id="1_3c3w1"]
+[ext_resource type="SpriteFrames" uid="uid://csejl8uikpbfy" path="res://player/form_0.tres" id="2_b32pr"]
 [ext_resource type="Texture2D" uid="uid://ba5yh5d7hpovn" path="res://assets/character/S/s-w.png" id="2_mhpjh"]
 [ext_resource type="Texture2D" uid="uid://bs43vat48x1no" path="res://assets/character/S/e.png" id="3_g1dw6"]
+[ext_resource type="SpriteFrames" uid="uid://dskwtm8k0jqcp" path="res://player/form_1.tres" id="3_hbkom"]
 [ext_resource type="Texture2D" uid="uid://1e2xmmeyspko" path="res://assets/character/S/s.png" id="3_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://ldobrhxw5ae6" path="res://assets/character/S/s-wgit.png" id="4_8t03j"]
-[ext_resource type="Texture2D" uid="uid://bmocmm4gwxikq" path="res://assets/w.png" id="5_2ieo8"]
+[ext_resource type="SpriteFrames" uid="uid://bdh5y3cghaj8v" path="res://player/form_2.tres" id="4_d4g0h"]
+[ext_resource type="Texture2D" uid="uid://bmocmm4gwxikq" path="res://assets/character/S/w.png" id="5_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://bo4pa1giithox" path="res://assets/character/S/n.png" id="7_ebec5"]
 [ext_resource type="Texture2D" uid="uid://bhb7jayugo4j3" path="res://assets/character/S/n-w.png" id="8_yllr7"]
 [ext_resource type="Texture2D" uid="uid://dlhd6kpgi8fev" path="res://assets/character/S/n-e.png" id="9_kb6p2"]
@@ -310,7 +313,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle",
-"speed": 1.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -573,12 +576,13 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1478748834]
 script = ExtResource("1_3c3w1")
+evolution_frames = Array[SpriteFrames]([ExtResource("2_b32pr"), ExtResource("3_hbkom"), ExtResource("4_d4g0h")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=808958309]
 texture_filter = 1
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SF_player")
-animation = &"idle"
+animation = &"walk_down"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=844626803]

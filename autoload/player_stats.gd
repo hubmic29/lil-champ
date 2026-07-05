@@ -253,3 +253,6 @@ func load_game() -> void:
 		levels[stat] = int(data.get("levels", {}).get(key, 1))
 	energy = clampf(float(data.get("energy", progression.max_energy)), 0.0, progression.max_energy)
 	money = maxi(0, int(data.get("money", 0)))
+	
+	
+	

@@ -9,6 +9,9 @@
 [ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="7_0o4t1"]
 [ext_resource type="FontFile" uid="uid://cpbgxcdk005fn" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="8_0k4wn"]
 [ext_resource type="FontFile" uid="uid://x7o7i2o6p7jw" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="9_j5v2v"]
+[ext_resource type="AudioStream" uid="uid://ckanoewqf3qnr" path="res://sfx/gym1.mp3" id="10_0o4t1"]
+[ext_resource type="AudioStream" uid="uid://btjygoqcanih5" path="res://sfx/maximize_006.ogg" id="11_j5v2v"]
+[ext_resource type="AudioStream" uid="uid://c2741oub7s8a1" path="res://sfx/minimize_006.ogg" id="12_iotk1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5v2v"]
 atlas = ExtResource("3_glbon")
@@ -258,6 +261,19 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("9_j5v2v")
 theme_override_font_sizes/font_size = 24
 text = "EXIT"
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=1384704277]
+stream = ExtResource("10_0o4t1")
+volume_db = -22.764
+pitch_scale = 0.9
+
+[node name="GrowSound" type="AudioStreamPlayer" parent="." unique_id=2133755777]
+stream = ExtResource("11_j5v2v")
+volume_db = -16.0
+
+[node name="ShrinkSound" type="AudioStreamPlayer" parent="." unique_id=934582097]
+stream = ExtResource("12_iotk1")
+volume_db = -16.0
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

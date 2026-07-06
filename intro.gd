@@ -46,20 +46,22 @@ func _ready() -> void:
 
 func play_scene(index: int) -> void:
 	skip_scene_btn.text = "Skip conversation >>"
-	
 	typing_sound.stop()
 	
+	# Zwiększanie czasu wirtualnego
 	current_time_minutes += randi_range(60, 120) 
 	
-	# Clear screen before new scene
+	# Czyszczenie ekranu przed nową sceną
 	for child in chat_container.get_children():
 		child.queue_free()
 		
 	var main_contact = "ex" if index == 0 else "bro"
-	_setup_top_bar(main_contact)
-		
+	var is_blocked = (index == 0)
+	_setup_top_bar(main_contact, false)
+	
 	var messages = dialogs[index]
 	
+	# Pętla wyświetlająca wiadomości
 	for msg in messages:
 		if index != current_scene:
 			return
@@ -90,6 +92,11 @@ func play_scene(index: int) -> void:
 		_add_message_bubble(msg["who"], msg["text"], time_str)
 		_scroll_to_bottom()
 		message_sound.play()
+	if is_blocked:
+		await get_tree().create_timer(1.0).timeout
+		_add_blocked_notice()
+		_update_top_bar_to_blocked()
+		_scroll_to_bottom()
 		
 	if index == current_scene:
 		if index == 0:
@@ -99,7 +106,7 @@ func play_scene(index: int) -> void:
 
 # UI BUILDING 
 
-func _setup_top_bar(who: String) -> void:
+func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
 	if is_instance_valid(top_bar):
 		top_bar.queue_free()
 		
@@ -171,6 +178,7 @@ func _setup_top_bar(who: String) -> void:
 	vbox.add_child(status_hbox)
 	
 	var dot = Panel.new()
+	dot.name = "Dot"
 	dot.custom_minimum_size = Vector2(8, 8)
 	dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	var dot_style = StyleBoxFlat.new()
@@ -183,11 +191,30 @@ func _setup_top_bar(who: String) -> void:
 	status_hbox.add_child(dot)
 	
 	var status_lbl = Label.new()
+	status_lbl.name = "StatusLabel"
 	status_lbl.text = " Active now"
+		
+	if is_blocked:
+		status_lbl.text = " Blocked"
+		dot.modulate = Color.RED
+	else:
+		status_lbl.text = " Active now"
+		dot.modulate = Color.WHITE
+		
 	status_lbl.add_theme_font_override("font", custom_font)
 	status_lbl.add_theme_font_size_override("font_size", 11)
 	status_lbl.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
 	status_hbox.add_child(status_lbl)
+	
+func _update_top_bar_to_blocked() -> void:
+	# Szukamy etykiety statusu i kropki (zakładając strukturę z HBoxContainer)
+	# Jeśli `top_bar` jest zapisane w zmiennej, możemy się do niego odwołać
+	var status_lbl = top_bar.find_child("StatusLabel", true, false)
+	var dot = top_bar.find_child("Dot", true, false)
+	
+	if status_lbl and dot:
+		status_lbl.text = " Blocked"
+		dot.modulate = Color.RED
 
 func _add_message_bubble(who: String, text: String, time_str: String) -> void:
 	var layout = _create_base_layout(who)
@@ -336,3 +363,18 @@ func _on_skip_all_btn_pressed() -> void:
 	PlayerStats.intro_seen = true
 	PlayerStats.save_game() 
 	get_tree().change_scene_to_file("res://scenes/maps/gym_map.tscn")
+	
+func _add_blocked_notice() -> void:
+	var label = Label.new()
+	label.text = "You have blocked this user."
+	label.add_theme_font_override("font", custom_font)
+	label.add_theme_font_size_override("font_size", 10)
+	label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_top", 10)
+	margin.add_theme_constant_override("margin_bottom", 10)
+	margin.add_child(label)
+	
+	chat_container.add_child(margin)

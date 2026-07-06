@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cexitstn0001" path="res://scenes/stations/exit_door.tscn" id="10_exit"]
 [ext_resource type="PackedScene" uid="uid://dm4bmujaxa8r0" path="res://pause_menu.tscn" id="11_50g18"]
 [ext_resource type="PackedScene" uid="uid://kbprx3nxqo0r" path="res://player/gym_npc.tscn" id="12_b35ev"]
+[ext_resource type="PackedScene" uid="uid://ckwr1b75au0lr" path="res://player/dealer.tscn" id="14_tsrpq"]
 
 [sub_resource type="RectangleShape2D" id="RS_0"]
 size = Vector2(960, 64)
@@ -198,7 +199,7 @@ position = Vector2(192, 215)
 [node name="ShopStation" parent="." unique_id=1464849989 instance=ExtResource("9_shop")]
 position = Vector2(700, 520)
 
-[node name="ExitDoor" parent="." instance=ExtResource("10_exit")]
+[node name="ExitDoor" parent="." unique_id=1933963084 instance=ExtResource("10_exit")]
 position = Vector2(480, 585)
 
 [node name="Player" parent="." unique_id=83060125 instance=ExtResource("2_4xk5c")]
@@ -218,3 +219,6 @@ offset_bottom = 290.0
 
 [node name="GymNPC" parent="." unique_id=2141895002 instance=ExtResource("12_b35ev")]
 position = Vector2(491, 462)
+
+[node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
+position = Vector2(648, 95)

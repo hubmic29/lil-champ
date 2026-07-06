@@ -5,6 +5,7 @@ extends Control
 @onready var skip_scene_btn = $SkipSceneBtn
 @onready var message_sound = $MessageSound
 @onready var typing_sound = $TypingSound
+@export var custom_font: Font
 
 var current_scene = 0
 var active_typing_indicator: Node = null 
@@ -38,7 +39,7 @@ var dialogs = [
 
 func _ready() -> void:
 	chat_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
+	skip_scene_btn.add_theme_font_override("font", custom_font)
 	await get_tree().process_frame
 	
 	play_scene(current_scene)
@@ -129,6 +130,7 @@ func _setup_top_bar(who: String) -> void:
 	
 	var back = Label.new()
 	back.text = "<"
+	back.add_theme_font_override("font", custom_font)
 	back.add_theme_font_size_override("font_size", 22)
 	back.add_theme_color_override("font_color", Color("0084ff")) 
 	hbox.add_child(back)
@@ -160,6 +162,7 @@ func _setup_top_bar(who: String) -> void:
 	
 	var name_lbl = Label.new()
 	name_lbl.text = display_names.get(who, "")
+	name_lbl.add_theme_font_override("font", custom_font)
 	name_lbl.add_theme_font_size_override("font_size", 14)
 	name_lbl.add_theme_color_override("font_color", Color.BLACK)
 	vbox.add_child(name_lbl)
@@ -181,6 +184,7 @@ func _setup_top_bar(who: String) -> void:
 	
 	var status_lbl = Label.new()
 	status_lbl.text = " Active now"
+	status_lbl.add_theme_font_override("font", custom_font)
 	status_lbl.add_theme_font_size_override("font_size", 11)
 	status_lbl.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
 	status_hbox.add_child(status_lbl)
@@ -201,6 +205,7 @@ func _add_message_bubble(who: String, text: String, time_str: String) -> void:
 	
 	var label = Label.new()
 	label.text = text
+	label.add_theme_font_override("font", custom_font)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.custom_minimum_size.x = scroll_container.size.x * 0.65 
 	label.add_theme_color_override("font_color", Color.WHITE if who != "me" else Color.BLACK)
@@ -208,6 +213,7 @@ func _add_message_bubble(who: String, text: String, time_str: String) -> void:
 	
 	var time_label = Label.new()
 	time_label.text = time_str
+	time_label.add_theme_font_override("font", custom_font)
 	time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	time_label.add_theme_font_size_override("font_size", 9)
 	time_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.7) if who != "me" else Color(0, 0, 0, 0.5))
@@ -285,6 +291,7 @@ func _create_base_layout(who: String) -> Dictionary:
 	
 	var name_label = Label.new()
 	name_label.text = display_names.get(who, "")
+	name_label.add_theme_font_override("font", custom_font)
 	name_label.add_theme_color_override("font_color", Color(0.2, 0.2, 0.2)) 
 	name_label.add_theme_font_size_override("font_size", 10) 
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT if is_me else HORIZONTAL_ALIGNMENT_LEFT

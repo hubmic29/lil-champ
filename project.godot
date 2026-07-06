@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="lil-champ"
-run/main_scene="uid://c8akogknnfnd1"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://dmcllxa8s878s"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+SaveSlots="*res://autoload/save_slots.gd"
 PlayerStats="*res://autoload/player_stats.gd"
+GameCalendar="*res://autoload/game_calendar.gd"
 AudioManager="*res://autoload/audio_manager.gd"
 SceneSwitcher="*res://autoload/scene_switcher.gd"
 

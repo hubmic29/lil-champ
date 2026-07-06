@@ -12,8 +12,8 @@ extends ExerciseConfig
 ## Points for hitting the perfect / good window. Miss and wrong key give 0.
 @export var perfect_points := 100.0
 @export var good_points := 60.0
-## Pose score bonus per total stat level: bigger muscles impress the judges,
-## so training the body is required to out-pose elite opponents.
+## Pose score bonus per point of muscle size (= total stat levels): bigger
+## muscles impress the judges, so training is required to out-pose elites.
 @export var muscle_bonus_per_level := 0.01
 @export var good_zone_width := 110.0
 @export var perfect_zone_width := 28.0

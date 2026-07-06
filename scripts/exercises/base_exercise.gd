@@ -15,7 +15,6 @@ const GYM_SCENE_PATH := "res://scenes/maps/gym_map.tscn"
 
 ## UI accent color per stat, shared by floating numbers and the HUD.
 const STAT_COLORS := {
-	&"strength": Color(1.0, 0.55, 0.3),
 	&"chest": Color(1.0, 0.4, 0.45),
 	&"back": Color(0.5, 0.75, 1.0),
 	&"quadriceps": Color(0.7, 1.0, 0.5),
@@ -73,6 +72,7 @@ func award_xp(quality_multiplier := 1.0, at := Vector2.ZERO) -> float:
 		var stat := StringName(stat_key)
 		var weight := float(config.stat_rewards[stat_key])
 		var gained := PlayerStats.add_xp(stat, config.base_xp * weight * quality_multiplier)
+		PlayerStats.add_exhaustion(stat, config.exhaustion_per_action * weight)
 		if gained > 0.0:
 			FloatingText.spawn(
 				self,
@@ -176,7 +176,7 @@ func _trigger_exhaustion() -> void:
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(overlay)
 	var label := Label.new()
-	label.text = "EXHAUSTED!\nVisit the sauna to recover energy."
+	label.text = "OUT OF ENERGY!\nLeave the gym and schedule a rest day."
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.set_anchors_preset(Control.PRESET_CENTER)
 	label.add_theme_font_size_override("font_size", 32)

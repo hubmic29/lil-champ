@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1")
 display_name = "Bench Press"
-base_xp = 12.0
+base_xp = 18.0
 stat_rewards = {
-"chest": 1.0,
-"strength": 0.25
+"chest": 1.0
 }
-energy_cost_per_action = 10.0
+energy_cost_per_action = 5.0
+exhaustion_per_action = 6.0
 power_per_press = 9.0
 initial_drain_speed = 16.0
 drain_gain_per_rep = 2.5

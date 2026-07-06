@@ -1,7 +1,8 @@
 ## PlayerStats (autoload) — single source of truth for player progression.
 ##
-## Holds per-stat XP and levels, the derived overall Gym Level, the current
-## evolution tier, an energy pool and the temporary sauna "motivation" buff.
+## Holds per-stat XP and levels, the derived overall level (each with its
+## own title), the sprite form tier, an energy pool, per-muscle exhaustion
+## and the temporary sauna "motivation" buff.
 ## All balancing numbers live in a [StatProgressionConfig] resource
 ## (res://resources/progression.tres) so the game can be tuned without code.
 ##
@@ -13,9 +14,9 @@ extends Node
 signal xp_gained(stat: StringName, amount: float)
 ## Emitted when a stat reaches a new level.
 signal stat_leveled_up(stat: StringName, new_level: int)
-## Emitted when the overall Gym Level changes.
-signal gym_level_changed(new_level: int)
-## Emitted when the character evolves into a new form/tier.
+## Emitted when the overall level changes (each level has its own title).
+signal overall_level_changed(new_level: int, level_title: String)
+## Emitted when the character evolves into a new sprite form.
 signal evolution_changed(tier_index: int, tier_name: String)
 ## Emitted when the energy pool changes.
 signal energy_changed(value: float, max_value: float)
@@ -23,14 +24,14 @@ signal energy_changed(value: float, max_value: float)
 signal motivation_changed(active: bool)
 ## Emitted when the money balance changes.
 signal money_changed(amount: int)
+## Emitted when a muscle's exhaustion changes.
+signal exhaustion_changed(stat: StringName, value: float)
 
-const SAVE_PATH := "user://lil_champ_save.json"
 const PROGRESSION_PATH := "res://resources/progression.tres"
 
 ## Every trainable stat. To add a new stat, append it here — exercises grant
 ## XP by name through their ExerciseConfig resources, so nothing else changes.
 const STATS: Array[StringName] = [
-	&"strength",
 	&"chest",
 	&"back",
 	&"quadriceps",
@@ -45,12 +46,17 @@ var progression: StatProgressionConfig
 var xp := {}
 ## Per-stat level, starting at 1.
 var levels := {}
+## Per-muscle exhaustion (0..max_exhaustion). Training a muscle raises it and
+## makes further XP on that muscle less effective; the sauna and rest days
+## bring it back down.
+var exhaustion := {}
 ## Energy pool; exercises drain it, the sauna restores it. Being exhausted
 ## reduces XP gain (see StatProgressionConfig.tired_xp_multiplier).
 var energy := 100.0
-## Overall progression derived from the sum of all stat levels.
-var gym_level := 1
-## Index into progression.evolution_tiers (character form).
+## Overall progression level derived from the sum of all stat levels; each
+## level has its own title (see StatProgressionConfig.level_names).
+var overall_level := 1
+## Character sprite form index (unlocked at form_overall_levels thresholds).
 var evolution_tier := 0
 ## Cash earned in competitions, spent in the shop.
 var money := 0
@@ -69,6 +75,7 @@ func _ready() -> void:
 	for stat in STATS:
 		xp[stat] = 0.0
 		levels[stat] = 1
+		exhaustion[stat] = 0.0
 	energy = progression.max_energy
 	load_game()
 	_refresh_overall_progress(true)
@@ -91,6 +98,7 @@ func add_xp(stat: StringName, base_amount: float) -> float:
 	var amount := base_amount \
 		* progression.global_xp_multiplier \
 		* _soft_cap_multiplier(levels[stat]) \
+		* exhaustion_effectiveness(stat) \
 		* (progression.motivation_xp_multiplier if is_motivated() else 1.0) \
 		* (progression.tired_xp_multiplier if energy <= progression.tired_threshold else 1.0)
 	xp[stat] += amount
@@ -116,30 +124,67 @@ func _soft_cap_multiplier(level: int) -> float:
 	return 1.0 / (1.0 + (level - progression.soft_cap_level + 1) * progression.soft_cap_falloff)
 
 
-## Recomputes Gym Level (from total stat levels) and the evolution tier.
+## Recomputes the overall level (from total stat levels) and the sprite form.
 func _refresh_overall_progress(silent := false) -> void:
 	var total_levels := 0
 	for stat in STATS:
 		total_levels += int(levels[stat])
-	var new_gym_level := 1 + (total_levels - STATS.size()) / progression.levels_per_gym_level
-	if new_gym_level != gym_level:
-		gym_level = new_gym_level
+	var new_level := 1 + (total_levels - STATS.size()) / progression.levels_per_overall_level
+	if new_level != overall_level:
+		overall_level = new_level
 		if not silent:
-			gym_level_changed.emit(gym_level)
+			overall_level_changed.emit(overall_level, level_name())
 	var new_tier := 0
-	for i in progression.evolution_gym_levels.size():
-		if gym_level >= progression.evolution_gym_levels[i]:
+	for i in progression.form_overall_levels.size():
+		if overall_level >= progression.form_overall_levels[i]:
 			new_tier = i
 	if new_tier != evolution_tier:
 		evolution_tier = new_tier
 		if not silent:
-			evolution_changed.emit(evolution_tier, evolution_tier_name())
+			evolution_changed.emit(evolution_tier, level_name())
 
 
-func evolution_tier_name() -> String:
-	if progression.evolution_tiers.is_empty():
+## The title of an overall level ("Couch Potato", "Rookie", ...).
+func level_name(level := overall_level) -> String:
+	if progression.level_names.is_empty():
 		return "?"
-	return progression.evolution_tiers[clampi(evolution_tier, 0, progression.evolution_tiers.size() - 1)]
+	return progression.level_names[clampi(level - 1, 0, progression.level_names.size() - 1)]
+
+
+# ---------------------------------------------------------------------------
+# Muscle exhaustion
+# ---------------------------------------------------------------------------
+
+func add_exhaustion(stat: StringName, amount: float) -> void:
+	if not STATS.has(stat) or amount <= 0.0:
+		return
+	exhaustion[stat] = clampf(exhaustion[stat] + amount, 0.0, progression.max_exhaustion)
+	exhaustion_changed.emit(stat, exhaustion[stat])
+
+
+func heal_exhaustion(stat: StringName, amount: float) -> void:
+	if not STATS.has(stat) or amount <= 0.0:
+		return
+	exhaustion[stat] = clampf(exhaustion[stat] - amount, 0.0, progression.max_exhaustion)
+	exhaustion_changed.emit(stat, exhaustion[stat])
+
+
+func heal_all_exhaustion(amount: float) -> void:
+	for stat in STATS:
+		heal_exhaustion(stat, amount)
+
+
+## How effectively a muscle trains right now: 1.0 fresh, down to
+## (1 - exhaustion_xp_penalty) at full exhaustion. Wrecked muscles barely grow.
+func exhaustion_effectiveness(stat: StringName) -> float:
+	return 1.0 - exhaustion[stat] / progression.max_exhaustion * progression.exhaustion_xp_penalty
+
+
+func average_exhaustion() -> float:
+	var total := 0.0
+	for stat in STATS:
+		total += exhaustion[stat]
+	return total / STATS.size()
 
 
 # ---------------------------------------------------------------------------
@@ -196,6 +241,12 @@ func total_stat_levels() -> int:
 	return total
 
 
+## Derived attribute: how physically big the character is. Grows with every
+## level in every muscle; drives tournament judging and the sprite scale.
+func muscle_size() -> int:
+	return total_stat_levels()
+
+
 func restore_energy(amount: float) -> void:
 	energy = clampf(energy + amount, 0.0, progression.max_energy)
 	energy_changed.emit(energy, progression.max_energy)
@@ -223,9 +274,10 @@ func is_motivated() -> bool:
 
 func save_game() -> void:
 	var data := {
-		"version": 1,
+		"version": 2,
 		"xp": {},
 		"levels": {},
+		"exhaustion": {},
 		"energy": energy,
 		"money": money,
 		"intro_seen": intro_seen # <-- NOWA LINIJKA (DODANA ZMIENNA)
@@ -233,16 +285,17 @@ func save_game() -> void:
 	for stat in STATS:
 		data["xp"][String(stat)] = xp[stat]
 		data["levels"][String(stat)] = levels[stat]
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+		data["exhaustion"][String(stat)] = exhaustion[stat]
+	var file := FileAccess.open(SaveSlots.stats_path(), FileAccess.WRITE)
 	if file == null:
 		push_warning("PlayerStats: could not write save file.")
 		return
 	file.store_string(JSON.stringify(data, "\t"))
 
 func load_game() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	if not FileAccess.file_exists(SaveSlots.stats_path()):
 		return
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file := FileAccess.open(SaveSlots.stats_path(), FileAccess.READ)
 	if file == null:
 		return
 	var data: Variant = JSON.parse_string(file.get_as_text())
@@ -253,9 +306,44 @@ func load_game() -> void:
 		var key := String(stat)
 		xp[stat] = float(data.get("xp", {}).get(key, 0.0))
 		levels[stat] = int(data.get("levels", {}).get(key, 1))
+		exhaustion[stat] = clampf(
+			float(data.get("exhaustion", {}).get(key, 0.0)), 0.0, progression.max_exhaustion)
 	energy = clampf(float(data.get("energy", progression.max_energy)), 0.0, progression.max_energy)
 	money = maxi(0, int(data.get("money", 0)))
 	intro_seen = data.get("intro_seen", false)
-	
-	
-	
+
+
+## Discards in-memory state and loads whatever the active save slot holds
+## (a fresh character if the slot is empty). Used when switching slots.
+func reload_from_disk() -> void:
+	for stat in STATS:
+		xp[stat] = 0.0
+		levels[stat] = 1
+		exhaustion[stat] = 0.0
+	energy = progression.max_energy
+	money = 0
+	intro_seen = false
+	_buff_ends_at_msec = -1
+	load_game()
+	_refresh_overall_progress(true)
+	for stat in STATS:
+		exhaustion_changed.emit(stat, exhaustion[stat])
+	energy_changed.emit(energy, progression.max_energy)
+	money_changed.emit(money)
+
+
+## Wipes all progression back to a fresh character (used by Restart).
+func reset_progress() -> void:
+	for stat in STATS:
+		xp[stat] = 0.0
+		levels[stat] = 1
+		exhaustion[stat] = 0.0
+		exhaustion_changed.emit(stat, 0.0)
+	energy = progression.max_energy
+	money = 0
+	intro_seen = false
+	_buff_ends_at_msec = -1
+	_refresh_overall_progress(true)
+	energy_changed.emit(energy, progression.max_energy)
+	money_changed.emit(money)
+	save_game()

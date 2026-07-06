@@ -11,6 +11,7 @@ script = ExtResource("1_cpstn")
 station_name = "Competition Stage"
 trains_hint = "Pose-off for prize money!"
 action_hint = "[E] Compete"
+counts_as_session = false
 minigame_path = "res://scenes/minigames/competition/competition_exercise.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

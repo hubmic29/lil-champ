@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1")
 display_name = "Punching Bag"
-base_xp = 6.0
+base_xp = 8.0
 stat_rewards = {
 "stamina": 1.0
 }
-energy_cost_per_action = 2.5
+energy_cost_per_action = 1.2
+exhaustion_per_action = 1.2
 target_size = 56.0
 target_lifetime = 2.0
 target_lifetime_min = 0.7

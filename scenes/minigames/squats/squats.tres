@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1")
 display_name = "Squats"
-base_xp = 13.0
+base_xp = 18.0
 stat_rewards = {
-"quadriceps": 1.0,
-"strength": 0.2
+"quadriceps": 1.0
 }
-energy_cost_per_action = 10.0
+energy_cost_per_action = 5.0
+exhaustion_per_action = 6.0
 instability_start = 0.6
 instability_gain_per_second = 0.03
 instability_gain_per_rep = 0.25

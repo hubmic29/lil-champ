@@ -33,12 +33,27 @@ extends Resource
 ## default 0.15, Stamina 5 already makes training ~38% cheaper.
 @export var stamina_energy_efficiency := 0.15
 
-@export_group("Gym level & evolution")
-## How many total stat levels are needed per overall Gym Level.
-@export var levels_per_gym_level := 3
-## Character forms, weakest to strongest. Must match evolution_gym_levels.
-@export var evolution_tiers: Array[String] = [
-	"Couch Potato", "Rookie", "Athlete", "Beast", "Absolute Unit",
+@export_group("Muscle exhaustion")
+## Exhaustion scale per muscle (0 = fresh, this value = fully wrecked).
+@export var max_exhaustion := 100.0
+## XP effectiveness lost at full exhaustion (0.8 = trains at 20% when wrecked).
+@export var exhaustion_xp_penalty := 0.8
+## Exhaustion healed on every muscle by one rest day.
+@export var rest_day_exhaustion_heal := 60.0
+
+@export_group("Day schedule")
+## Machine/sauna sessions allowed per training day.
+@export var sessions_per_day := 4
+
+@export_group("Overall level")
+## How many total stat levels are needed per overall level.
+@export var levels_per_overall_level := 3
+## Title shown for each overall level (index 0 = level 1). Levels beyond
+## the list reuse the last name.
+@export var level_names: Array[String] = [
+	"Couch Potato", "Sofa Warrior", "Fresh Meat", "Gym Newbie",
+	"Rookie", "Regular", "Grinder", "Athlete", "Bodybuilder",
+	"Beast", "Mass Monster", "Absolute Unit",
 ]
-## Gym Level required to reach each tier above.
-@export var evolution_gym_levels: Array[int] = [1, 3, 7, 12, 20]
+## Overall level at which each character form (sprite) unlocks.
+@export var form_overall_levels: Array[int] = [1, 5, 10]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cexitstn0001"]
+
+[ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_exstn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exstn"]
+radius = 50.0
+
+[node name="ExitDoor" type="Area2D"]
+script = ExtResource("1_exstn")
+station_name = "Gym Exit"
+trains_hint = "End the day"
+action_hint = "[E] Leave Gym"
+requires_energy = false
+counts_as_session = false
+minigame_path = "res://scenes/calendar/calendar.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_exstn")

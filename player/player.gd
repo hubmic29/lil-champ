@@ -9,7 +9,9 @@ var last_anim: String = "walk_down"
 
 func _ready() -> void:
 	PlayerStats.evolution_changed.connect(_on_evolution_changed)
+	PlayerStats.stat_leveled_up.connect(func(_s: StringName, _l: int) -> void: _update_size())
 	_update_appearance(PlayerStats.evolution_tier)
+	_update_size()
 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -62,6 +64,12 @@ func _on_evolution_changed(tier_index: int, _tier_name: String) -> void:
 func _update_appearance(tier_index: int) -> void:
 	if tier_index < evolution_frames.size() and evolution_frames[tier_index] != null:
 		anim.sprite_frames = evolution_frames[tier_index]
-		
+
 		if anim.is_playing():
 			anim.play(anim.animation)
+
+## Every level makes the character visibly bigger: sprite scale grows with
+## muscle size (total stat levels), capped so the map stays navigable.
+func _update_size() -> void:
+	var growth: float = minf(0.35, PlayerStats.muscle_size() * 0.005)
+	anim.scale = Vector2.ONE * (1.0 + growth)

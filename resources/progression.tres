@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="StatProgressionConfig" format=3 uid="uid://cprogres0001"]
 
-[ext_resource type="Script" uid="uid://dhmdw2wyrcw4u" path="res://scripts/resources/stat_progression_config.gd" id="1"]
+[ext_resource type="Script" uid="uid://cstatprog001" path="res://scripts/resources/stat_progression_config.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
-evolution_tiers = Array[String](["Couch Potato", "Rookie", "Athlete"])
-evolution_gym_levels = Array[int]([1, 5, 10])
+level_names = Array[String](["Couch Potato", "Sofa Warrior", "Fresh Meat", "Gym Newbie", "Rookie", "Regular", "Grinder", "Athlete", "Bodybuilder", "Beast", "Mass Monster", "Absolute Unit"])
+form_overall_levels = Array[int]([1, 5, 10])

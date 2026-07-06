@@ -2,8 +2,9 @@
 class_name SaunaConfig
 extends ExerciseConfig
 
-## Energy restored per second while sitting in the sauna.
-@export var recovery_per_second := 4.0
+## Muscle exhaustion healed per second (on every muscle) while sitting in
+## the sauna. The sauna does NOT restore energy — only rest days do.
+@export var exhaustion_heal_per_second := 3.0
 ## Seconds the player must stay before the motivation buff is granted.
 @export var buff_after_seconds := 10.0
 ## How long the motivation XP buff lasts after it is granted, in seconds.

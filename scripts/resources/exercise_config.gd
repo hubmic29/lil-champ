@@ -18,3 +18,7 @@ extends Resource
 
 ## Energy drained from the player per successful action.
 @export var energy_cost_per_action := 1.0
+
+## Exhaustion added per successful action to each rewarded muscle, scaled by
+## that muscle's stat_rewards weight. Tired muscles train less effectively.
+@export var exhaustion_per_action := 0.0

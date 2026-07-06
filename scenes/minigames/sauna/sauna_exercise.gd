@@ -1,8 +1,9 @@
-## Sauna — recovery and social space; no skill gameplay.
+## Sauna — muscle recovery and social space; no skill gameplay.
 ##
-## Sitting here restores energy every second, plays ambient music and steam,
-## shows random small talk from gym friends, and after a while grants a
-## temporary motivation buff (bonus XP on all training).
+## Sitting here heals per-muscle exhaustion every second (it does NOT restore
+## energy — only rest days do), plays ambient music and steam, shows random
+## small talk from gym friends, and after a while grants a temporary
+## motivation buff (bonus XP on all training).
 extends BaseExercise
 
 @onready var dialogue_label: Label = %DialogueLabel
@@ -32,8 +33,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_time_inside += delta
-	PlayerStats.restore_energy(_cfg.recovery_per_second * delta)
-	info_label.text = "Relaxing... Energy +%.0f/s" % _cfg.recovery_per_second
+	PlayerStats.heal_all_exhaustion(_cfg.exhaustion_heal_per_second * delta)
+	info_label.text = "Healing muscles... -%.0f fatigue/s  (avg fatigue: %.0f%%)" % [
+		_cfg.exhaustion_heal_per_second, PlayerStats.average_exhaustion()]
 	if not _buff_granted and _time_inside >= _cfg.buff_after_seconds:
 		_grant_motivation_buff()
 

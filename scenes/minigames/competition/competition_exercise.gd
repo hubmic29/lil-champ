@@ -47,8 +47,17 @@ func _ready() -> void:
 	_cfg = config as CompetitionConfig
 	good_zone.size.x = _cfg.good_zone_width
 	perfect_zone.size.x = _cfg.perfect_zone_width
-	continue_button.pressed.connect(_show_menu)
+	continue_button.pressed.connect(_on_continue)
 	_show_menu()
+
+
+## After winning Mr. Universe the results screen leads to the victory
+## screen; otherwise back to the tournament menu.
+func _on_continue() -> void:
+	if GameCalendar.universe_won:
+		SceneSwitcher.change_scene("res://scenes/calendar/end_screen.tscn")
+	else:
+		_show_menu()
 
 
 func _process(delta: float) -> void:
@@ -195,8 +204,10 @@ func _resolve_pose(points: float, msg: String) -> void:
 		get_tree().create_timer(0.8).timeout.connect(_start_pose)
 
 
+## Judges reward size: every muscle level grows the bonus, so levelling up
+## makes every tournament measurably easier.
 func _muscle_bonus() -> float:
-	return PlayerStats.total_stat_levels() * _cfg.muscle_bonus_per_level
+	return PlayerStats.muscle_size() * _cfg.muscle_bonus_per_level
 
 
 ## Random flex: quick lean / grow tween, back to neutral.
@@ -262,6 +273,10 @@ func _finish_tournament() -> void:
 			AudioManager.play(&"level_up")
 			screen_shake(10.0, 0.4)
 			burst_particles(size / 2.0, Color(1.0, 0.85, 0.3), 40)
+			# Winning the top tier is the whole point of the 30 days.
+			if tournament == _cfg.tournament_names.size() - 1:
+				GameCalendar.set_universe_won()
+				continue_button.text = "Claim Your Title"
 		2, 3:
 			results_title.text = "%s place!  +$%d" % ["2nd" if placement == 2 else "3rd", prize]
 			AudioManager.play(&"good")

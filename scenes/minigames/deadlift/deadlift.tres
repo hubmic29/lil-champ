@@ -5,13 +5,13 @@
 [resource]
 script = ExtResource("1")
 display_name = "Deadlift"
-base_xp = 14.0
+base_xp = 20.0
 stat_rewards = {
 "back": 0.6,
-"hamstrings": 0.6,
-"strength": 0.2
+"hamstrings": 0.6
 }
-energy_cost_per_action = 12.0
+energy_cost_per_action = 6.0
+exhaustion_per_action = 7.0
 indicator_speed_start = 380.0
 indicator_speed_gain = 30.0
 good_zone_width = 110.0

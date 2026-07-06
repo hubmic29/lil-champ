@@ -9,7 +9,7 @@ radius = 31.06445
 [node name="BenchPressStation" type="Area2D" unique_id=1574491521]
 script = ExtResource("1_gfr1s")
 station_name = "Bench Press"
-trains_hint = "Trains: Chest, Strength"
+trains_hint = "Trains: Chest"
 minigame_path = "res://scenes/minigames/bench_press/bench_press_exercise.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2067048310]

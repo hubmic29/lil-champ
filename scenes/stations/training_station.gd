@@ -13,6 +13,9 @@ extends Area2D
 ## Stations that cost energy refuse to start while the player is exhausted.
 ## Turn off for recovery stations like the sauna.
 @export var requires_energy := true
+## Machines and the sauna consume one of the day's limited gym sessions.
+## Turn off for the shop, the competition stage and the exit door.
+@export var counts_as_session := true
 
 var _player_in_range := false
 var _prompt: Label
@@ -22,6 +25,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	PlayerStats.energy_changed.connect(_on_energy_changed)
+	GameCalendar.sessions_changed.connect(func(_left: int) -> void: _refresh_prompt())
 	_prompt = Label.new()
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.position = Vector2(-100, -92)
@@ -61,8 +65,9 @@ func _refresh_prompt() -> void:
 	var lines: Array[String] = [station_name]
 	if not trains_hint.is_empty():
 		lines.append(trains_hint)
-	if _is_blocked():
-		lines.append("Too exhausted — rest in the sauna!")
+	var reason := _blocked_reason()
+	if not reason.is_empty():
+		lines.append(reason)
 		_prompt.modulate = Color(1.0, 0.55, 0.55)
 	else:
 		lines.append(action_hint)
@@ -70,16 +75,23 @@ func _refresh_prompt() -> void:
 	_prompt.text = "\n".join(lines)
 
 
-func _is_blocked() -> bool:
-	return requires_energy and PlayerStats.is_exhausted()
+## Empty string when usable, otherwise the text shown instead of the hint.
+func _blocked_reason() -> String:
+	if counts_as_session and not GameCalendar.can_start_session():
+		return "No sessions left — leave the gym!"
+	if requires_energy and PlayerStats.is_exhausted():
+		return "Too exhausted — rest up!"
+	return ""
 
 
 func start_minigame() -> void:
 	if minigame_path.is_empty():
 		push_warning("%s: no minigame scene assigned!" % name)
 		return
-	if _is_blocked():
+	if not _blocked_reason().is_empty():
 		AudioManager.play(&"miss")
 		return
+	if counts_as_session:
+		GameCalendar.use_session()
 	AudioManager.play(&"click")
 	SceneSwitcher.change_scene(minigame_path)

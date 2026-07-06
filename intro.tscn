@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cqahqjw7jita6"]
+
+[ext_resource type="Script" uid="uid://cvt5p3hvlin64" path="res://intro.gd" id="1_ayt76"]
+[ext_resource type="Texture2D" uid="uid://d3yjvql6kx4rq" path="res://assets/phone.png" id="2_7a8ye"]
+[ext_resource type="FontFile" uid="uid://x7o7i2o6p7jw" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_y72e6"]
+[ext_resource type="AudioStream" uid="uid://bjsgcniah08be" path="res://sfx/545477__ienba__pop-up.wav" id="4_u2rf6"]
+[ext_resource type="AudioStream" uid="uid://d3m21410g2l5l" path="res://sfx/505104__joedoe22__writing-a-text-message.wav" id="5_y6ycx"]
+
+[node name="Intro" type="Control" unique_id=1746153718]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ayt76")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1948994590]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Phone" type="TextureRect" parent="." unique_id=1140518440]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7a8ye")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Phone" unique_id=1497843832]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 174.0
+offset_right = 755.0
+offset_bottom = 605.0
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Phone/ScrollContainer" unique_id=917389097]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SkipSceneBtn" type="Button" parent="." unique_id=1316692608]
+texture_filter = 1
+layout_mode = 0
+offset_left = 878.0
+offset_top = 536.0
+offset_right = 1032.0
+offset_bottom = 579.0
+theme_override_fonts/font = ExtResource("3_y72e6")
+theme_override_font_sizes/font_size = 29
+text = "Skip"
+
+[node name="SkipAllBtn" type="Button" parent="." unique_id=1077310577]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 541.0
+offset_right = 230.0
+offset_bottom = 572.0
+text = "skip all, test button"
+
+[node name="MessageSound" type="AudioStreamPlayer2D" parent="." unique_id=1304889875]
+stream = ExtResource("4_u2rf6")
+
+[node name="TypingSound" type="AudioStreamPlayer2D" parent="." unique_id=894972131]
+stream = ExtResource("5_y6ycx")
+
+[connection signal="pressed" from="SkipSceneBtn" to="." method="_on_skip_scene_btn_pressed"]
+[connection signal="pressed" from="SkipAllBtn" to="." method="_on_skip_all_btn_pressed"]

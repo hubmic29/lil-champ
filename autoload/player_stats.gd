@@ -55,6 +55,8 @@ var evolution_tier := 0
 ## Cash earned in competitions, spent in the shop.
 var money := 0
 
+var intro_seen := false
+
 ## Motivation buff expiry in msec ticks (-1 = never had one).
 var _buff_ends_at_msec := -1
 
@@ -226,6 +228,7 @@ func save_game() -> void:
 		"levels": {},
 		"energy": energy,
 		"money": money,
+		"intro_seen": intro_seen # <-- NOWA LINIJKA (DODANA ZMIENNA)
 	}
 	for stat in STATS:
 		data["xp"][String(stat)] = xp[stat]
@@ -235,7 +238,6 @@ func save_game() -> void:
 		push_warning("PlayerStats: could not write save file.")
 		return
 	file.store_string(JSON.stringify(data, "\t"))
-
 
 func load_game() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -253,6 +255,7 @@ func load_game() -> void:
 		levels[stat] = int(data.get("levels", {}).get(key, 1))
 	energy = clampf(float(data.get("energy", progression.max_energy)), 0.0, progression.max_energy)
 	money = maxi(0, int(data.get("money", 0)))
+	intro_seen = data.get("intro_seen", false)
 	
 	
 	

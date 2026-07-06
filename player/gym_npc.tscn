@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://kbprx3nxqo0r"]
+
+[ext_resource type="Script" uid="uid://cf1w20k0vb2fk" path="res://player/gym_npc.gd" id="1_34l4q"]
+[ext_resource type="SpriteFrames" uid="uid://csejl8uikpbfy" path="res://player/form_0.tres" id="1_x7nrm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34l4q"]
+radius = 11.045361
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_633hn"]
+radius = 35.014282
+
+[node name="GymNPC" type="CharacterBody2D" unique_id=2141895002]
+script = ExtResource("1_34l4q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=474339563]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("1_x7nrm")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1690137650]
+position = Vector2(1, 9)
+shape = SubResource("CircleShape2D_34l4q")
+
+[node name="DetectionZone" type="Area2D" parent="." unique_id=1267718188]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" unique_id=277795566]
+shape = SubResource("CircleShape2D_633hn")
+
+[node name="WanderTimer" type="Timer" parent="." unique_id=1892451512]
+
+[node name="BubbleAnchor" type="Node2D" parent="." unique_id=298912962]
+z_index = 10
+position = Vector2(2, -25)
+
+[node name="PanelContainer" type="PanelContainer" parent="BubbleAnchor" unique_id=1642957227]
+offset_left = -27.0
+offset_top = -6.0
+offset_right = 26.0
+offset_bottom = 17.0
+
+[node name="Label" type="Label" parent="BubbleAnchor/PanelContainer" unique_id=1511490460]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

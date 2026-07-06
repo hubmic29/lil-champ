@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://csquatstn001"]
 
 [ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_sqstn"]
+[ext_resource type="Texture2D" path="res://assets/squat_rack.png" id="2_sqstn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqstn"]
 radius = 48.0
@@ -10,6 +11,10 @@ script = ExtResource("1_sqstn")
 station_name = "Squat Rack"
 trains_hint = "Trains: Quadriceps"
 minigame_path = "res://scenes/minigames/squats/squats_exercise.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_sqstn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sqstn")

@@ -14,7 +14,7 @@ func _ready():
 	main_music.play()
 	
 	if red_dot != null:
-		var dot_tween = get_tree().create_tween().set_loops()
+		var dot_tween = create_tween().set_loops()
 		
 		dot_tween.tween_property(red_dot, "modulate:a", 0.0, 0.5)
 		dot_tween.tween_property(red_dot, "modulate:a", 1.0, 0.5)
@@ -26,7 +26,7 @@ func _on_animated_sprite_2d_animation_looped():
 	if obroty == 2:
 		obroty = 0 
 	
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
 		
 		if $AnimatedSprite2D.animation == "s_spin":
 			grow_sound.play() 

@@ -112,9 +112,9 @@ func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
 		
 	top_bar = PanelContainer.new()
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color(0.95, 0.95, 0.95) 
+	style.bg_color = Color(0.642, 0.642, 0.642, 1.0) 
 	style.border_width_bottom = 1
-	style.border_color = Color(0.8, 0.8, 0.8)
+	style.border_color = Color(0.642, 0.642, 0.642, 1.0) 
 	top_bar.add_theme_stylebox_override("panel", style)
 	
 	$Phone.add_child(top_bar)

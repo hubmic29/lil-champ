@@ -22,6 +22,7 @@ PlayerStats="*res://autoload/player_stats.gd"
 GameCalendar="*res://autoload/game_calendar.gd"
 AudioManager="*res://autoload/audio_manager.gd"
 SceneSwitcher="*res://autoload/scene_switcher.gd"
+SettingsManager="*uid://ccfbotn3f3gv7"
 
 [display]
 

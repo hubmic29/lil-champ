@@ -25,7 +25,7 @@ func _ready() -> void:
 	super()
 	_cfg = config as PunchingBagConfig
 	_character_home = character.position
-	bag.pivot_offset = Vector2(bag.size.x / 2.0, 0)  # sway around the chain mount
+	bag.pivot_offset = Vector2(bag.size.x / 1.0, 0)  # sway around the chain mount
 	hit_zone.pressed.connect(_on_zone_hit)
 	bag.gui_input.connect(_on_bag_input)
 	_zone_timer = Timer.new()
@@ -35,6 +35,8 @@ func _ready() -> void:
 	message_label.text = "Click the targets on the bag!"
 	_update_labels()
 	_spawn_zone()
+	bag.scale = Vector2(1.2, 1.2)
+	
 
 
 ## Places the hit zone at a random spot on the bag; lifetime shrinks with combo.

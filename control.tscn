@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://gwnyn0ejro0l"]
+
+[ext_resource type="Script" uid="uid://bfyc5gund2pqs" path="res://control.gd" id="1_0fbet"]
+
+[node name="Control" type="Control" unique_id=1382527365]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fbet")
+
+[node name="MasterSlider" type="HSlider" parent="." unique_id=1474006364]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 161.0
+offset_bottom = 51.0
+
+[node name="FullscreenButton" type="CheckButton" parent="." unique_id=1273336855]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 93.0
+offset_right = 119.0
+offset_bottom = 117.0
+
+[node name="BackButton" type="Button" parent="." unique_id=2020407219]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 209.0
+offset_right = 120.0
+offset_bottom = 240.0
+text = "Back"
+
+[node name="SaveButton" type="Button" parent="." unique_id=723843498]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 149.0
+offset_right = 119.0
+offset_bottom = 180.0
+text = "Save"
+
+[node name="VolumeLabel" type="Label" parent="." unique_id=202759768]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="value_changed" from="MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="toggled" from="FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]

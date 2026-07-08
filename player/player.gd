@@ -12,7 +12,9 @@ func _ready() -> void:
 	PlayerStats.stat_leveled_up.connect(func(_s: StringName, _l: int) -> void: _update_size())
 	_update_appearance(PlayerStats.evolution_tier)
 	_update_size()
-
+	if SceneSwitcher.player_return_position != Vector2.ZERO:
+		global_position = SceneSwitcher.player_return_position
+		SceneSwitcher.player_return_position = Vector2.ZERO 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
 

@@ -1,14 +1,16 @@
 ## SceneSwitcher (autoload) — smooth fade-to-black scene transitions.
 ## Use SceneSwitcher.change_scene(path) anywhere instead of
 ## get_tree().change_scene_to_file(path).
+
 extends CanvasLayer
+
 
 const FADE_OUT_SECONDS := 0.2
 const FADE_IN_SECONDS := 0.3
 
 var _rect: ColorRect
 var _busy := false
-
+var player_return_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	layer = 100
@@ -19,9 +21,11 @@ func _ready() -> void:
 	add_child(_rect)
 
 
-func change_scene(path: String) -> void:
+func change_scene(path: String, pos: Vector2 = Vector2.ZERO) -> void:
 	if _busy:
 		return
+	if pos != Vector2.ZERO:
+		player_return_position = pos
 	_busy = true
 	_rect.mouse_filter = Control.MOUSE_FILTER_STOP  # swallow clicks mid-fade
 	var fade_out := create_tween()

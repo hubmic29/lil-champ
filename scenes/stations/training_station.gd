@@ -91,6 +91,10 @@ func start_minigame() -> void:
 	if not _blocked_reason().is_empty():
 		AudioManager.play(&"miss")
 		return
+		
+	var player = get_tree().current_scene.get_node_or_null("Player")
+	if player:
+		SceneSwitcher.player_return_position = player.global_position
 	if counts_as_session:
 		GameCalendar.use_session()
 	AudioManager.play(&"click")

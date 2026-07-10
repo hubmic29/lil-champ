@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b13v1233frxsk" path="res://dealer.gd" id="1_s3rik"]
 [ext_resource type="SpriteFrames" uid="uid://c1wpkga3uemw8" path="res://player/dealer.tres" id="2_scllt"]
+[ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_scllt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3rik"]
 size = Vector2(8.777166, 68.28041)
@@ -27,3 +28,15 @@ shape = SubResource("RectangleShape2D_s3rik")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1031865658]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_s3rik")
+
+[node name="PsstLabel" type="Label" parent="." unique_id=404920964]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -48.0
+offset_right = 19.0
+offset_bottom = -25.0
+theme_override_fonts/font = ExtResource("3_scllt")
+theme_override_font_sizes/font_size = 10
+text = "Psst!"
+horizontal_alignment = 1
+vertical_alignment = 1

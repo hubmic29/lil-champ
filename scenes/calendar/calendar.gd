@@ -18,11 +18,13 @@ const CALENDAR_SCENE_PATH := "res://scenes/calendar/calendar.tscn"
 @onready var exhaustion_box: VBoxContainer = %ExhaustionBox
 @onready var train_button: Button = %TrainButton
 @onready var rest_button: Button = %RestButton
-
+@onready var exit_button: Button = $Panel/ExitButton
 
 func _ready() -> void:
 	train_button.pressed.connect(_choose.bind(GameCalendar.DayType.TRAINING))
 	rest_button.pressed.connect(_choose.bind(GameCalendar.DayType.REST))
+	
+	exit_button.pressed.connect(_on_exit_pressed)
 	_fill_status()
 	_animate_in()
 
@@ -94,3 +96,7 @@ func _choose(next_type: GameCalendar.DayType) -> void:
 		# Rest day: recovery already applied — flow straight back into the
 		# calendar so the player sees the new day and picks the next one.
 		SceneSwitcher.change_scene(CALENDAR_SCENE_PATH)
+		
+func _on_exit_pressed() -> void:
+	AudioManager.play(&"click")
+	SceneSwitcher.change_scene(GYM_SCENE_PATH)

@@ -38,3 +38,19 @@ func change_scene(path: String, pos: Vector2 = Vector2.ZERO) -> void:
 	await fade_in.finished
 	_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_busy = false
+	
+var map_scene = preload("res://ui/world_map.tscn")
+var map_instance = null
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_minimap"):
+		if map_instance == null:
+			map_instance = map_scene.instantiate()
+			add_child(map_instance)
+			get_tree().paused = true
+		else:
+			map_instance.queue_free()
+			map_instance = null
+			get_tree().paused = false
+		
+		get_viewport().set_input_as_handled()

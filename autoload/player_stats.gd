@@ -10,6 +10,7 @@
 ## never by writing fields directly.
 extends Node
 
+signal steroids_changed
 ## Emitted whenever XP is added to a stat (amount is after all multipliers).
 signal xp_gained(stat: StringName, amount: float)
 ## Emitted when a stat reaches a new level.
@@ -66,6 +67,14 @@ var intro_seen := false
 ## Motivation buff expiry in msec ticks (-1 = never had one).
 var _buff_ends_at_msec := -1
 
+var steroid_bonus_multiplier := 1.0 # Domyślnie 1.0 (brak bonusu)
+var energy_reduction_multiplier := 1.0
+
+
+var active_steroid_type := ""
+var steroid_bonus := 1.0
+var energy_reduction := 1.0
+var steroid_expires_at := 0
 
 func _ready() -> void:
 	progression = load(PROGRESSION_PATH)
@@ -100,7 +109,8 @@ func add_xp(stat: StringName, base_amount: float) -> float:
 		* _soft_cap_multiplier(levels[stat]) \
 		* exhaustion_effectiveness(stat) \
 		* (progression.motivation_xp_multiplier if is_motivated() else 1.0) \
-		* (progression.tired_xp_multiplier if energy <= progression.tired_threshold else 1.0)
+		* (progression.tired_xp_multiplier if energy <= progression.tired_threshold else 1.0)\
+		* steroid_bonus
 	xp[stat] += amount
 	xp_gained.emit(stat, amount)
 	while xp[stat] >= xp_required(levels[stat]):
@@ -199,7 +209,7 @@ func spend_energy(amount: float) -> void:
 ## Spends energy for a training action, scaled by Stamina: conditioning makes
 ## the same workout cheaper, so the energy pool lasts longer as you progress.
 func spend_exercise_energy(base_cost: float) -> void:
-	spend_energy(base_cost * exercise_cost_multiplier())
+	spend_energy(base_cost * exercise_cost_multiplier() * energy_reduction)
 
 
 ## Energy cost multiplier derived from the Stamina level (asymptotic, so it
@@ -280,7 +290,13 @@ func save_game() -> void:
 		"exhaustion": {},
 		"energy": energy,
 		"money": money,
-		"intro_seen": intro_seen # <-- NOWA LINIJKA (DODANA ZMIENNA)
+		"intro_seen": intro_seen,
+		"steroid_data": {
+			"type": active_steroid_type,
+			"bonus": steroid_bonus,
+			"energy_red": energy_reduction,
+			"expires": steroid_expires_at
+		}
 	}
 	for stat in STATS:
 		data["xp"][String(stat)] = xp[stat]
@@ -295,6 +311,7 @@ func save_game() -> void:
 func load_game() -> void:
 	if not FileAccess.file_exists(SaveSlots.stats_path()):
 		return
+		
 	var file := FileAccess.open(SaveSlots.stats_path(), FileAccess.READ)
 	if file == null:
 		return
@@ -311,7 +328,11 @@ func load_game() -> void:
 	energy = clampf(float(data.get("energy", progression.max_energy)), 0.0, progression.max_energy)
 	money = maxi(0, int(data.get("money", 0)))
 	intro_seen = data.get("intro_seen", false)
-
+	var s_data = data.get("steroid_data", {})
+	active_steroid_type = s_data.get("type", "")
+	steroid_bonus = float(s_data.get("bonus", 1.0))
+	energy_reduction = float(s_data.get("energy_red", 1.0))
+	steroid_expires_at = int(s_data.get("expires", 0))
 
 ## Discards in-memory state and loads whatever the active save slot holds
 ## (a fresh character if the slot is empty). Used when switching slots.
@@ -334,6 +355,11 @@ func reload_from_disk() -> void:
 
 ## Wipes all progression back to a fresh character (used by Restart).
 func reset_progress() -> void:
+	active_steroid_type = ""
+	steroid_bonus = 1.0
+	energy_reduction = 1.0
+	steroid_expires_at = 0
+	save_game()
 	for stat in STATS:
 		xp[stat] = 0.0
 		levels[stat] = 1
@@ -347,3 +373,16 @@ func reset_progress() -> void:
 	energy_changed.emit(energy, progression.max_energy)
 	money_changed.emit(money)
 	save_game()
+	
+func apply_steroids(type: String, duration: int, bonus_xp: float, energy_red: float):
+	active_steroid_type = type
+	steroid_bonus = bonus_xp
+	energy_reduction = energy_red
+	steroid_expires_at = GameCalendar.day + duration
+	steroids_changed.emit()
+	
+func check_steroid_expiry(current_day: int):
+	if steroid_expires_at > 0 and current_day >= steroid_expires_at:
+		active_steroid_type = ""
+		steroid_bonus = 1.0
+		energy_reduction = 1.0

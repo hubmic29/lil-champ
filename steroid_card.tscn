@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ywyikdbedq05"]
+
+[ext_resource type="Script" uid="uid://c1umwi7r6p5eo" path="res://steroid_card.gd" id="1_5vhai"]
+[ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_iobq8"]
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=1694242053]
+custom_minimum_size = Vector2(155, 250)
+anchors_preset = -1
+anchor_right = 0.087000005
+anchor_bottom = 0.20700002
+offset_left = -50.0
+offset_top = -58.0
+offset_right = 4.7759933
+offset_bottom = 57.863983
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("1_5vhai")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1917566605]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer" unique_id=2121612937]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 5
+
+[node name="InfoLabel" type="Label" parent="." unique_id=2061801799]
+layout_mode = 2
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = ExtResource("2_iobq8")
+theme_override_font_sizes/font_size = 8
+text = "Day "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=918745313]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_iobq8")

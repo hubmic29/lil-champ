@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bhxeawejwhase"]
+
+[ext_resource type="Script" uid="uid://b6nfg7n856bt4" path="res://world_map.gd" id="1_5ysi1"]
+[ext_resource type="Texture2D" uid="uid://champgymbg01" path="res://assets/gym_map_bg.png" id="2_jsrsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3f0"]
+size = Vector2(918, 333)
+
+[node name="WorldMap" type="CanvasLayer" unique_id=1119507343]
+process_mode = 3
+script = ExtResource("1_5ysi1")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=674055586]
+custom_minimum_size = Vector2(800, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer" unique_id=1828351080]
+z_index = 1
+custom_minimum_size = Vector2(960, 640)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+texture = ExtResource("2_jsrsj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GymZone" type="Area2D" parent="ScrollContainer/TextureRect" unique_id=467092631]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrollContainer/TextureRect/GymZone" unique_id=1759401962]
+position = Vector2(480, 226.5)
+shape = SubResource("RectangleShape2D_vs3f0")
+
+[node name="InfoPanel" type="Panel" parent="." unique_id=1658430133]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="InfoPanel" unique_id=1151392806]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 56.0
+offset_bottom = 40.0
+
+[node name="DescriptionLabel" type="Label" parent="InfoPanel" unique_id=573802577]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 36.0
+offset_right = 85.0
+offset_bottom = 59.0
+
+[connection signal="mouse_entered" from="ScrollContainer/TextureRect/GymZone" to="." method="_on_gym_zone_mouse_entered"]

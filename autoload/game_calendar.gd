@@ -55,6 +55,7 @@ func use_session() -> void:
 ## its recovery: full energy plus a large exhaustion heal on every muscle.
 func advance_day(next_type: DayType) -> void:
 	day += 1
+	PlayerStats.check_steroid_expiry(day)
 	day_type = next_type
 	sessions_used = 0
 	if day_type == DayType.REST:

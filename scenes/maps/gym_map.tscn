@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://d28mxi54b2u4r" path="res://scenes/stations/punching_bag.tscn" id="3_bag"]
 [ext_resource type="PackedScene" uid="uid://d1wttq73skkhw" path="res://scenes/stations/bench_press_station.tscn" id="4_bench"]
 [ext_resource type="PackedScene" uid="uid://bdlftsttn012" path="res://scenes/stations/deadlift_station.tscn" id="5_dlift"]
-[ext_resource type="Script" uid="uid://cj1tjixr3l43q" path="res://ui/hud.gd" id="6_hud"]
 [ext_resource type="PackedScene" uid="uid://csquatstn001" path="res://scenes/stations/squat_station.tscn" id="6_squat"]
 [ext_resource type="PackedScene" uid="uid://csaunastn001" path="res://scenes/stations/sauna_station.tscn" id="7_sauna"]
 [ext_resource type="PackedScene" uid="uid://ccompstn0001" path="res://scenes/stations/competition_station.tscn" id="8_comp"]
@@ -71,12 +70,6 @@ size = Vector2(24, 26)
 
 [sub_resource type="RectangleShape2D" id="RS_19"]
 size = Vector2(24, 26)
-
-[sub_resource type="RectangleShape2D" id="RS_20"]
-size = Vector2(48, 16)
-
-[sub_resource type="RectangleShape2D" id="RS_21"]
-size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RS_22"]
 size = Vector2(104, 72)
@@ -166,14 +159,6 @@ shape = SubResource("RS_18")
 position = Vector2(920, 579)
 shape = SubResource("RS_19")
 
-[node name="Bench20" type="CollisionShape2D" parent="Walls" unique_id=1607171852]
-position = Vector2(144, 268)
-shape = SubResource("RS_20")
-
-[node name="Bench21" type="CollisionShape2D" parent="Walls" unique_id=246557780]
-position = Vector2(244, 268)
-shape = SubResource("RS_21")
-
 [node name="SaunaHut22" type="CollisionShape2D" parent="Walls" unique_id=248773651]
 position = Vector2(80, 514)
 shape = SubResource("RS_22")
@@ -205,15 +190,6 @@ position = Vector2(480, 585)
 [node name="Player" parent="." unique_id=83060125 instance=ExtResource("2_4xk5c")]
 z_index = 1
 position = Vector2(479, 538)
-
-[node name="HUD" type="CanvasLayer" parent="." unique_id=196705217]
-script = ExtResource("6_hud")
-
-[node name="StatsPanel" type="Panel" parent="HUD" unique_id=1746068581]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 260.0
-offset_bottom = 290.0
 
 [node name="PauseMenu" parent="." unique_id=1655045054 instance=ExtResource("11_50g18")]
 

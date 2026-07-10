@@ -5,10 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://uvr2n5q22tsb" path="res://assets/character-360.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://uyg0jq1cf867" path="res://assets/l-360.png" id="3_glbon"]
 [ext_resource type="Texture2D" uid="uid://dmjo73drm14v1" path="res://assets/m-360.png" id="4_nlkkf"]
-[ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="6_dy7ct"]
 [ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="7_0o4t1"]
-[ext_resource type="FontFile" uid="uid://cpbgxcdk005fn" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="8_0k4wn"]
-[ext_resource type="FontFile" uid="uid://x7o7i2o6p7jw" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="9_j5v2v"]
 [ext_resource type="AudioStream" uid="uid://ckanoewqf3qnr" path="res://sfx/gym1.mp3" id="10_0o4t1"]
 [ext_resource type="AudioStream" uid="uid://btjygoqcanih5" path="res://sfx/maximize_006.ogg" id="11_j5v2v"]
 [ext_resource type="AudioStream" uid="uid://c2741oub7s8a1" path="res://sfx/minimize_006.ogg" id="12_iotk1"]
@@ -237,7 +234,7 @@ theme_override_constants/separation = 55
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=1566497751]
 texture_filter = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_dy7ct")
+theme_override_fonts/font = ExtResource("7_0o4t1")
 theme_override_font_sizes/font_size = 24
 text = "START"
 
@@ -251,14 +248,14 @@ text = "NEW GAME"
 [node name="Button3" type="Button" parent="VBoxContainer" unique_id=1576381533]
 texture_filter = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8_0k4wn")
+theme_override_fonts/font = ExtResource("7_0o4t1")
 theme_override_font_sizes/font_size = 24
 text = "SETTINGS"
 
 [node name="Button4" type="Button" parent="VBoxContainer" unique_id=452164084]
 texture_filter = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_j5v2v")
+theme_override_fonts/font = ExtResource("7_0o4t1")
 theme_override_font_sizes/font_size = 24
 text = "EXIT"
 

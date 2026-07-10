@@ -102,3 +102,4 @@ func _read_json(path: String) -> Dictionary:
 		return {}
 	var data: Variant = JSON.parse_string(file.get_as_text())
 	return data if typeof(data) == TYPE_DICTIONARY else {}
+	

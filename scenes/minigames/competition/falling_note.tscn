@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b3pusqvkxgxne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bjih"]
+
+[node name="FallingNote" type="Area2D" unique_id=2064731071]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1674927858]
+
+[node name="Label" type="Label" parent="." unique_id=513408822]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "A"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1168351425]
+shape = SubResource("RectangleShape2D_5bjih")

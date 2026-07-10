@@ -22,6 +22,7 @@ var _prompt: Label
 
 
 func _ready() -> void:
+	var custom_font = load("res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	PlayerStats.energy_changed.connect(_on_energy_changed)
@@ -30,7 +31,9 @@ func _ready() -> void:
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.position = Vector2(-100, -92)
 	_prompt.size = Vector2(200, 48)
-	_prompt.add_theme_font_size_override("font_size", 11)
+	_prompt.add_theme_font_size_override("font_size", 10)
+	_prompt.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_prompt.add_theme_font_override("font", custom_font)
 	_prompt.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
 	_prompt.add_theme_constant_override("outline_size", 4)
 	_prompt.visible = false

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://coyjcep48saer"]
+
+[ext_resource type="Script" uid="uid://cj1tjixr3l43q" path="res://ui/hud.gd" id="1_1cary"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1049395429]
+script = ExtResource("1_1cary")
+
+[node name="StatsPanel" type="PanelContainer" parent="." unique_id=854846361]
+z_index = 4096
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 260.0
+offset_bottom = 290.0

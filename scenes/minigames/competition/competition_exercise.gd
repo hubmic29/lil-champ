@@ -7,11 +7,11 @@ enum State { MENU, POSING, RESULTS }
 @onready var stage_ui: Control = %StageUI
 @onready var good_zone: ColorRect = %GoodZone
 @onready var score_label: Label = %ScoreLabel
-@onready var character: AnimatedSprite2D = %Character
 @onready var results_panel: Panel = %ResultsPanel
 @onready var results_title: Label = %ResultsTitle
 @onready var results_list: VBoxContainer = %ResultsList
 @onready var continue_button: Button = %ContinueButton
+@onready var character: AnimatedSprite2D = %Character
 
 var state := State.MENU
 var player_score := 0.0
@@ -33,26 +33,39 @@ func _process(delta: float) -> void:
 	if state != State.POSING: return
 	
 	spawn_timer += delta
+	
+	if spawn_timer > 1.0:
+		print("Spawn timer działa, spawned_count: ", spawned_count)
+		
 	if spawned_count < 10 and spawn_timer > 1.2:
+		print("Próba spawnu nuty!")
 		_spawn_falling_note()
 		spawned_count += 1
 		spawn_timer = 0
 	
+	# 1. Spadanie nut
 	for child in get_children():
 		if child.name.begins_with("Note_"):
-			child.position.y += 150 * delta
-			if child.global_position.y > good_zone.global_position.y + 60:
+			child.position.y += 300 * delta
+			
+			if child.global_position.y > good_zone.global_position.y + 50:
 				child.queue_free()
 				active_notes -= 1
+				_handle_miss()
 				_check_game_over()
 
 func _spawn_falling_note() -> void:
 	var note = note_scene.instantiate()
 	note.name = "Note_" + str(Time.get_ticks_msec())
-	note.position = Vector2(randf_range(100, 700), -50)
-	# Upewnij się, że w scenie falling_note.tscn Label nazywa się dokładnie "Label"
-	if note.has_node("Label"):
-		note.get_node("Label").text = _cfg.qte_keys.pick_random()
+	
+	
+	var random_x = randf_range(20, 1000)
+	note.position = Vector2(random_x, -50)
+
+	var label = note.get_node_or_null("ColorRect/Label")
+	if label:
+		label.text = _cfg.qte_keys.pick_random()
+	
 	add_child(note)
 	active_notes += 1
 
@@ -62,19 +75,24 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	
 	for child in get_children():
 		if child.name.begins_with("Note_"):
-			if abs(child.global_position.y - good_zone.global_position.y) < 60:
-				if child.has_node("Label") and child.get_node("Label").text == pressed_key:
-					_handle_hit()
+			var dist = abs(child.global_position.y - good_zone.global_position.y)
+			
+			if dist < 80: 
+				var label = child.get_node_or_null("ColorRect/Label")
+				if label and label.text == pressed_key:
+					_handle_hit(dist < 20) 
 					child.queue_free()
 					active_notes -= 1
-					_check_game_over()
 					return
+				elif dist < 60:
+					_handle_miss()
 
-func _handle_hit() -> void:
-	player_score += 100
+func _handle_hit(is_perfect: bool) -> void:
+	_trigger_flash(Color.GREEN if is_perfect else Color.YELLOW)
+	player_score += 100 if is_perfect else 50
 	hits_in_a_row += 1
 	if hits_in_a_row >= 2:
-		_change_random_pose()
+		_update_character_pose()
 		player_score += 200
 		hits_in_a_row = 0
 	score_label.text = "Score: %d" % int(player_score)
@@ -116,3 +134,70 @@ func _start_tournament(_index: int) -> void:
 	spawn_timer = 0
 	player_score = 0
 	hits_in_a_row = 0
+func _trigger_flash(color: Color):
+	var flash = ColorRect.new()
+	flash.size = Vector2(1550, 660)
+	flash.color = color
+	flash.modulate.a = 0.3
+	flash.z_index = 5 
+	add_child(flash)
+	
+	var tween = create_tween()
+	tween.tween_property(flash, "modulate:a", 0.0, 0.3)
+	tween.tween_callback(flash.queue_free)
+	
+func _handle_miss() -> void:
+	hits_in_a_row = 0
+	var flash = ColorRect.new()
+	flash.size = Vector2(1550, 660)
+	flash.color = Color.RED
+	flash.modulate.a = 0.3
+	add_child(flash)
+	
+	var tween = create_tween()
+	tween.tween_property(flash, "modulate:a", 0.0, 0.2)
+	tween.tween_callback(flash.queue_free)
+	
+	
+func _update_character_pose() -> void:
+	$Character/CPUParticles2D.restart()
+	$Character/CPUParticles2D.emitting = true
+	var tier = PlayerStats.evolution_tier
+	var prefix = "small_"
+	match tier:
+		0: prefix = "small_"
+		1: prefix = "med_"
+		2: prefix = "big_"
+	
+	var available_anims = []
+	var all_anims = character.sprite_frames.get_animation_names()
+	print("Dostępne animacje: ", all_anims)
+	
+	for anim in all_anims:
+		if anim.begins_with(prefix) and "pose" in anim:
+			available_anims.append(anim)
+	
+	print("Znaleziono pasujących do '", prefix, "': ", available_anims)
+	
+	if not available_anims.is_empty():
+		var chosen = available_anims.pick_random()
+		print("Wybieram animację: ", chosen)
+		character.play(chosen)
+	else:
+		print("BŁĄD: Nie znaleziono żadnej animacji z przedrostkiem ", prefix)
+	if not available_anims.is_empty():
+		var chosen = available_anims.pick_random()
+		character.play(chosen)
+		
+		var tween = create_tween().set_parallel(true)
+		
+		character.modulate = Color(2, 2, 2)
+		tween.tween_property(character, "modulate", Color.WHITE, 0.3)
+		
+		character.scale = Vector2(1.1, 1.1)
+		tween.tween_property(character, "scale", Vector2(2.0, 2.0), 0.1).set_trans(Tween.TRANS_ELASTIC)
+		
+		var pos_start = character.position
+		tween.tween_property(character, "position:x", pos_start.x + 5, 0.05).set_delay(0.1)
+		tween.tween_property(character, "position:x", pos_start.x - 5, 0.05).set_delay(0.15)
+		tween.tween_property(character, "position:x", pos_start.x, 0.05).set_delay(0.2)

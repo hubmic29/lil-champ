@@ -47,7 +47,7 @@ func _ready() -> void:
 	GameCalendar.day_changed.connect(func(_d, _t): update_steroid_ui())
 	PlayerStats.steroids_changed.connect(update_steroid_ui)
 	get_tree().root.child_entered_tree.connect(_on_scene_changed)
-	update_steroid_ui() # Aktualizacja na start
+	update_steroid_ui()
 	_refresh()
 
 

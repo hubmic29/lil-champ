@@ -2,6 +2,202 @@
 
 [ext_resource type="Script" uid="uid://eidgoi1q7thc" path="res://scenes/minigames/competition/competition_exercise.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://ccomptres001" path="res://scenes/minigames/competition/competition.tres" id="2_config"]
+[ext_resource type="Texture2D" uid="uid://7ghs3u1log05" path="res://assets/character/L/l s.png" id="3_7s4n8"]
+[ext_resource type="Texture2D" uid="uid://ix1grynw86r" path="res://assets/character/pose/l-p1.png" id="4_kafl6"]
+[ext_resource type="Texture2D" uid="uid://c82qptd8hivnl" path="res://assets/character/pose/l-p2.png" id="5_gw01o"]
+[ext_resource type="Texture2D" uid="uid://bbo083jt57hje" path="res://assets/character/pose/l-p3.png" id="6_h814s"]
+[ext_resource type="Texture2D" uid="uid://8cv3uf056xp5" path="res://assets/character/pose/l-start.png" id="7_1wrft"]
+[ext_resource type="Texture2D" uid="uid://cbtihu810gh6o" path="res://assets/character/M/mid - s.png" id="8_l81u7"]
+[ext_resource type="Texture2D" uid="uid://cwhlqb13y858d" path="res://assets/character/pose/m-p1.png" id="9_1wcg6"]
+[ext_resource type="Texture2D" uid="uid://b5e0bok35c0u2" path="res://assets/character/pose/m-p2.png" id="10_1eauo"]
+[ext_resource type="Texture2D" uid="uid://cy0ujetxnx3qc" path="res://assets/character/pose/m-p3.png" id="11_jjyu2"]
+[ext_resource type="Texture2D" uid="uid://crjri56k63dsl" path="res://assets/character/pose/m-start.png" id="12_actbk"]
+[ext_resource type="Texture2D" uid="uid://1e2xmmeyspko" path="res://assets/character/S/s.png" id="13_5eua6"]
+[ext_resource type="Texture2D" uid="uid://yo7wsp6i6afo" path="res://assets/character/pose/s-p1.png" id="14_cjv27"]
+[ext_resource type="Texture2D" uid="uid://dsa2om5pqc2at" path="res://assets/character/pose/s-p2.png" id="15_nu73k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14be6"]
+atlas = ExtResource("3_7s4n8")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6plvi"]
+atlas = ExtResource("4_kafl6")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylmv5"]
+atlas = ExtResource("5_gw01o")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ny4"]
+atlas = ExtResource("6_h814s")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kudcb"]
+atlas = ExtResource("7_1wrft")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjyxc"]
+atlas = ExtResource("8_l81u7")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxkf6"]
+atlas = ExtResource("9_1wcg6")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_104hi"]
+atlas = ExtResource("10_1eauo")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24md"]
+atlas = ExtResource("11_jjyu2")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfwjp"]
+atlas = ExtResource("12_actbk")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp1i7"]
+atlas = ExtResource("13_5eua6")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocbhu"]
+atlas = ExtResource("14_cjv27")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knygi"]
+atlas = ExtResource("15_nu73k")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf55r"]
+atlas = ExtResource("14_cjv27")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kbx4"]
+atlas = ExtResource("13_5eua6")
+region = Rect2(0, 0, 104, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mx0t8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14be6")
+}],
+"loop": true,
+"name": &"big_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6plvi")
+}],
+"loop": true,
+"name": &"big_pose_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylmv5")
+}],
+"loop": true,
+"name": &"big_pose_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6ny4")
+}],
+"loop": true,
+"name": &"big_pose_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kudcb")
+}],
+"loop": true,
+"name": &"big_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjyxc")
+}],
+"loop": true,
+"name": &"med_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxkf6")
+}],
+"loop": true,
+"name": &"med_pose_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_104hi")
+}],
+"loop": true,
+"name": &"med_pose_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k24md")
+}],
+"loop": true,
+"name": &"med_pose_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfwjp")
+}],
+"loop": true,
+"name": &"med_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp1i7")
+}],
+"loop": true,
+"name": &"small_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocbhu")
+}],
+"loop": true,
+"name": &"small_pose_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knygi")
+}],
+"loop": true,
+"name": &"small_pose_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf55r")
+}],
+"loop": true,
+"name": &"small_pose_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kbx4")
+}],
+"loop": true,
+"name": &"small_start",
+"speed": 5.0
+}]
 
 [node name="CompetitionExercise" type="Control" unique_id=400762247 node_paths=PackedStringArray("player_sprite")]
 layout_mode = 3
@@ -60,10 +256,21 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(576, 350)
 scale = Vector2(2.4, 2.4)
+sprite_frames = SubResource("SpriteFrames_mx0t8")
+animation = &"small_start"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Character" unique_id=73234525]
+emitting = false
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
 
 [node name="StageUI" type="Control" parent="." unique_id=599138086]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,41 +331,15 @@ offset_bottom = 215.0
 theme_override_font_sizes/font_size = 14
 text = "Muscle bonus: +6%"
 
-[node name="Belt" type="ColorRect" parent="StageUI" unique_id=2135737811]
+[node name="GoodZone" type="ColorRect" parent="StageUI" unique_id=2135737811]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 276.0
+offset_left = 75.0
 offset_top = 520.0
-offset_right = 876.0
+offset_right = 1075.0
 offset_bottom = 552.0
 mouse_filter = 2
-color = Color(0.35, 0.35, 0.38, 1)
-
-[node name="GoodZone" type="ColorRect" parent="StageUI/Belt" unique_id=1223241322]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 245.0
-offset_right = 355.0
-offset_bottom = 32.0
-mouse_filter = 2
-color = Color(0, 0.75, 0.3, 0.7)
-
-[node name="PerfectZone" type="ColorRect" parent="StageUI/Belt/GoodZone" unique_id=2086295310]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 40.0
-offset_right = 68.0
-offset_bottom = 32.0
-mouse_filter = 2
-color = Color(1, 0.85, 0.2, 0.9)
-
-[node name="Indicator" type="ColorRect" parent="StageUI/Belt" unique_id=856586029]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = -4.0
-offset_right = 6.0
-offset_bottom = 36.0
-mouse_filter = 2
+color = Color(0.18937251, 0.3912736, 0.38801494, 1)
 
 [node name="MenuPanel" type="Panel" parent="." unique_id=364503384]
 unique_name_in_owner = true

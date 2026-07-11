@@ -36,7 +36,6 @@ func _process(_delta):
 func _open_shop():
 	var path = "res://steroid_shop.tscn" 
 	
-	# Zatrzymujemy grę, żeby scena się przeładowała "czysto"
 	if ResourceLoader.exists(path):
 		var err = get_tree().change_scene_to_file(path)
 		if err != OK:

@@ -4,7 +4,6 @@ func _ready():
 	hide()
 
 func _input(event):
-	# Teraz nasłuchujemy naszej nowej akcji (klawisz "P"), a nie ESC
 	if event.is_action_pressed("pause_game"):
 		toggle_pause()
 

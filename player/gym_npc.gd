@@ -31,7 +31,7 @@ func _ready() -> void:
 	bubble_anchor.hide()
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.custom_minimum_size.x = 150 # Ustaw szerokość, przy której tekst ma się łamać
+	label.custom_minimum_size.x = 150 
 	_pick_random_direction()
 	wander_timer.start(randf_range(2.0, 4.0))
 	

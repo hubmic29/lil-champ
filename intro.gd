@@ -48,10 +48,8 @@ func play_scene(index: int) -> void:
 	skip_scene_btn.text = "Skip conversation >>"
 	typing_sound.stop()
 	
-	# Zwiększanie czasu wirtualnego
 	current_time_minutes += randi_range(60, 120) 
 	
-	# Czyszczenie ekranu przed nową sceną
 	for child in chat_container.get_children():
 		child.queue_free()
 		
@@ -61,7 +59,6 @@ func play_scene(index: int) -> void:
 	
 	var messages = dialogs[index]
 	
-	# Pętla wyświetlająca wiadomości
 	for msg in messages:
 		if index != current_scene:
 			return
@@ -207,8 +204,6 @@ func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
 	status_hbox.add_child(status_lbl)
 	
 func _update_top_bar_to_blocked() -> void:
-	# Szukamy etykiety statusu i kropki (zakładając strukturę z HBoxContainer)
-	# Jeśli `top_bar` jest zapisane w zmiennej, możemy się do niego odwołać
 	var status_lbl = top_bar.find_child("StatusLabel", true, false)
 	var dot = top_bar.find_child("Dot", true, false)
 	

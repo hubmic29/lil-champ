@@ -9,10 +9,9 @@ extends VBoxContainer
 
 @onready var texture_button = $PanelContainer/TextureButton
 @onready var info_label = $InfoLabel
-@onready var label_2 = $Label2 # Ten label teraz będzie przyciskiem "BUY"
+@onready var label_2 = $Label2
 
 func _ready():
-	# Ustawiamy tekst "BUY" dla label_2
 	label_2.text = "BUY"
 	label_2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	

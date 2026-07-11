@@ -1,6 +1,5 @@
 extends Control
 
-# Przeciągnij te przyciski z drzewa sceny, trzymając Ctrl, aby mieć 100% pewności co do ścieżki
 @onready var btn_basic = $Panel/BasicTextureButton 
 @onready var btn_pro = $Panel/ProTextureButton
 @onready var btn_god = $Panel/GodTextureButton

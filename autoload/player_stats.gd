@@ -386,3 +386,9 @@ func check_steroid_expiry(current_day: int):
 		active_steroid_type = ""
 		steroid_bonus = 1.0
 		energy_reduction = 1.0
+		
+func get_total_level() -> int:
+	var total := 0
+	for stat in levels:
+		total += levels[stat]
+	return total

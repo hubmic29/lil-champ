@@ -1,14 +1,13 @@
 extends Node
 
 const SAVE_PATH = "user://settings.cfg"
-
 var config = ConfigFile.new()
 
 var settings = {
 	"audio": {
-		"master": 0.1,
-		"music": 0.1,
-		"sfx": 0.1
+		"master": 1.0,
+		"music": 1.0,
+		"sfx": 1.0
 	},
 	"video": {
 		"fullscreen": true,
@@ -19,8 +18,6 @@ var settings = {
 func _ready():
 	load_settings()
 	apply_settings()
-	await get_tree().create_timer(2.0).timeout
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -40)
 	
 func save_settings():
 	for section in settings:
@@ -36,10 +33,17 @@ func load_settings():
 				settings[section][key] = config.get_value(section, key, settings[section][key])
 
 func apply_settings():
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), clamp(settings["audio"]["master"], -40, 0))
-	
+	_set_bus_volume("Master", settings["audio"]["master"])
+	_set_bus_volume("Music", settings["audio"]["music"])
+	_set_bus_volume("SFX", settings["audio"]["sfx"])
+
+func _set_bus_volume(bus_name: String, value: float):
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	if bus_index != -1:
+		var volume_db = linear_to_db(clamp(value, 0.001, 1.0))
+		AudioServer.set_bus_volume_db(bus_index, volume_db)
+
 func update_setting(section, key, value):
 	settings[section][key] = value
-	print("Zmieniam ustawienie ", key, " na wartość: ", value)
 	apply_settings()
 	save_settings()

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b46vuebqfgcnh"]
+
+[ext_resource type="Script" uid="uid://q1n3ryr7gxbe" path="res://help_screen.gd" id="1_he7ji"]
+[ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_i44y6"]
+
+[node name="HelpScreen" type="CanvasLayer" unique_id=2092218705]
+script = ExtResource("1_he7ji")
+
+[node name="Panel" type="Panel" parent="." unique_id=668246720]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2094435550]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="Button" parent="." unique_id=1064149974]
+texture_filter = 1
+offset_left = 522.0
+offset_top = 517.0
+offset_right = 665.0
+offset_bottom = 576.0
+theme_override_fonts/font = ExtResource("2_i44y6")
+theme_override_font_sizes/font_size = 43
+text = "Exit"

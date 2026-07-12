@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbwbslavr1677" path="res://pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="FontFile" uid="uid://cpbgxcdk005fn" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="2_05uyy"]
+[ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_2nc7s"]
 [ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_p81d2"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1655045054]
@@ -36,6 +37,12 @@ theme_override_fonts/font = ExtResource("2_05uyy")
 theme_override_font_sizes/font_size = 32
 text = "CONTINUE"
 
+[node name="ControlButton" type="Button" parent="VBoxContainer" unique_id=1720421988]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2nc7s")
+theme_override_font_sizes/font_size = 32
+text = "Controll"
+
 [node name="SaveQuitButton" type="Button" parent="VBoxContainer" unique_id=1588766976]
 texture_filter = 1
 layout_mode = 2
@@ -44,4 +51,5 @@ theme_override_font_sizes/font_size = 32
 text = "SAVE AND QUIT"
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlButton" to="." method="_on_control_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]

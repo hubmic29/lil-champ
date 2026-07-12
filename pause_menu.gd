@@ -1,11 +1,23 @@
 extends CanvasLayer
 
+
+@onready var help_panel = get_node_or_null("HelpPanel") 
+@onready var control_button = $VBoxContainer/ControlButton
+
 func _ready():
 	hide()
+	if help_panel: help_panel.hide()
+	
+	if control_button:
+		control_button.pressed.connect(_on_controls_button_pressed)
 
 func _input(event):
 	if event.is_action_pressed("pause_game"):
 		toggle_pause()
+	
+	if event.is_action_pressed("ui_cancel") and help_panel and help_panel.visible:
+		help_panel.hide()
+		get_viewport().set_input_as_handled()
 
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
@@ -14,6 +26,11 @@ func toggle_pause():
 		show()
 	else:
 		hide()
+		if help_panel: help_panel.hide()
+
+func _on_controls_button_pressed():
+	if help_panel: 
+		help_panel.show()
 
 func _on_continue_button_pressed():
 	toggle_pause()

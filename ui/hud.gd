@@ -181,11 +181,37 @@ func update_steroid_ui():
 func _on_calendar_day_changed(_day: int, _type: GameCalendar.DayType) -> void:
 	_refresh()
 	update_steroid_ui()
+
+func _get_pixel_style(bg_color: Color, border_color: Color) -> StyleBoxFlat:
+	var style = StyleBoxFlat.new()
+	style.bg_color = bg_color
+	style.border_color = border_color
+	style.border_width_left = 2
+	style.border_width_top = 2
+	style.border_width_right = 2
+	style.border_width_bottom = 2
+	style.anti_aliased = false # To kluczowe dla efektu pixel-art
+	return style
 	
 func _on_scene_changed(_node):
 	var current_scene = get_tree().current_scene.name
 	
-	if current_scene == "MainMenu": 
+	var hide_hud_in_scenes = [
+		"MainMenu", 
+		"CompetitionExercise",
+		"BenchPressExercise",
+		"EndScreen",
+		"DeadliftExercise",
+		"PunchingBagExercise",
+		"SaunaExercise",
+		"SquatsExercise",
+		"Shop",
+		"ExitDoor",
+		"Control",
+		"HelpScreen"
+	]
+	
+	if current_scene in hide_hud_in_scenes:
 		hide()
 	else:
 		show()

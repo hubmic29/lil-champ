@@ -6,17 +6,17 @@ extends ExerciseConfig
 
 @export_group("Posing QTE")
 ## Poses (= Quick Time Events) per tournament routine.
-@export var poses_per_tournament := 6
+@export var poses_per_tournament := 5
 ## Keys the QTE can ask for (uppercase letters).
 @export var qte_keys: Array[String] = ["A", "S", "D", "W", "F"]
 ## Points for hitting the perfect / good window. Miss and wrong key give 0.
-@export var perfect_points := 100.0
-@export var good_points := 60.0
+@export var perfect_points := 2
+@export var good_points := 1
 ## Pose score bonus per point of muscle size (= total stat levels): bigger
 ## muscles impress the judges, so training is required to out-pose elites.
 @export var muscle_bonus_per_level := 0.01
-@export var good_zone_width := 110.0
-@export var perfect_zone_width := 28.0
+@export var good_zone_width := 1
+@export var perfect_zone_width := 2
 
 @export_group("Tournaments")
 @export var tournament_names: Array[String] = [

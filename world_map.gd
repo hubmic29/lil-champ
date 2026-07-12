@@ -1,39 +1,50 @@
 extends CanvasLayer
 
-@onready var scroll = $ScrollContainer
-@onready var texture = $ScrollContainer/TextureRect
+func _ready() -> void:
+	# Podpinamy sygnały dla wszystkich stref (Area2D) znajdujących się w TextureRect
+	for child in $TextureRect.get_children():
+		if child is Area2D:
+			child.mouse_entered.connect(_on_zone_entered.bind(child))
+			child.mouse_exited.connect(_on_zone_exited.bind(child))
+			
+			# Upewnij się, że HighLight i Label są ukryte na start
+			var hl = child.get_node_or_null("HighLight")
+			if hl: hl.modulate.a = 0.0
+			
+			# Znajdź odpowiedni label (np. GymZone -> GymLabel)
+			var label_name = child.name.replace("Zone", "Label")
+			var label = child.get_node_or_null("../" + label_name)
+			if label: label.visible = false
 
-func _ready():
-	$InfoPanel.visible = false
-func _input(event):
+func _on_zone_entered(zone_node: Area2D) -> void:
+	# Podświetlenie (HighLight wewnątrz strefy)
+	var hl = zone_node.get_node_or_null("HighLight")
+	if hl: hl.modulate.a = 0.5 
+	
+	# Napis (GymLabel wewnątrz WorldMap)
+	var label_name = zone_node.name.replace("Zone", "Label")
+	var label = zone_node.get_parent().get_node_or_null(label_name)
+	if label:
+		label.visible = true
+		label.text = zone_node.name.replace("Zone", "")
+
+func _on_zone_exited(zone_node: Area2D) -> void:
+	# Wyłączenie podświetlenia
+	var hl = zone_node.get_node_or_null("HighLight")
+	if hl: hl.modulate.a = 0.0
+	
+	# Wyłączenie napisu
+	var label_name = zone_node.name.replace("Zone", "Label")
+	var label = zone_node.get_parent().get_node_or_null(label_name)
+	if label: label.visible = false
+
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_minimap"):
-		get_tree().paused = false
-		queue_free()
+		# 1. Odpałzuj grę
+		get_tree().paused = false 
+		
+		# 2. Oznacz zdarzenie jako obsłużone
 		get_viewport().set_input_as_handled()
-		return
-
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			scale_map(1.1, event.position)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			scale_map(0.9, event.position)
-
-func scale_map(factor: float, mouse_pos: Vector2):
-	var old_scale = texture.scale.x
-	texture.scale *= factor
-	texture.scale = texture.scale.clamp(Vector2(0.5, 0.5), Vector2(3.0, 3.0))
-	
-	var new_scale = texture.scale.x
-	var mouse_relative = (mouse_pos - scroll.global_position) / old_scale
-	scroll.scroll_horizontal += (mouse_relative.x * (new_scale - old_scale))
-	scroll.scroll_vertical += (mouse_relative.y * (new_scale - old_scale))
-	
-	
-func _on_gym_zone_mouse_entered():
-	$InfoPanel/TitleLabel.text = "Gym"
-	$InfoPanel/DescriptionLabel.text = "Tutaj zwiększasz statystyki mięśniowe."
-	$InfoPanel.visible = true
-	$InfoPanel.z_index = 10
-
-func _on_gym_zone_mouse_exited():
-	$InfoPanel.visible = false
+		
+		# 3. Usuń mapę
+		queue_free()

@@ -68,7 +68,7 @@ func _on_button_2_pressed() -> void:
 	_open_slots(true)  # NEW GAME = pick a slot to (re)start
 
 func _on_button_3_pressed() -> void:
-	get_tree().change_scene_to_file("res://control.tscn")
+	get_tree().change_scene_to_file("res://help_screen.tscn")
 
 func _on_button_4_pressed() -> void:
 	get_tree().quit()

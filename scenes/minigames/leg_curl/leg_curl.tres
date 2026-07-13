@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LegCurlConfig" load_steps=2 format=3 uid="uid://clcrltres001"]
+
+[ext_resource type="Script" path="res://scenes/minigames/leg_curl/leg_curl_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Leg Curl"
+base_xp = 14.0
+stat_rewards = {
+"hamstrings": 1.0
+}
+energy_cost_per_action = 4.0
+exhaustion_per_action = 5.0

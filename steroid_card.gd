@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 @export var type: String = "basic"
-@export var cost: int = 200
+@export var cost: int = 50
 @export var days: int = 1
 @export var xp: float = 1.1
 @export var energy: float = 0.9

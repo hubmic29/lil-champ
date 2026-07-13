@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cpullstn0001"]
+
+[ext_resource type="Script" uid="uid://bepm6rhk2wnf0" path="res://scenes/stations/training_station.gd" id="1_stn"]
+[ext_resource type="Texture2D" path="res://assets/pullup_bar.png" id="2_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stn"]
+radius = 48.0
+
+[node name="PullUpStation" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_stn")
+station_name = "Pull-Up Bar"
+trains_hint = "Trains: Back"
+minigame_path = "res://scenes/minigames/pullups/pullups_exercise.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_stn")

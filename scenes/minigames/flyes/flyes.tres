@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FlyesConfig" format=3 uid="uid://cflyestres01"]
+
+[ext_resource type="Script" path="res://scenes/minigames/flyes/flyes_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Dumbbell Flyes"
+base_xp = 16.0
+stat_rewards = {
+"chest": 1.0
+}
+energy_cost_per_action = 5.0
+exhaustion_per_action = 6.0

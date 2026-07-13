@@ -12,7 +12,7 @@ config_version=5
 
 config/name="lil-champ"
 run/main_scene="uid://dmcllxa8s878s"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,13 +22,17 @@ PlayerStats="*res://autoload/player_stats.gd"
 GameCalendar="*res://autoload/game_calendar.gd"
 AudioManager="*res://autoload/audio_manager.gd"
 SceneSwitcher="*res://autoload/scene_switcher.gd"
-SettingsManager="*uid://ccfbotn3f3gv7"
+SettingsManager="*res://autoload/SettingsManager.gd"
 Hud="*uid://coyjcep48saer"
 
 [display]
 
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://8gidql6hrtfo"
+
+[gui]
+
+theme/custom="res://ui/theme.tres"
 
 [input]
 
@@ -79,6 +83,12 @@ toggle_minimap={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":77,"key_label":0,"unicode":109,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="NPC"
 
 [physics]
 

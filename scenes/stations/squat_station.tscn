@@ -7,6 +7,8 @@
 radius = 48.0
 
 [node name="SquatStation" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_sqstn")
 station_name = "Squat Rack"
 trains_hint = "Trains: Quadriceps"

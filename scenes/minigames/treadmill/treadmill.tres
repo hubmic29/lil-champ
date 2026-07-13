@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TreadmillConfig" format=3 uid="uid://ctreadtres01"]
+
+[ext_resource type="Script" path="res://scenes/minigames/treadmill/treadmill_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Treadmill Run"
+base_xp = 14.0
+stat_rewards = {
+"stamina": 1.0
+}
+energy_cost_per_action = 4.0
+exhaustion_per_action = 5.0

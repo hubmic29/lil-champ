@@ -12,6 +12,8 @@ radius = 35.014282
 
 [node name="GymNPC" type="CharacterBody2D" unique_id=2141895002]
 texture_filter = 1
+collision_layer = 4
+collision_mask = 1
 script = ExtResource("1_34l4q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=474339563]
@@ -24,6 +26,8 @@ position = Vector2(1, 9)
 shape = SubResource("CircleShape2D_34l4q")
 
 [node name="DetectionZone" type="Area2D" parent="." unique_id=1267718188]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" unique_id=277795566]
 shape = SubResource("CircleShape2D_633hn")

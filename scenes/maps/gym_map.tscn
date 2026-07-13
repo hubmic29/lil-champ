@@ -13,6 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://dm4bmujaxa8r0" path="res://pause_menu.tscn" id="11_50g18"]
 [ext_resource type="PackedScene" uid="uid://kbprx3nxqo0r" path="res://player/gym_npc.tscn" id="12_b35ev"]
 [ext_resource type="PackedScene" uid="uid://ckwr1b75au0lr" path="res://player/dealer.tscn" id="14_tsrpq"]
+[ext_resource type="PackedScene" uid="uid://ctreadstn001" path="res://scenes/stations/treadmill_station.tscn" id="15_tread"]
+[ext_resource type="PackedScene" uid="uid://cflyesstn001" path="res://scenes/stations/flyes_station.tscn" id="16_flyes"]
+[ext_resource type="PackedScene" uid="uid://cpullstn0001" path="res://scenes/stations/pullup_station.tscn" id="17_pull"]
+[ext_resource type="PackedScene" uid="uid://clprsstn0001" path="res://scenes/stations/leg_press_station.tscn" id="18_lprs"]
+[ext_resource type="PackedScene" uid="uid://clcrlstn0001" path="res://scenes/stations/leg_curl_station.tscn" id="19_lcrl"]
+[ext_resource type="PackedScene" uid="uid://ccrnchstn001" path="res://scenes/stations/crunch_station.tscn" id="20_crnch"]
 
 [sub_resource type="RectangleShape2D" id="RS_0"]
 size = Vector2(960, 64)
@@ -184,6 +190,24 @@ position = Vector2(192, 215)
 [node name="ShopStation" parent="." unique_id=1464849989 instance=ExtResource("9_shop")]
 position = Vector2(700, 520)
 
+[node name="TreadmillStation" parent="." unique_id=550765786 instance=ExtResource("15_tread")]
+position = Vector2(450, 150)
+
+[node name="FlyesStation" parent="." unique_id=431561585 instance=ExtResource("16_flyes")]
+position = Vector2(44, 430)
+
+[node name="PullUpStation" parent="." unique_id=1917448103 instance=ExtResource("17_pull")]
+position = Vector2(640, 118)
+
+[node name="LegPressStation" parent="." unique_id=1407748255 instance=ExtResource("18_lprs")]
+position = Vector2(520, 405)
+
+[node name="LegCurlStation" parent="." unique_id=189986309 instance=ExtResource("19_lcrl")]
+position = Vector2(650, 405)
+
+[node name="CrunchStation" parent="." unique_id=1726799091 instance=ExtResource("20_crnch")]
+position = Vector2(250, 560)
+
 [node name="ExitDoor" parent="." unique_id=1933963084 instance=ExtResource("10_exit")]
 position = Vector2(480, 585)
 
@@ -197,4 +221,4 @@ position = Vector2(479, 538)
 position = Vector2(491, 462)
 
 [node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
-position = Vector2(648, 95)
+position = Vector2(905, 492)

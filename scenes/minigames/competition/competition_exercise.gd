@@ -33,7 +33,7 @@ func _ready() -> void:
 	if config is CompetitionConfig:
 		_cfg = config
 	else:
-		push_error("BŁĄD: Nie przypisano pliku konfiguracyjnego (Config) w Inspektorze!")
+		push_error("CompetitionExercise: no CompetitionConfig assigned in the Inspector!")
 		
 	if continue_button:
 		continue_button.pressed.connect(_show_menu)
@@ -43,14 +43,7 @@ func _process(delta: float) -> void:
 	if state != State.POSING: return
 	
 	spawn_timer += delta
-	if spawned_count >= 10 and get_child_count() < 12: 
-		_check_game_over()
-		
-	if spawn_timer > 1.0:
-		print("Spawn timer działa, spawned_count: ", spawned_count)
-		
 	if spawned_count < 10 and spawn_timer > 1.2:
-		print("Próba spawnu nuty!")
 		_spawn_falling_note()
 		spawned_count += 1
 		spawn_timer = 0
@@ -150,17 +143,18 @@ func _change_random_pose() -> void:
 	tween.tween_property(character, "modulate", Color.WHITE, 0.2)
 
 func _show_menu() -> void:
+	if GameCalendar.is_game_over():
+		_go_to_outro()
+		return
 	state = State.MENU
-	
+
 	# 1. NAJPIERW ukrywamy/pokazujemy panele (naprawia problem nakładania się ekranów)
 	if is_instance_valid(menu_panel): menu_panel.show()
 	if is_instance_valid(results_panel): results_panel.hide()
 	if is_instance_valid(stage_ui): stage_ui.hide()
 	
-	# 2. Naprawiony błąd "shadowing" ze zmienną wallet_label
-	var w_label = menu_panel.get_node_or_null("WalletLabel")
-	if w_label:
-		w_label.text = "Your wallet: $ %d" % PlayerStats.money
+	if is_instance_valid(wallet_label):
+		wallet_label.text = "Your wallet: $ %d" % PlayerStats.money
 		
 	# Czyszczenie starych przycisków
 	for child in tournament_list.get_children():
@@ -209,11 +203,15 @@ func _start_tournament(_index: int) -> void:
 	
 	var pose_label = get_node_or_null("%PoseLabel")
 	if pose_label:
-		pose_label.text = "0 / 5"
+		pose_label.text = "Poses: 0 / 5"
+	var bonus_label = get_node_or_null("%BonusLabel")
+	if bonus_label:
+		bonus_label.text = "Muscle bonus: +%d pts" % int(PlayerStats.muscle_size() * 1.5)
 
 func _trigger_flash(color: Color):
 	var flash = ColorRect.new()
-	flash.size = Vector2(1550, 660)
+	flash.size = size
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	flash.color = color
 	flash.modulate.a = 0.3
 	flash.z_index = 5 
@@ -226,7 +224,8 @@ func _trigger_flash(color: Color):
 func _handle_miss() -> void:
 	hits_in_a_row = 0
 	var flash = ColorRect.new()
-	flash.size = Vector2(1550, 660)
+	flash.size = size
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	flash.color = Color.RED
 	flash.modulate.a = 0.3
 	add_child(flash)
@@ -266,13 +265,13 @@ func _update_character_pose() -> void:
 			
 			var pose_label = get_node_or_null("%PoseLabel")
 			if pose_label:
-				pose_label.text = "%d / 5" % poses_completed
+				pose_label.text = "Poses: %d / 5" % poses_completed
 				
 func _show_results_table(score_data: Dictionary):
 	results_panel.show()
 	results_list.get_children().map(func(c): c.queue_free())
 	
-	var player_entry = {"name": "GRACZ", "score": score_data.total}
+	var player_entry = {"name": "YOU", "score": score_data.total}
 	var final_results = [player_entry]
 	var tier = current_tournament_index
 	
@@ -291,16 +290,41 @@ func _show_results_table(score_data: Dictionary):
 		
 	if prize > 0:
 		PlayerStats.add_money(prize)
-		
+
 	for i in range(final_results.size()):
 		var res = final_results[i]
 		var label = Label.new()
-		label.text = "%d. %s: %d pkt" % [i+1, res.name, res.score]
-		if res.name == "GRACZ":
+		label.text = "%d. %s: %d pts" % [i+1, res.name, res.score]
+		if res.name == "YOU":
 			label.text += " (+ $%d)" % prize
 			label.add_theme_color_override("font_color", Color.GOLD)
-			results_title.text = "Zająłeś %d miejsce!" % rank
+			results_title.text = "You placed #%d in the %s!" % [
+				rank, _cfg.tournament_names[tier]]
 		results_list.add_child(label)
+
+	# Winning the top-tier tournament wins the whole run: mark the victory,
+	# save, and roll straight into the outro screen.
+	if tier == _cfg.tournament_names.size() - 1 and rank == 1:
+		_win_mr_universe()
+
+
+func _win_mr_universe() -> void:
+	GameCalendar.set_universe_won()
+	PlayerStats.save_game()
+	AudioManager.play(&"level_up")
+	results_title.text = "MR. UNIVERSE CHAMPION!"
+	continue_button.text = "See your legacy"
+	# Continue now leads to the outro instead of back to the menu...
+	continue_button.pressed.disconnect(_show_menu)
+	continue_button.pressed.connect(_go_to_outro)
+	# ...and the outro comes on its own after a short victory lap.
+	get_tree().create_timer(4.0).timeout.connect(_go_to_outro)
+
+
+func _go_to_outro() -> void:
+	if not is_inside_tree():
+		return
+	SceneSwitcher.change_scene("res://scenes/calendar/end_screen.tscn")
 		
 func _finalize_game() -> void:
 	state = State.RESULTS

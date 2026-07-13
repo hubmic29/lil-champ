@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LegPressConfig" load_steps=2 format=3 uid="uid://clprstres001"]
+
+[ext_resource type="Script" path="res://scenes/minigames/leg_press/leg_press_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Leg Press"
+base_xp = 18.0
+stat_rewards = {
+"quadriceps": 1.0
+}
+energy_cost_per_action = 5.0
+exhaustion_per_action = 6.0

@@ -63,6 +63,13 @@ func _buy(item: ShopItem) -> void:
 	if not PlayerStats.spend_money(item.price):
 		AudioManager.play(&"miss")
 		message_label.text = "Not enough money — win a competition first!"
+		FloatingText.spawn(
+			self,
+			"Not enough money! Need $%d, you have $%d" % [item.price, PlayerStats.money],
+			Vector2(size.x / 2.0 - 200, 120),
+			Color(1.0, 0.45, 0.45),
+			24
+		)
 		return
 	AudioManager.play(&"good")
 	match item.effect:

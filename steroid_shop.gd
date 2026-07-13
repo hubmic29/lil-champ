@@ -16,20 +16,35 @@ func _ready():
 	btn_god.pressed.connect(_on_buy_button_pressed.bind("god"))
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	btn_basic.mouse_exited.connect(func(): if stat_display: stat_display.hide())
+	_sort_cards_by_price()
+
+
+## Rearranges the steroid cards left-to-right from cheapest to most expensive.
+## Sorting happens at render time, so cards added to the scene later stay
+## sorted automatically.
+func _sort_cards_by_price() -> void:
+	var cards: Array = []
+	for child in $Panel.get_children():
+		if "cost" in child and "bottle_texture" in child:
+			cards.append(child)
+	var slots: Array = cards.map(func(c): return c.position.x)
+	slots.sort()
+	cards.sort_custom(func(a, b): return a.cost < b.cost)
+	for i in cards.size():
+		cards[i].position.x = slots[i]
 
 func _on_buy_button_pressed(type: String):
 	var stats = {}
 	match type:
-		"basic": stats = {"cost": 200, "days": 1, "xp": 1.1, "energy": 0.9}
-		"pro":   stats = {"cost": 500, "days": 3, "xp": 1.3, "energy": 0.7}
-		"god":   stats = {"cost": 1000, "days": 7, "xp": 1.5, "energy": 0.5}
+		"basic": stats = {"cost": 50, "days": 1, "xp": 1.1, "energy": 0.9}
+		"pro":   stats = {"cost": 100, "days": 3, "xp": 1.3, "energy": 0.7}
+		"god":   stats = {"cost": 200, "days": 7, "xp": 1.5, "energy": 0.5}
 
 	# spend_money automatycznie sprawdza czy stać gracza i aktualizuje HUD
 	if PlayerStats.spend_money(stats.cost):
 		PlayerStats.apply_steroids(type, stats.days, stats.xp, stats.energy)
-		print("Kupiono: ", type)
 	else:
-		print("Za mało kasy!")
+		_show_no_money(stats.cost)
 		
 func _on_exit_button_pressed():
 	SceneSwitcher.change_scene("res://scenes/maps/gym_map.tscn")
@@ -43,7 +58,18 @@ func buy_steroid(type, cost, days, xp, energy):
 	# Analogicznie tutaj naprawiamy potrącanie gotówki
 	if PlayerStats.spend_money(cost):
 		PlayerStats.apply_steroids(type, days, xp, energy)
-		print("Kupiono: ", type)
+		AudioManager.play(&"good")
 		SceneSwitcher.change_scene("res://scenes/maps/gym_map.tscn")
 	else:
-		print("Za mało kasy!")
+		_show_no_money(cost)
+
+
+func _show_no_money(cost: int) -> void:
+	AudioManager.play(&"miss")
+	FloatingText.spawn(
+		self,
+		"Not enough money! Need $%d, you have $%d" % [cost, PlayerStats.money],
+		Vector2(size.x / 2.0 - 220, size.y / 2.0),
+		Color(1.0, 0.45, 0.45),
+		24
+	)

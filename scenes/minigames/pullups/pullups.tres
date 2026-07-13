@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PullUpsConfig" load_steps=2 format=3 uid="uid://cpulltres001"]
+
+[ext_resource type="Script" path="res://scenes/minigames/pullups/pullups_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Pull-Ups"
+base_xp = 18.0
+stat_rewards = {
+"back": 1.0
+}
+energy_cost_per_action = 5.0
+exhaustion_per_action = 6.0

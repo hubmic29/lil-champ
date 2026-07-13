@@ -42,8 +42,12 @@ extends Resource
 @export var rest_day_exhaustion_heal := 60.0
 
 @export_group("Day schedule")
-## Machine/sauna sessions allowed per training day.
+## Machine/sauna sessions allowed per training day at overall level 1.
 @export var sessions_per_day := 4
+## One extra daily session per this many overall levels (0 disables scaling).
+@export var overall_levels_per_extra_session := 3
+## Ceiling on the level-based bonus sessions.
+@export var max_bonus_sessions := 4
 
 @export_group("Overall level")
 ## How many total stat levels are needed per overall level.

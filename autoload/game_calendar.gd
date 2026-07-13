@@ -25,6 +25,10 @@ var universe_won := false
 
 func _ready() -> void:
 	load_state()
+	# Leveling up mid-day can unlock an extra session; let the UI know.
+	PlayerStats.overall_level_changed.connect(
+		func(_level: int, _title: String) -> void: sessions_changed.emit(sessions_left())
+	)
 
 
 func _notification(what: int) -> void:
@@ -32,8 +36,17 @@ func _notification(what: int) -> void:
 		save_state()
 
 
+## Base sessions plus a bonus that grows with the overall level, so a more
+## developed athlete can fit more training into one day.
 func max_sessions() -> int:
-	return PlayerStats.progression.sessions_per_day
+	var prog := PlayerStats.progression
+	var bonus := 0
+	if prog.overall_levels_per_extra_session > 0:
+		bonus = mini(
+			(PlayerStats.overall_level - 1) / prog.overall_levels_per_extra_session,
+			prog.max_bonus_sessions
+		)
+	return prog.sessions_per_day + bonus
 
 
 func sessions_left() -> int:

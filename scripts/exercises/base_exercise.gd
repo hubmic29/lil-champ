@@ -19,6 +19,7 @@ const STAT_COLORS := {
 	&"back": Color(0.5, 0.75, 1.0),
 	&"quadriceps": Color(0.7, 1.0, 0.5),
 	&"hamstrings": Color(0.45, 0.9, 0.75),
+	&"abdominals": Color(1.0, 0.65, 0.25),
 	&"stamina": Color(1.0, 0.9, 0.4),
 }
 

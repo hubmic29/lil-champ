@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CrunchesConfig" load_steps=2 format=3 uid="uid://ccrnchtres01"]
+
+[ext_resource type="Script" path="res://scenes/minigames/crunches/crunches_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Crunches"
+base_xp = 12.0
+stat_rewards = {
+"abdominals": 1.0
+}
+energy_cost_per_action = 3.0
+exhaustion_per_action = 5.0

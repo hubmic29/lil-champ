@@ -43,9 +43,13 @@ func _process(delta: float) -> void:
 	if _animating or exhausted:
 		return
 	# Random walk on the drift makes the wobble feel organic; it gets rougher
-	# the longer the set goes on.
-	instability += _cfg.instability_gain_per_second * delta
+	# the longer the set goes on. Both the instability ramp and the drift speed
+	# are capped below correction_strength so the zone always stays reachable.
+	instability = minf(instability + _cfg.instability_gain_per_second * delta, _cfg.instability_max)
 	drift_velocity += randf_range(-1.0, 1.0) * instability * delta * 6.0
+	drift_velocity -= drift_velocity * minf(1.0, _cfg.drift_damping * delta)
+	var max_drift := _cfg.correction_strength * _cfg.max_drift_fraction
+	drift_velocity = clampf(drift_velocity, -max_drift, max_drift)
 	balance += drift_velocity * delta
 	balance += Input.get_axis("ui_left", "ui_right") * _cfg.correction_strength * delta
 	balance = clampf(balance, -1.0, 1.0)
@@ -72,7 +76,7 @@ func _apply_balance_visuals() -> void:
 func _complete_rep() -> void:
 	reps += 1
 	hold = 0.0
-	instability += _cfg.instability_gain_per_rep
+	instability = minf(instability + _cfg.instability_gain_per_rep, _cfg.instability_max)
 	AudioManager.play(&"rep")
 	var at := Vector2(track.position.x + track.size.x / 2.0, track.position.y - 40.0)
 	award_xp(1.0 + reps * _cfg.xp_growth_per_rep, at)

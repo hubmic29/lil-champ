@@ -37,6 +37,7 @@ const STATS: Array[StringName] = [
 	&"back",
 	&"quadriceps",
 	&"hamstrings",
+	&"abdominals",
 	&"stamina",
 ]
 

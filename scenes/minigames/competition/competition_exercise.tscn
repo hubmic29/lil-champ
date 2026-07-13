@@ -288,7 +288,7 @@ offset_right = 747.0
 offset_bottom = 113.0
 theme_override_fonts/font = ExtResource("16_kafl6")
 theme_override_font_sizes/font_size = 24
-text = "PRESS THE APPOROPRIATE KEY"
+text = "PRESS THE APPROPRIATE KEY"
 horizontal_alignment = 1
 
 [node name="KeyLabel" type="Label" parent="StageUI" unique_id=1974897602]
@@ -310,7 +310,7 @@ offset_top = 120.0
 offset_right = 340.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 20
-text = "Pose 1 / 6"
+text = "Poses: 0 / 5"
 
 [node name="ScoreLabel" type="Label" parent="StageUI" unique_id=759770076]
 unique_name_in_owner = true
@@ -330,7 +330,7 @@ offset_top = 190.0
 offset_right = 340.0
 offset_bottom = 215.0
 theme_override_font_sizes/font_size = 14
-text = "Muscle bonus: +6%"
+text = "Muscle bonus: +0 pts"
 
 [node name="GoodZone" type="ColorRect" parent="StageUI" unique_id=2135737811]
 unique_name_in_owner = true

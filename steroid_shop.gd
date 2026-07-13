@@ -15,7 +15,7 @@ func _ready():
 	btn_pro.pressed.connect(_on_buy_button_pressed.bind("pro"))
 	btn_god.pressed.connect(_on_buy_button_pressed.bind("god"))
 	exit_button.pressed.connect(_on_exit_button_pressed)
-	btn_basic.mouse_exited.connect(func(): $StatDisplay.hide())
+	btn_basic.mouse_exited.connect(func(): if stat_display: stat_display.hide())
 
 func _on_buy_button_pressed(type: String):
 	var stats = {}
@@ -24,21 +24,24 @@ func _on_buy_button_pressed(type: String):
 		"pro":   stats = {"cost": 500, "days": 3, "xp": 1.3, "energy": 0.7}
 		"god":   stats = {"cost": 1000, "days": 7, "xp": 1.5, "energy": 0.5}
 
-	if PlayerStats.money >= stats.cost:
-		PlayerStats.money -= stats.cost
+	# spend_money automatycznie sprawdza czy stać gracza i aktualizuje HUD
+	if PlayerStats.spend_money(stats.cost):
 		PlayerStats.apply_steroids(type, stats.days, stats.xp, stats.energy)
 		print("Kupiono: ", type)
+	else:
+		print("Za mało kasy!")
 		
 func _on_exit_button_pressed():
 	SceneSwitcher.change_scene("res://scenes/maps/gym_map.tscn")
 	
 func show_stats(text):
-	$StatDisplay.text = text
-	$StatDisplay.show()
+	if stat_display:
+		stat_display.text = text
+		stat_display.show()
 	
 func buy_steroid(type, cost, days, xp, energy):
-	if PlayerStats.money >= cost:
-		PlayerStats.money -= cost
+	# Analogicznie tutaj naprawiamy potrącanie gotówki
+	if PlayerStats.spend_money(cost):
 		PlayerStats.apply_steroids(type, days, xp, energy)
 		print("Kupiono: ", type)
 		SceneSwitcher.change_scene("res://scenes/maps/gym_map.tscn")

@@ -5,14 +5,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_exstn"]
 radius = 50.0
 
-[node name="ExitDoor" type="Area2D"]
+[node name="ExitDoor" type="Area2D" unique_id=2091443581]
 script = ExtResource("1_exstn")
 station_name = "Gym Exit"
 trains_hint = "End the day"
 action_hint = "[E] Leave Gym"
+minigame_path = "res://scenes/calendar/calendar.tscn"
 requires_energy = false
 counts_as_session = false
-minigame_path = "res://scenes/calendar/calendar.tscn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1715751357]
 shape = SubResource("CircleShape2D_exstn")

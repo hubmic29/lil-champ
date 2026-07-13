@@ -43,6 +43,8 @@ const STATS: Array[StringName] = [
 ## Balancing resource (XP curves, soft caps, evolution thresholds...).
 var progression: StatProgressionConfig
 
+var last_competition_day := -1
+
 ## Per-stat XP progress *inside* the current level.
 var xp := {}
 ## Per-stat level, starting at 1.

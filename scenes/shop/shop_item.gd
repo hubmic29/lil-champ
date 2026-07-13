@@ -7,7 +7,6 @@ enum Effect {
 	RESTORE_ENERGY,       ## magnitude = energy points restored
 	MOTIVATION_BUFF,      ## duration = buff length in seconds
 	INSTANT_XP_ALL_STATS, ## magnitude = XP granted to every stat
-	STEROID_BOOST,        ## magnitude = XP to every stat, but halves energy
 }
 
 @export var item_name := ""

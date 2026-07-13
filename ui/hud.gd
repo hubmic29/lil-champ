@@ -4,6 +4,8 @@
 ## to the singleton automatically shows up here; nothing is hardcoded.
 extends CanvasLayer
 
+@export var custom_font: Font = preload("uid://cvhbg6wvaxy1w")# <--- TUTAJ WRZUCASZ SWOJĄ CZCIONKĘ W INSPEKTORZE
+
 @onready var panel: PanelContainer = $StatsPanel
 
 var _evolution_label: Label
@@ -85,11 +87,15 @@ func _build_panel() -> void:
 		name_label.custom_minimum_size.x = 92
 		name_label.add_theme_font_size_override("font_size", 12)
 		name_label.add_theme_color_override("font_color", BaseExercise.STAT_COLORS.get(stat, Color.WHITE))
+		if custom_font:
+			name_label.add_theme_font_override("font", custom_font) # <--- Aplikacja fontu
 		row.add_child(name_label)
 		
 		var level_label := Label.new()
 		level_label.custom_minimum_size.x = 36
 		level_label.add_theme_font_size_override("font_size", 12)
+		if custom_font:
+			level_label.add_theme_font_override("font", custom_font) # <--- Aplikacja fontu
 		row.add_child(level_label)
 		
 		var bar := ProgressBar.new()
@@ -127,6 +133,8 @@ func _add_label(parent: Node, font_size: int, color := Color.WHITE) -> Label:
 	var label := Label.new()
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
+	if custom_font:
+		label.add_theme_font_override("font", custom_font) # <--- Aplikacja fontu
 	parent.add_child(label)
 	return label
 
@@ -168,9 +176,9 @@ func update_steroid_ui():
 		_days_label.show()
 		_xp_label.show()
 		
-		_steroid_label.text = "Sterydy: " + PlayerStats.active_steroid_type.capitalize()
+		_steroid_label.text = "Steroids: " + PlayerStats.active_steroid_type.capitalize()
 		var days_left = PlayerStats.steroid_expires_at - GameCalendar.day
-		_days_label.text = "Pozostało: " + str(days_left) + " dni"
+		_days_label.text = "Time left: " + str(days_left) + " days"
 		_xp_label.text = "Bonus XP: x" + str(PlayerStats.steroid_bonus)
 		
 	else:
@@ -208,7 +216,10 @@ func _on_scene_changed(_node):
 		"Shop",
 		"ExitDoor",
 		"Control",
-		"HelpScreen"
+		"HelpScreen",
+		"SteroidShop",
+		"Intro"
+		
 	]
 	
 	if current_scene in hide_hud_in_scenes:

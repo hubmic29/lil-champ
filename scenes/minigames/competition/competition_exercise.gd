@@ -30,7 +30,11 @@ var total_notes := 10
 
 func _ready() -> void:
 	super()
-	_cfg = config as CompetitionConfig
+	if config is CompetitionConfig:
+		_cfg = config
+	else:
+		push_error("BŁĄD: Nie przypisano pliku konfiguracyjnego (Config) w Inspektorze!")
+		
 	if continue_button:
 		continue_button.pressed.connect(_show_menu)
 	_show_menu()
@@ -39,7 +43,7 @@ func _process(delta: float) -> void:
 	if state != State.POSING: return
 	
 	spawn_timer += delta
-	if spawned_count >= 10 and get_child_count() < 12: # 12 to szacunkowa liczba innych węzłów
+	if spawned_count >= 10 and get_child_count() < 12: 
 		_check_game_over()
 		
 	if spawn_timer > 1.0:
@@ -65,12 +69,11 @@ func _spawn_falling_note() -> void:
 	var note = note_scene.instantiate()
 	note.name = "Note_" + str(Time.get_ticks_msec())
 	
-	
 	var random_x = randf_range(20, 1000)
 	note.position = Vector2(random_x, -50)
 
 	var label = note.get_node_or_null("ColorRect/Label")
-	if label:
+	if label and _cfg:
 		label.text = _cfg.qte_keys.pick_random()
 	
 	add_child(note)
@@ -112,29 +115,33 @@ func _handle_hit(is_perfect: bool) -> void:
 	if AudioManager.has_method("play"): AudioManager.play("perfect")
 	
 func _check_game_over() -> void:
-	print("DEBUG: spawned: ", spawned_count, " active_notes: ", active_notes)
-	
 	if spawned_count >= 10: 
 		if active_notes <= 0:
 			_finalize_game()
-		else:
-			pass
 
 func _calculate_final_score() -> Dictionary:
-	var pose_points = poses_completed * 2
 	var accuracy = 0.0
 	if total_notes > 0:
 		accuracy = float(total_perfect_hits) / float(total_notes)
-		
-	var judge_points = int(accuracy * 40)
-	
-	print("DEBUG: PerfHits: ", total_perfect_hits, " Accuracy: ", accuracy, " JudgePts: ", judge_points)
-	
+
+	var expected_levels = [2, 5, 10, 16] 
+	var current_tier = current_tournament_index
+	var expected_lvl = expected_levels[current_tier]
+
+	var physique_ratio = clampf(float(PlayerStats.overall_level) / float(expected_lvl), 0.1, 1.0)
+	var judge_points = int(40.0 * accuracy * physique_ratio)
+	var muscle_points = int(PlayerStats.muscle_size() * 1.5)
+	var pose_points = poses_completed * 2
+
+	var total_score = judge_points + muscle_points + pose_points
+
 	return {
-		"total": judge_points + pose_points,
+		"total": total_score,
 		"judge": judge_points,
-		"pose": pose_points
+		"pose": pose_points,
+		"muscle": muscle_points
 	}
+
 func _change_random_pose() -> void:
 	var anims = Array(character.sprite_frames.get_animation_names())
 	character.play(anims.pick_random())
@@ -144,22 +151,40 @@ func _change_random_pose() -> void:
 
 func _show_menu() -> void:
 	state = State.MENU
-	menu_panel.show()
-	results_panel.hide()
-	stage_ui.hide()
 	
-	var wallet_label = menu_panel.get_node_or_null("WalletLabel")
-	if wallet_label:
-		wallet_label.text = "Your wallet: $ %d" % PlayerStats.money
+	# 1. NAJPIERW ukrywamy/pokazujemy panele (naprawia problem nakładania się ekranów)
+	if is_instance_valid(menu_panel): menu_panel.show()
+	if is_instance_valid(results_panel): results_panel.hide()
+	if is_instance_valid(stage_ui): stage_ui.hide()
+	
+	# 2. Naprawiony błąd "shadowing" ze zmienną wallet_label
+	var w_label = menu_panel.get_node_or_null("WalletLabel")
+	if w_label:
+		w_label.text = "Your wallet: $ %d" % PlayerStats.money
+		
+	# Czyszczenie starych przycisków
 	for child in tournament_list.get_children():
 		child.queue_free()
+		
+	# 3. Jeśli brakuje pliku z danymi zawodów, generuje przycisk awaryjny
+	if _cfg == null:
+		var error_btn = Button.new()
+		error_btn.text = "BRAK CONFIGU W INSPEKTORZE!"
+		error_btn.disabled = true
+		tournament_list.add_child(error_btn)
+		return
+		
+	var has_competed_today = (PlayerStats.last_competition_day == GameCalendar.day)
 		
 	for i in _cfg.tournament_names.size():
 		var button := Button.new()
 		button.text = "%s ($%d)" % [_cfg.tournament_names[i], _cfg.entry_fees[i]]
 		
-		if i == 3 and PlayerStats.evolution_tier < 2:
-			button.text += " (Wymaga Max Ewolucji!)"
+		if has_competed_today:
+			button.text = "Come back tomorrow!"
+			button.disabled = true
+		elif i == 3 and PlayerStats.evolution_tier < 2:
+			button.text += " (Requires Max Evolution!)"
 			button.disabled = true
 		elif PlayerStats.money < _cfg.entry_fees[i]:
 			button.disabled = true
@@ -168,6 +193,9 @@ func _show_menu() -> void:
 		tournament_list.add_child(button)
 
 func _start_tournament(_index: int) -> void:
+	PlayerStats.spend_money(_cfg.entry_fees[_index])
+	PlayerStats.last_competition_day = GameCalendar.day
+	
 	current_tournament_index = _index
 	state = State.POSING
 	menu_panel.hide()
@@ -178,10 +206,11 @@ func _start_tournament(_index: int) -> void:
 	spawn_timer = 0
 	player_score = 0
 	hits_in_a_row = 0
-	poses_completed = 0
+	
 	var pose_label = get_node_or_null("%PoseLabel")
 	if pose_label:
 		pose_label.text = "0 / 5"
+
 func _trigger_flash(color: Color):
 	var flash = ColorRect.new()
 	flash.size = Vector2(1550, 660)
@@ -205,7 +234,6 @@ func _handle_miss() -> void:
 	var tween = create_tween()
 	tween.tween_property(flash, "modulate:a", 0.0, 0.2)
 	tween.tween_callback(flash.queue_free)
-	
 	
 func _update_character_pose() -> void:
 	var tier = PlayerStats.evolution_tier
@@ -240,7 +268,6 @@ func _update_character_pose() -> void:
 			if pose_label:
 				pose_label.text = "%d / 5" % poses_completed
 				
-				
 func _show_results_table(score_data: Dictionary):
 	results_panel.show()
 	results_list.get_children().map(func(c): c.queue_free())
@@ -263,7 +290,7 @@ func _show_results_table(score_data: Dictionary):
 		3: prize = int(_cfg.first_prizes[tier] * _cfg.third_place_fraction)
 		
 	if prize > 0:
-		PlayerStats.money += prize
+		PlayerStats.add_money(prize)
 		
 	for i in range(final_results.size()):
 		var res = final_results[i]

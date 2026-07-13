@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://b46vuebqfgcnh"]
 
 [ext_resource type="Script" uid="uid://q1n3ryr7gxbe" path="res://help_screen.gd" id="1_he7ji"]
-[ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_i44y6"]
+[ext_resource type="Texture2D" uid="uid://brjt0cuk5lait" path="res://assets/space_button.png" id="2_61n73"]
+[ext_resource type="Texture2D" uid="uid://dpaymtt6ha0nq" path="res://assets/button.png" id="3_ya2oj"]
+[ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="4_61n73"]
+[ext_resource type="FontFile" uid="uid://cpbgxcdk005fn" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="5_1ehws"]
 
 [node name="HelpScreen" type="CanvasLayer" unique_id=2092218705]
 script = ExtResource("1_he7ji")
@@ -17,15 +20,344 @@ grow_vertical = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExitButton" type="Button" parent="." unique_id=1064149974]
+[node name="ExitButton" type="TextureButton" parent="." unique_id=2022303732]
 texture_filter = 1
-offset_left = 522.0
-offset_top = 517.0
-offset_right = 665.0
-offset_bottom = 576.0
-theme_override_fonts/font = ExtResource("2_i44y6")
-theme_override_font_sizes/font_size = 43
-text = "Exit"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = 231.0
+offset_right = -1.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+tooltip_auto_translate_mode = 1
+texture_normal = ExtResource("2_61n73")
+
+[node name="Label" type="Label" parent="ExitButton" unique_id=2133640913]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 105.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.71387357, 0.71387357, 0.71387357, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 20
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=513918217]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 8.0
+offset_right = 382.0
+offset_bottom = 72.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1507563576]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 20.5
+offset_right = 44.0
+offset_bottom = 46.5
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1692088319]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 88.0
+offset_right = 382.0
+offset_bottom = 152.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect2" unique_id=574777780]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7137255, 0.7137255, 0.7137255, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect2" unique_id=2086289759]
+texture_filter = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = -3.0
+offset_right = 130.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 22
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect2/Label2" unique_id=1049706627]
+texture_filter = 1
+layout_mode = 0
+offset_left = 41.5
+offset_top = -1.5
+offset_right = 165.0
+offset_bottom = 28.5
+theme_override_fonts/font = ExtResource("5_1ehws")
+theme_override_font_sizes/font_size = 24
+text = "Move"
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=819221185]
+texture_filter = 1
+offset_left = 398.0
+offset_top = 88.0
+offset_right = 462.0
+offset_bottom = 152.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect3" unique_id=1053228213]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=22939875]
+texture_filter = 1
+offset_left = 238.0
+offset_top = 88.0
+offset_right = 302.0
+offset_bottom = 152.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect4" unique_id=226676411]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1655440815]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 168.0
+offset_right = 382.0
+offset_bottom = 232.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect5" unique_id=23676692]
+texture_filter = 1
+layout_mode = 0
+offset_left = 21.0
+offset_top = 20.0
+offset_right = 44.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 13
+text = "Esc"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect5" unique_id=1196863964]
+texture_filter = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 22
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect5/Label2" unique_id=1444956638]
+texture_filter = 1
+layout_mode = 0
+offset_left = 41.5
+offset_top = -1.5
+offset_right = 165.0
+offset_bottom = 28.5
+theme_override_fonts/font = ExtResource("5_1ehws")
+theme_override_font_sizes/font_size = 24
+text = "Back / Exit"
+
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=1342100512]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 248.0
+offset_right = 382.0
+offset_bottom = 312.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect6" unique_id=1801336105]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect6" unique_id=1097138417]
+texture_filter = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 22
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect6/Label2" unique_id=278859284]
+texture_filter = 1
+layout_mode = 0
+offset_left = 41.5
+offset_top = -1.5
+offset_right = 165.0
+offset_bottom = 28.5
+theme_override_fonts/font = ExtResource("5_1ehws")
+theme_override_font_sizes/font_size = 24
+text = "Pause Menu"
+
+[node name="TextureRect7" type="TextureRect" parent="." unique_id=1592231265]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 328.0
+offset_right = 382.0
+offset_bottom = 392.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect7" unique_id=276029424]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect7" unique_id=2070749049]
+texture_filter = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 22
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect7/Label2" unique_id=755612440]
+texture_filter = 1
+layout_mode = 0
+offset_left = 41.5
+offset_top = -1.5
+offset_right = 165.0
+offset_bottom = 28.5
+theme_override_fonts/font = ExtResource("5_1ehws")
+theme_override_font_sizes/font_size = 24
+text = "Toggle Map"
+
+[node name="TextureRect8" type="TextureRect" parent="." unique_id=1809367066]
+texture_filter = 1
+offset_left = 318.0
+offset_top = 408.0
+offset_right = 382.0
+offset_bottom = 472.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_ya2oj")
+
+[node name="Label" type="Label" parent="TextureRect8" unique_id=237078318]
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 21
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect8" unique_id=521964507]
+texture_filter = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("4_61n73")
+theme_override_font_sizes/font_size = 22
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect8/Label2" unique_id=754976667]
+texture_filter = 1
+layout_mode = 0
+offset_left = 41.5
+offset_top = -1.5
+offset_right = 165.0
+offset_bottom = 28.5
+theme_override_fonts/font = ExtResource("5_1ehws")
+theme_override_font_sizes/font_size = 24
+text = "Interact"

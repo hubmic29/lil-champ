@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cshopscene01"]
+[gd_scene format=3 uid="uid://cshopscene01"]
 
-[ext_resource type="Script" uid="uid://cshopexrc001" path="res://scenes/shop/shop.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cie7ykxyhj5ke" path="res://scenes/shop/shop.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://cshoptres001" path="res://scenes/shop/shop.tres" id="2_items"]
 
-[node name="Shop" type="Control"]
+[node name="Shop" type="Control" unique_id=1156046628]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_script")
 shop_config = ExtResource("2_items")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=233755845]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.08, 0.11, 0.1, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=682343867]
 layout_mode = 0
 offset_top = 18.0
 offset_right = 1152.0
@@ -32,7 +32,7 @@ theme_override_font_sizes/font_size = 28
 text = "SUPPLEMENT SHOP"
 horizontal_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="."]
+[node name="MoneyLabel" type="Label" parent="." unique_id=1118925477]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 62.0
@@ -43,21 +43,21 @@ theme_override_font_sizes/font_size = 18
 text = "Your wallet: $ 0"
 horizontal_alignment = 1
 
-[node name="ItemsScroll" type="ScrollContainer" parent="."]
+[node name="ItemsScroll" type="ScrollContainer" parent="." unique_id=1453619503]
 layout_mode = 0
 offset_left = 276.0
 offset_top = 105.0
 offset_right = 876.0
 offset_bottom = 555.0
 
-[node name="ItemsBox" type="VBoxContainer" parent="ItemsScroll"]
+[node name="ItemsBox" type="VBoxContainer" parent="ItemsScroll" unique_id=301640336]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="MessageLabel" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="." unique_id=1462980645]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
@@ -68,7 +68,7 @@ theme_override_font_sizes/font_size = 16
 text = "Fuel your gains!"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1108510973]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 585.0

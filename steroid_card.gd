@@ -12,7 +12,8 @@ extends VBoxContainer
 @onready var label_2 = $Label2
 
 func _ready():
-	label_2.text = "BUY"
+	# Dodajemy cenę nad napisem BUY używając \n (nowa linia)
+	label_2.text = "$ %d\nBUY" % cost
 	label_2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	
 	texture_button.pivot_offset = texture_button.size / 2
@@ -24,8 +25,7 @@ func _ready():
 	texture_button.mouse_entered.connect(_on_mouse_entered)
 	texture_button.mouse_exited.connect(_on_mouse_exited)
 	
-	
-	info_label.size = Vector2(100, 50)
+	# Usunąłem info_label.size, żeby napisy nie były ściśnięte/rozmyte
 	info_label.text = "DAY : %d  |  XP : x%.1f  |  ENERGY : %.1f" % [days, xp, energy]
 	info_label.hide()
 

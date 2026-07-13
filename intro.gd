@@ -5,7 +5,9 @@ extends Control
 @onready var skip_scene_btn = $SkipSceneBtn
 @onready var message_sound = $MessageSound
 @onready var typing_sound = $TypingSound
+
 @export var custom_font: Font
+@export var bro_avatar_texture: Texture2D 
 
 var current_scene = 0
 var active_typing_indicator: Node = null 
@@ -73,8 +75,9 @@ func play_scene(index: int) -> void:
 		chat_container.add_child(active_typing_indicator)
 		_scroll_to_bottom()
 		
-		if not is_me:
-			typing_sound.play()
+		# USUNIĘTO WARUNEK "if not is_me:"
+		# Teraz dźwięk pisania odpala się dla każdej wiadomości
+		typing_sound.play()
 		
 		await get_tree().create_timer(delay).timeout
 		
@@ -89,6 +92,7 @@ func play_scene(index: int) -> void:
 		_add_message_bubble(msg["who"], msg["text"], time_str)
 		_scroll_to_bottom()
 		message_sound.play()
+		
 	if is_blocked:
 		await get_tree().create_timer(1.0).timeout
 		_add_blocked_notice()
@@ -97,10 +101,9 @@ func play_scene(index: int) -> void:
 		
 	if index == current_scene:
 		if index == 0:
-			skip_scene_btn.text = "Next day ->"
+			skip_scene_btn.text = "Next conversation ->"
 		else:
 			skip_scene_btn.text = "Start training!"
-
 # UI BUILDING 
 
 func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
@@ -146,6 +149,8 @@ func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
 	var avatar = Panel.new()
 	avatar.custom_minimum_size = Vector2(36, 36)
 	avatar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	avatar.clip_children = CanvasItem.CLIP_CHILDREN_AND_DRAW
+	
 	var av_style = StyleBoxFlat.new()
 	av_style.corner_radius_top_left = 18
 	av_style.corner_radius_top_right = 18
@@ -153,6 +158,16 @@ func _setup_top_bar(who: String, is_blocked: bool = false) -> void:
 	av_style.corner_radius_bottom_right = 18
 	av_style.bg_color = Color("f38ba8") if who == "ex" else Color("89b4fa")
 	avatar.add_theme_stylebox_override("panel", av_style)
+	
+	# <-- NOWE: Dodawanie zdjęcia jeśli to ziomek
+	if who == "bro" and bro_avatar_texture != null:
+		var tex_rect = TextureRect.new()
+		tex_rect.texture = bro_avatar_texture
+		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		tex_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+		avatar.add_child(tex_rect)
+		
 	hbox.add_child(avatar)
 	
 	var spacer2 = Control.new()
@@ -299,6 +314,8 @@ func _create_base_layout(who: String) -> Dictionary:
 	
 	var avatar = Panel.new()
 	avatar.custom_minimum_size = Vector2(28, 28)
+	avatar.clip_children = CanvasItem.CLIP_CHILDREN_AND_DRAW # <-- Przycięcie dla małego awatara
+	
 	var av_style = StyleBoxFlat.new()
 	av_style.corner_radius_top_left = 14
 	av_style.corner_radius_top_right = 14
@@ -306,6 +323,16 @@ func _create_base_layout(who: String) -> Dictionary:
 	av_style.corner_radius_bottom_right = 14
 	av_style.bg_color = Color("f38ba8") if who == "ex" else Color("89b4fa")
 	avatar.add_theme_stylebox_override("panel", av_style)
+	
+	# <-- NOWE: Dodawanie zdjęcia przy każdej chmurce czatu
+	if who == "bro" and bro_avatar_texture != null:
+		var tex_rect = TextureRect.new()
+		tex_rect.texture = bro_avatar_texture
+		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		tex_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+		avatar.add_child(tex_rect)
+	
 	avatar_margin.add_child(avatar)
 	
 	var msg_vbox = VBoxContainer.new()
@@ -361,10 +388,10 @@ func _on_skip_all_btn_pressed() -> void:
 	
 func _add_blocked_notice() -> void:
 	var label = Label.new()
-	label.text = "You have blocked this user."
+	label.text = "This user has blocked you."
 	label.add_theme_font_override("font", custom_font)
 	label.add_theme_font_size_override("font_size", 10)
-	label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+	label.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0, 1.0))
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	
 	var margin = MarginContainer.new()

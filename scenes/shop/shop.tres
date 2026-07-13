@@ -1,25 +1,20 @@
-[gd_resource type="Resource" script_class="ShopConfig" load_steps=8 format=3 uid="uid://cshoptres001"]
+[gd_resource type="Resource" script_class="ShopConfig" format=3 uid="uid://cshoptres001"]
 
-[ext_resource type="Script" uid="uid://cshopcfg0001" path="res://scenes/shop/shop_config.gd" id="1"]
-[ext_resource type="Script" uid="uid://cshopitem001" path="res://scenes/shop/shop_item.gd" id="2"]
+[ext_resource type="Script" uid="uid://cd63xjhcjn0df" path="res://scenes/shop/shop_config.gd" id="1"]
+[ext_resource type="Script" uid="uid://dlrvrol3ijxeu" path="res://scenes/shop/shop_item.gd" id="2"]
 
 [sub_resource type="Resource" id="Item_energy_bar"]
 script = ExtResource("2")
 item_name = "Energy Bar"
 description = "A quick snack. Restores 25 energy."
-price = 10
-effect = 0
 magnitude = 25.0
-duration = 0.0
 
 [sub_resource type="Resource" id="Item_protein_shake"]
 script = ExtResource("2")
 item_name = "Protein Shake"
 description = "The classic. Restores 50 energy."
 price = 20
-effect = 0
 magnitude = 50.0
-duration = 0.0
 
 [sub_resource type="Resource" id="Item_pre_workout"]
 script = ExtResource("2")
@@ -27,7 +22,6 @@ item_name = "Pre-Workout"
 description = "Tingles included. Motivation buff (+XP) for 3 minutes."
 price = 40
 effect = 1
-magnitude = 0.0
 duration = 180.0
 
 [sub_resource type="Resource" id="Item_nutrient_pack"]
@@ -37,17 +31,7 @@ description = "Balanced macros. Instantly grants 60 XP to every muscle."
 price = 90
 effect = 2
 magnitude = 60.0
-duration = 0.0
-
-[sub_resource type="Resource" id="Item_steroids"]
-script = ExtResource("2")
-item_name = "Steroids"
-description = "Rapid gains: +250 XP to every muscle... but the side effects drain half your energy."
-price = 250
-effect = 3
-magnitude = 250.0
-duration = 0.0
 
 [resource]
 script = ExtResource("1")
-items = Array[ExtResource("2")]([SubResource("Item_energy_bar"), SubResource("Item_protein_shake"), SubResource("Item_pre_workout"), SubResource("Item_nutrient_pack"), SubResource("Item_steroids")])
+items = Array[ExtResource("2")]([SubResource("Item_energy_bar"), SubResource("Item_protein_shake"), SubResource("Item_pre_workout"), SubResource("Item_nutrient_pack")])

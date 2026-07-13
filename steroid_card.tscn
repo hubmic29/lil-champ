@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ywyikdbedq05"]
 
 [ext_resource type="Script" uid="uid://c1umwi7r6p5eo" path="res://steroid_card.gd" id="1_5vhai"]
-[ext_resource type="FontFile" uid="uid://cl56i8r6fmvnl" path="res://assets/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_iobq8"]
+[ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_iobq8"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=1694242053]
 custom_minimum_size = Vector2(155, 250)
@@ -32,15 +32,16 @@ size_flags_vertical = 4
 stretch_mode = 5
 
 [node name="InfoLabel" type="Label" parent="." unique_id=2061801799]
+texture_filter = 1
+texture_repeat = 1
 layout_mode = 2
-theme_override_constants/line_spacing = 1
-theme_override_fonts/font = ExtResource("2_iobq8")
 theme_override_font_sizes/font_size = 8
 text = "Day "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=918745313]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_iobq8")

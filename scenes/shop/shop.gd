@@ -1,4 +1,4 @@
-## Supplement Shop — spend competition prize money on nutrients and steroids.
+
 ##
 ## Extends BaseExercise only for the shared plumbing (fade-in, Back/Escape,
 ## energy readout); it has no ExerciseConfig and awards no XP by itself.
@@ -75,10 +75,6 @@ func _buy(item: ShopItem) -> void:
 		ShopItem.Effect.INSTANT_XP_ALL_STATS:
 			_grant_xp_all_stats(item.magnitude)
 			message_label.text = "%s absorbed: +%d XP to every muscle!" % [item.item_name, int(item.magnitude)]
-		ShopItem.Effect.STEROID_BOOST:
-			_grant_xp_all_stats(item.magnitude)
-			PlayerStats.spend_energy(PlayerStats.energy * 0.5)
-			message_label.text = "%s injected: massive gains... you feel awful." % item.item_name
 	FloatingText.spawn(self, "-$%d" % item.price,
 		Vector2(size.x / 2.0, 120), Color(0.65, 0.95, 0.55), 24)
 	PlayerStats.save_game()

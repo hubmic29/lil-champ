@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cvt5p3hvlin64" path="res://intro.gd" id="1_ayt76"]
 [ext_resource type="Texture2D" uid="uid://d3yjvql6kx4rq" path="res://assets/phone.png" id="2_7a8ye"]
 [ext_resource type="FontFile" uid="uid://cvhbg6wvaxy1w" path="res://assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_u2rf6"]
+[ext_resource type="Texture2D" uid="uid://c6khfo7nnubbx" path="res://assets/Gym_bro.png" id="3_y6ycx"]
 [ext_resource type="FontFile" uid="uid://x7o7i2o6p7jw" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_y72e6"]
 [ext_resource type="AudioStream" uid="uid://bjsgcniah08be" path="res://sfx/545477__ienba__pop-up.wav" id="4_u2rf6"]
 [ext_resource type="AudioStream" uid="uid://d3m21410g2l5l" path="res://sfx/505104__joedoe22__writing-a-text-message.wav" id="5_y6ycx"]
@@ -16,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ayt76")
 custom_font = ExtResource("2_u2rf6")
+bro_avatar_texture = ExtResource("3_y6ycx")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1948994590]
 layout_mode = 1
@@ -25,6 +27,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.27332473, 0.5763671, 0.6953134, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=722721058]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 107.0
+offset_right = 758.0
+offset_bottom = 549.0
+color = Color(0.52906674, 0.5290667, 0.5290667, 1)
 
 [node name="Phone" type="TextureRect" parent="." unique_id=1140518440]
 texture_filter = 1
@@ -53,15 +63,16 @@ theme_override_constants/separation = 10
 [node name="SkipSceneBtn" type="Button" parent="." unique_id=1316692608]
 texture_filter = 1
 layout_mode = 0
-offset_left = 878.0
-offset_top = 536.0
-offset_right = 1032.0
-offset_bottom = 579.0
+offset_left = 831.0
+offset_top = 540.0
+offset_right = 985.0
+offset_bottom = 584.0
 theme_override_fonts/font = ExtResource("3_y72e6")
 theme_override_font_sizes/font_size = 29
 text = "Skip"
 
 [node name="SkipAllBtn" type="Button" parent="." unique_id=1077310577]
+visible = false
 layout_mode = 0
 offset_left = 104.0
 offset_top = 541.0

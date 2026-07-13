@@ -28,6 +28,7 @@ Hud="*uid://coyjcep48saer"
 [display]
 
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://8gidql6hrtfo"
 
 [input]
 

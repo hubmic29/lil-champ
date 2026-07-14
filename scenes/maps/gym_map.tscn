@@ -102,6 +102,7 @@ size = Vector2(45, 108)
 size = Vector2(17, 228)
 
 [node name="GymMap" type="Node2D" unique_id=1903297405]
+texture_filter = 1
 
 [node name="Background" type="Sprite2D" parent="." unique_id=280416971]
 texture_filter = 1
@@ -245,6 +246,9 @@ position = Vector2(180, 565)
 [node name="Sprite2D" parent="PunchingBag" index="0"]
 visible = false
 
+[node name="CollisionShape2D" parent="PunchingBag" index="1"]
+position = Vector2(13, -80)
+
 [node name="SquatStation" parent="." unique_id=1191535142 instance=ExtResource("6_squat")]
 position = Vector2(1156, 599)
 
@@ -252,7 +256,7 @@ position = Vector2(1156, 599)
 visible = false
 
 [node name="CollisionShape2D" parent="SquatStation" index="1"]
-position = Vector2(0, 4)
+position = Vector2(2, -28)
 
 [node name="SaunaStation" parent="." unique_id=1755057116 instance=ExtResource("7_sauna")]
 position = Vector2(568, 500)
@@ -277,6 +281,9 @@ visible = false
 [node name="TreadmillStation" parent="." unique_id=550765786 instance=ExtResource("15_tread")]
 position = Vector2(1090, 235)
 
+[node name="CollisionShape2D" parent="TreadmillStation" index="0"]
+position = Vector2(-8, -8)
+
 [node name="FlyesStation" parent="." unique_id=431561585 instance=ExtResource("16_flyes")]
 position = Vector2(1170, 300)
 
@@ -286,11 +293,17 @@ position = Vector2(465, 560)
 [node name="Sprite2D" parent="PullUpStation" index="0"]
 visible = false
 
+[node name="CollisionShape2D" parent="PullUpStation" index="1"]
+position = Vector2(-7, -28)
+
 [node name="LegPressStation" parent="." unique_id=1407748255 instance=ExtResource("18_lprs")]
 position = Vector2(1148, 736)
 
 [node name="Sprite2D" parent="LegPressStation" index="0"]
 visible = false
+
+[node name="CollisionShape2D" parent="LegPressStation" index="1"]
+position = Vector2(-5, -19)
 
 [node name="LegCurlStation" parent="." unique_id=189986309 instance=ExtResource("19_lcrl")]
 position = Vector2(210, 675)
@@ -315,6 +328,7 @@ position = Vector2(715, 160)
 
 [node name="GymNPC" parent="." unique_id=2141895002 instance=ExtResource("12_b35ev")]
 position = Vector2(700, 250)
+scale = Vector2(2, 2)
 
 [node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
 position = Vector2(454, 127)

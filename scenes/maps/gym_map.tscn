@@ -263,7 +263,6 @@ visible = false
 [node name="CompetitionStage" parent="." unique_id=314273337 instance=ExtResource("8_comp")]
 position = Vector2(120, 232)
 station_name = "Reception"
-trains_hint = "Pose-off for prize money!"
 action_hint = "[E] Sign up for a competition"
 
 [node name="Sprite2D" parent="CompetitionStage" index="0"]
@@ -318,14 +317,14 @@ position = Vector2(715, 160)
 position = Vector2(700, 250)
 
 [node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
-position = Vector2(893, 729)
+position = Vector2(454, 127)
 
 [editable path="BenchPressStation"]
-[editable path="CompetitionStage"]
 [editable path="DeadliftStation"]
 [editable path="PunchingBag"]
 [editable path="SquatStation"]
 [editable path="SaunaStation"]
+[editable path="CompetitionStage"]
 [editable path="ShopStation"]
 [editable path="TreadmillStation"]
 [editable path="FlyesStation"]

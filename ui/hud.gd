@@ -22,18 +22,9 @@ var _xp_label: Label
 
 
 func _ready() -> void:
-	# The gym is only playable on training days; if the scene loads on a rest
-	# day (e.g. after quitting mid-calendar) or a finished run, route away.
-	if get_tree().current_scene.name == "MainMenu":
-		hide()
-	else:
-		show()
-	if GameCalendar.is_game_over():
-		SceneSwitcher.change_scene.call_deferred("res://scenes/calendar/end_screen.tscn")
-		return
-	if GameCalendar.day_type == GameCalendar.DayType.REST:
-		SceneSwitcher.change_scene.call_deferred("res://scenes/calendar/calendar.tscn")
-		return
+	# This runs once at boot (autoload): always build the panel and hook up
+	# signals; per-scene visibility and gym routing happen in
+	# _apply_scene_visibility every time the active scene changes.
 	_build_panel()
 	# Refresh on every progression event instead of polling each frame.
 	PlayerStats.xp_gained.connect(func(_s: StringName, _a: float) -> void: _refresh())
@@ -51,6 +42,7 @@ func _ready() -> void:
 	get_tree().root.child_entered_tree.connect(_on_scene_changed)
 	update_steroid_ui()
 	_refresh()
+	_apply_scene_visibility.call_deferred()
 
 
 
@@ -202,8 +194,18 @@ func _get_pixel_style(bg_color: Color, border_color: Color) -> StyleBoxFlat:
 	return style
 	
 func _on_scene_changed(_node):
-	var current_scene = get_tree().current_scene.name
-	
+	# current_scene may not be assigned yet while the new scene enters the
+	# tree; defer so the check runs after the switch completes.
+	_apply_scene_visibility.call_deferred()
+
+
+func _apply_scene_visibility() -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		hide()
+		return
+	var current_scene := String(scene.name)
+
 	var hide_hud_in_scenes = [
 		"MainMenu", 
 		"CompetitionExercise",
@@ -224,11 +226,19 @@ func _on_scene_changed(_node):
 		"Control",
 		"HelpScreen",
 		"SteroidShop",
-		"Intro"
-		
+		"Intro",
+		"Calendar"
 	]
 	
 	if current_scene in hide_hud_in_scenes:
 		hide()
 	else:
 		show()
+		_refresh()
+	# The gym is only playable on training days; if it loads on a rest day
+	# (e.g. after quitting mid-calendar) or a finished run, route away.
+	if current_scene == "GymMap":
+		if GameCalendar.is_game_over():
+			SceneSwitcher.change_scene.call_deferred("res://scenes/calendar/end_screen.tscn")
+		elif GameCalendar.day_type == GameCalendar.DayType.REST:
+			SceneSwitcher.change_scene.call_deferred("res://scenes/calendar/calendar.tscn")

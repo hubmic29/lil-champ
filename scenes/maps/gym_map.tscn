@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8akogknnfnd1"]
 
-[ext_resource type="Texture2D" uid="uid://champgymbg01" path="res://assets/gym_map_bg.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://be3py0fptner4" path="res://assets/gym_map.png" id="1_bg"]
 [ext_resource type="PackedScene" uid="uid://b7l6a48tmurqk" path="res://player/player.tscn" id="2_4xk5c"]
 [ext_resource type="PackedScene" uid="uid://d28mxi54b2u4r" path="res://scenes/stations/punching_bag.tscn" id="3_bag"]
 [ext_resource type="PackedScene" uid="uid://d1wttq73skkhw" path="res://scenes/stations/bench_press_station.tscn" id="4_bench"]
@@ -20,205 +20,316 @@
 [ext_resource type="PackedScene" uid="uid://clcrlstn0001" path="res://scenes/stations/leg_curl_station.tscn" id="19_lcrl"]
 [ext_resource type="PackedScene" uid="uid://ccrnchstn001" path="res://scenes/stations/crunch_station.tscn" id="20_crnch"]
 
-[sub_resource type="RectangleShape2D" id="RS_0"]
-size = Vector2(960, 64)
+[sub_resource type="RectangleShape2D" id="RS_top_main"]
+size = Vector2(721, 117)
 
-[sub_resource type="RectangleShape2D" id="RS_1"]
-size = Vector2(16, 640)
+[sub_resource type="RectangleShape2D" id="RS_top_reception"]
+size = Vector2(400, 95)
 
-[sub_resource type="RectangleShape2D" id="RS_2"]
-size = Vector2(16, 640)
+[sub_resource type="RectangleShape2D" id="RS_top_changing"]
+size = Vector2(255, 45)
 
-[sub_resource type="RectangleShape2D" id="RS_3"]
-size = Vector2(960, 32)
+[sub_resource type="RectangleShape2D" id="RS_side"]
+size = Vector2(21, 768)
 
-[sub_resource type="RectangleShape2D" id="RS_4"]
-size = Vector2(56, 68)
+[sub_resource type="RectangleShape2D" id="RS_bottom"]
+size = Vector2(1376, 16)
 
-[sub_resource type="RectangleShape2D" id="RS_5"]
-size = Vector2(56, 68)
+[sub_resource type="RectangleShape2D" id="RS_recep_desk"]
+size = Vector2(216, 110)
 
-[sub_resource type="RectangleShape2D" id="RS_6"]
-size = Vector2(56, 68)
+[sub_resource type="RectangleShape2D" id="RS_vending_top"]
+size = Vector2(170, 115)
 
-[sub_resource type="RectangleShape2D" id="RS_7"]
-size = Vector2(12, 200)
+[sub_resource type="RectangleShape2D" id="RS_vending_left"]
+size = Vector2(150, 110)
 
-[sub_resource type="RectangleShape2D" id="RS_8"]
-size = Vector2(52, 82)
+[sub_resource type="RectangleShape2D" id="RS_recep_bench"]
+size = Vector2(111, 39.5)
 
-[sub_resource type="RectangleShape2D" id="RS_9"]
-size = Vector2(96, 68)
+[sub_resource type="RectangleShape2D" id="RS_plant_left"]
+size = Vector2(45, 65)
 
-[sub_resource type="RectangleShape2D" id="RS_10"]
-size = Vector2(224, 56)
+[sub_resource type="RectangleShape2D" id="RS_plant_right"]
+size = Vector2(50, 70)
 
-[sub_resource type="RectangleShape2D" id="RS_11"]
-size = Vector2(18, 36)
+[sub_resource type="RectangleShape2D" id="RS_changing_left"]
+size = Vector2(15, 132)
 
-[sub_resource type="RectangleShape2D" id="RS_12"]
-size = Vector2(76, 48)
+[sub_resource type="RectangleShape2D" id="RS_changing_right"]
+size = Vector2(15, 180)
 
-[sub_resource type="RectangleShape2D" id="RS_14"]
-size = Vector2(36, 64)
+[sub_resource type="RectangleShape2D" id="RS_lockers"]
+size = Vector2(125, 83.5)
 
-[sub_resource type="RectangleShape2D" id="RS_15"]
-size = Vector2(48, 152)
+[sub_resource type="RectangleShape2D" id="RS_toilets"]
+size = Vector2(90, 79.5)
 
-[sub_resource type="RectangleShape2D" id="RS_16"]
-size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_changing_bench"]
+size = Vector2(110, 27)
 
-[sub_resource type="RectangleShape2D" id="RS_17"]
-size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_sinks"]
+size = Vector2(45, 85)
 
-[sub_resource type="RectangleShape2D" id="RS_18"]
-size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_sauna_body"]
+size = Vector2(250, 182.5)
 
-[sub_resource type="RectangleShape2D" id="RS_19"]
-size = Vector2(24, 26)
+[sub_resource type="RectangleShape2D" id="RS_sauna_left"]
+size = Vector2(140, 80)
 
-[sub_resource type="RectangleShape2D" id="RS_22"]
-size = Vector2(104, 72)
+[sub_resource type="RectangleShape2D" id="RS_sauna_right"]
+size = Vector2(122.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RS_sauna_cooler"]
+size = Vector2(40, 97)
+
+[sub_resource type="RectangleShape2D" id="RS_exit_cooler"]
+size = Vector2(45, 60)
+
+[sub_resource type="RectangleShape2D" id="RS_treadmill_row"]
+size = Vector2(544, 120)
+
+[sub_resource type="RectangleShape2D" id="RS_plate_tree"]
+size = Vector2(60, 85)
+
+[sub_resource type="RectangleShape2D" id="RS_divider_left"]
+size = Vector2(15, 148)
+
+[sub_resource type="RectangleShape2D" id="RS_cabinet"]
+size = Vector2(45, 108)
+
+[sub_resource type="RectangleShape2D" id="RS_divider_right"]
+size = Vector2(17, 228)
 
 [node name="GymMap" type="Node2D" unique_id=1903297405]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=280416971]
 texture_filter = 1
+position = Vector2(0, 2)
 texture = ExtResource("1_bg")
 centered = false
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=165961639]
 
-[node name="WallTop0" type="CollisionShape2D" parent="Walls" unique_id=1783590834]
-position = Vector2(480, 32)
-shape = SubResource("RS_0")
+[node name="WallTopMain" type="CollisionShape2D" parent="Walls" unique_id=478374007]
+position = Vector2(1016, 57)
+shape = SubResource("RS_top_main")
 
-[node name="WallLeft1" type="CollisionShape2D" parent="Walls" unique_id=134443322]
-position = Vector2(8, 320)
-shape = SubResource("RS_1")
+[node name="WallTopReception" type="CollisionShape2D" parent="Walls" unique_id=788320211]
+position = Vector2(200, 47.5)
+shape = SubResource("RS_top_reception")
 
-[node name="WallRight2" type="CollisionShape2D" parent="Walls" unique_id=155138550]
-position = Vector2(952, 320)
-shape = SubResource("RS_2")
+[node name="WallTopChanging" type="CollisionShape2D" parent="Walls" unique_id=804988472]
+position = Vector2(527.5, 22.5)
+shape = SubResource("RS_top_changing")
 
-[node name="WallBottom3" type="CollisionShape2D" parent="Walls" unique_id=173126694]
-position = Vector2(480, 624)
-shape = SubResource("RS_3")
+[node name="WallLeft" type="CollisionShape2D" parent="Walls" unique_id=2027859942]
+position = Vector2(10.5, 384)
+shape = SubResource("RS_side")
 
-[node name="Treadmill4" type="CollisionShape2D" parent="Walls" unique_id=102595553]
-position = Vector2(384, 130)
-shape = SubResource("RS_4")
+[node name="WallRight" type="CollisionShape2D" parent="Walls" unique_id=1543087319]
+position = Vector2(1369, 384)
+shape = SubResource("RS_side")
 
-[node name="Treadmill5" type="CollisionShape2D" parent="Walls" unique_id=2016734608]
-position = Vector2(450, 130)
-shape = SubResource("RS_5")
+[node name="WallBottom" type="CollisionShape2D" parent="Walls" unique_id=1376286637]
+position = Vector2(688, 760)
+shape = SubResource("RS_bottom")
 
-[node name="Treadmill6" type="CollisionShape2D" parent="Walls" unique_id=2059297138]
-position = Vector2(516, 130)
-shape = SubResource("RS_6")
+[node name="ReceptionDesk" type="CollisionShape2D" parent="Walls" unique_id=1332422648]
+position = Vector2(118, 147)
+shape = SubResource("RS_recep_desk")
 
-[node name="Mirror7" type="CollisionShape2D" parent="Walls" unique_id=1825034289]
-position = Vector2(22, 212)
-shape = SubResource("RS_7")
+[node name="VendingTop" type="CollisionShape2D" parent="Walls" unique_id=808541973]
+position = Vector2(310, 92)
+shape = SubResource("RS_vending_top")
 
-[node name="DumbbellRack8" type="CollisionShape2D" parent="Walls" unique_id=2006779371]
-position = Vector2(44, 417)
-shape = SubResource("RS_8")
+[node name="VendingLeft" type="CollisionShape2D" parent="Walls" unique_id=2048880939]
+position = Vector2(85, 330)
+shape = SubResource("RS_vending_left")
 
-[node name="SquatCage9" type="CollisionShape2D" parent="Walls" unique_id=2058929376]
-position = Vector2(790, 116)
-shape = SubResource("RS_9")
+[node name="ReceptionBench" type="CollisionShape2D" parent="Walls" unique_id=2134490222]
+position = Vector2(220.5, 349.75)
+shape = SubResource("RS_recep_bench")
 
-[node name="ReceptionDesk10" type="CollisionShape2D" parent="Walls" unique_id=997675559]
-position = Vector2(256, 480)
-shape = SubResource("RS_10")
+[node name="PlantLeft" type="CollisionShape2D" parent="Walls" unique_id=542410199]
+position = Vector2(32, 107)
+shape = SubResource("RS_plant_left")
 
-[node name="WaterCooler11" type="CollisionShape2D" parent="Walls" unique_id=1305321178]
-position = Vector2(401, 488)
-shape = SubResource("RS_11")
+[node name="PlantRight" type="CollisionShape2D" parent="Walls" unique_id=611364235]
+position = Vector2(375, 340)
+shape = SubResource("RS_plant_right")
 
-[node name="ShopShelves12" type="CollisionShape2D" parent="Walls" unique_id=385514146]
-position = Vector2(700, 520)
-shape = SubResource("RS_12")
+[node name="ChangingLeftWall" type="CollisionShape2D" parent="Walls" unique_id=1090039661]
+position = Vector2(407, 111)
+shape = SubResource("RS_changing_left")
 
-[node name="Vending14" type="CollisionShape2D" parent="Walls" unique_id=996039437]
-position = Vector2(926, 384)
-shape = SubResource("RS_14")
+[node name="ChangingRightWall" type="CollisionShape2D" parent="Walls" unique_id=537940032]
+position = Vector2(647, 135)
+shape = SubResource("RS_changing_right")
 
-[node name="Lockers15" type="CollisionShape2D" parent="Walls" unique_id=1341262003]
-position = Vector2(920, 252)
-shape = SubResource("RS_15")
+[node name="Lockers" type="CollisionShape2D" parent="Walls" unique_id=1928023397]
+position = Vector2(482, 96.25)
+shape = SubResource("RS_lockers")
 
-[node name="Plant16" type="CollisionShape2D" parent="Walls" unique_id=1206312741]
-position = Vector2(36, 83)
-shape = SubResource("RS_16")
+[node name="Toilets" type="CollisionShape2D" parent="Walls" unique_id=1665066856]
+position = Vector2(595, 99.25)
+shape = SubResource("RS_toilets")
 
-[node name="Plant17" type="CollisionShape2D" parent="Walls" unique_id=1669723880]
-position = Vector2(920, 83)
-shape = SubResource("RS_17")
+[node name="ChangingBench" type="CollisionShape2D" parent="Walls" unique_id=1758474598]
+position = Vector2(520, 173.5)
+shape = SubResource("RS_changing_bench")
 
-[node name="Plant18" type="CollisionShape2D" parent="Walls" unique_id=1815830340]
-position = Vector2(36, 579)
-shape = SubResource("RS_18")
+[node name="Sinks" type="CollisionShape2D" parent="Walls" unique_id=35840137]
+position = Vector2(622.5, 187)
+shape = SubResource("RS_sinks")
 
-[node name="Plant19" type="CollisionShape2D" parent="Walls" unique_id=1781118970]
-position = Vector2(920, 579)
-shape = SubResource("RS_19")
+[node name="SaunaBuilding" type="CollisionShape2D" parent="Walls" unique_id=1850857887]
+position = Vector2(530, 308.25)
+shape = SubResource("RS_sauna_body")
 
-[node name="SaunaHut22" type="CollisionShape2D" parent="Walls" unique_id=248773651]
-position = Vector2(80, 514)
-shape = SubResource("RS_22")
+[node name="SaunaWallLeft" type="CollisionShape2D" parent="Walls" unique_id=699078504]
+position = Vector2(475, 440)
+shape = SubResource("RS_sauna_left")
+
+[node name="SaunaWallRight" type="CollisionShape2D" parent="Walls" unique_id=1206866391]
+position = Vector2(593.25, 440)
+shape = SubResource("RS_sauna_right")
+
+[node name="SaunaCooler" type="CollisionShape2D" parent="Walls" unique_id=2092731565]
+position = Vector2(675, 438.5)
+shape = SubResource("RS_sauna_cooler")
+
+[node name="ExitCooler" type="CollisionShape2D" parent="Walls" unique_id=1145262470]
+position = Vector2(792.5, 110)
+shape = SubResource("RS_exit_cooler")
+
+[node name="TreadmillRow" type="CollisionShape2D" parent="Walls" unique_id=1894401316]
+position = Vector2(1090, 145)
+shape = SubResource("RS_treadmill_row")
+
+[node name="PlateTreeLeft" type="CollisionShape2D" parent="Walls" unique_id=299304016]
+position = Vector2(955, 582)
+shape = SubResource("RS_plate_tree")
+
+[node name="PlateTreeRight" type="CollisionShape2D" parent="Walls" unique_id=1775952697]
+position = Vector2(1330, 585)
+shape = SubResource("RS_plate_tree")
+
+[node name="DividerLeft" type="CollisionShape2D" parent="Walls" unique_id=1524495307]
+position = Vector2(407, 694)
+shape = SubResource("RS_divider_left")
+
+[node name="Cabinet" type="CollisionShape2D" parent="Walls" unique_id=145197665]
+position = Vector2(447, 694)
+shape = SubResource("RS_cabinet")
+
+[node name="DividerRight" type="CollisionShape2D" parent="Walls" unique_id=23629349]
+position = Vector2(916.5, 654)
+shape = SubResource("RS_divider_right")
 
 [node name="BenchPressStation" parent="." unique_id=330575438 instance=ExtResource("4_bench")]
-position = Vector2(540, 250)
+position = Vector2(845, 360)
+
+[node name="Sprite2D" parent="BenchPressStation" index="0" unique_id=2067048310]
+visible = false
 
 [node name="DeadliftStation" parent="." unique_id=1854040467 instance=ExtResource("5_dlift")]
-position = Vector2(670, 250)
+position = Vector2(1170, 395)
+
+[node name="Sprite2D" parent="DeadliftStation" index="0" unique_id=478604699]
+visible = false
 
 [node name="PunchingBag" parent="." unique_id=696824021 instance=ExtResource("3_bag")]
-position = Vector2(805, 245)
+position = Vector2(180, 565)
+
+[node name="Sprite2D" parent="PunchingBag" index="0"]
+visible = false
 
 [node name="SquatStation" parent="." unique_id=1191535142 instance=ExtResource("6_squat")]
-position = Vector2(790, 120)
+position = Vector2(1156, 599)
+
+[node name="Sprite2D" parent="SquatStation" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="SquatStation" index="1"]
+position = Vector2(0, 4)
 
 [node name="SaunaStation" parent="." unique_id=1755057116 instance=ExtResource("7_sauna")]
-position = Vector2(80, 515)
+position = Vector2(568, 500)
+
+[node name="Sprite2D" parent="SaunaStation" index="0"]
+visible = false
 
 [node name="CompetitionStage" parent="." unique_id=314273337 instance=ExtResource("8_comp")]
-position = Vector2(192, 215)
+position = Vector2(120, 232)
+station_name = "Reception"
+trains_hint = "Pose-off for prize money!"
+action_hint = "[E] Sign up for a competition"
+
+[node name="Sprite2D" parent="CompetitionStage" index="0"]
+visible = false
 
 [node name="ShopStation" parent="." unique_id=1464849989 instance=ExtResource("9_shop")]
-position = Vector2(700, 520)
+position = Vector2(85, 400)
+
+[node name="Sprite2D" parent="ShopStation" index="0"]
+visible = false
 
 [node name="TreadmillStation" parent="." unique_id=550765786 instance=ExtResource("15_tread")]
-position = Vector2(450, 150)
+position = Vector2(1090, 235)
 
 [node name="FlyesStation" parent="." unique_id=431561585 instance=ExtResource("16_flyes")]
-position = Vector2(44, 430)
+position = Vector2(1170, 300)
 
 [node name="PullUpStation" parent="." unique_id=1917448103 instance=ExtResource("17_pull")]
-position = Vector2(640, 118)
+position = Vector2(465, 560)
+
+[node name="Sprite2D" parent="PullUpStation" index="0"]
+visible = false
 
 [node name="LegPressStation" parent="." unique_id=1407748255 instance=ExtResource("18_lprs")]
-position = Vector2(520, 405)
+position = Vector2(1148, 736)
+
+[node name="Sprite2D" parent="LegPressStation" index="0"]
+visible = false
 
 [node name="LegCurlStation" parent="." unique_id=189986309 instance=ExtResource("19_lcrl")]
-position = Vector2(650, 405)
+position = Vector2(210, 675)
+
+[node name="Sprite2D" parent="LegCurlStation" index="0"]
+visible = false
 
 [node name="CrunchStation" parent="." unique_id=1726799091 instance=ExtResource("20_crnch")]
-position = Vector2(250, 560)
+position = Vector2(680, 665)
+
+[node name="Sprite2D" parent="CrunchStation" index="0"]
+visible = false
 
 [node name="ExitDoor" parent="." unique_id=1933963084 instance=ExtResource("10_exit")]
-position = Vector2(480, 585)
+position = Vector2(715, 120)
 
 [node name="Player" parent="." unique_id=83060125 instance=ExtResource("2_4xk5c")]
 z_index = 1
-position = Vector2(479, 538)
+position = Vector2(715, 160)
 
 [node name="PauseMenu" parent="." unique_id=1655045054 instance=ExtResource("11_50g18")]
 
 [node name="GymNPC" parent="." unique_id=2141895002 instance=ExtResource("12_b35ev")]
-position = Vector2(491, 462)
+position = Vector2(700, 250)
 
 [node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
-position = Vector2(905, 492)
+position = Vector2(893, 729)
+
+[editable path="BenchPressStation"]
+[editable path="CompetitionStage"]
+[editable path="DeadliftStation"]
+[editable path="PunchingBag"]
+[editable path="SquatStation"]
+[editable path="SaunaStation"]
+[editable path="ShopStation"]
+[editable path="TreadmillStation"]
+[editable path="FlyesStation"]
+[editable path="PullUpStation"]
+[editable path="LegPressStation"]
+[editable path="LegCurlStation"]
+[editable path="CrunchStation"]

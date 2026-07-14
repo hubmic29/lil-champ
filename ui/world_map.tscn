@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhxeawejwhase"]
 
 [ext_resource type="Script" uid="uid://b6nfg7n856bt4" path="res://world_map.gd" id="1_5ysi1"]
-[ext_resource type="Texture2D" uid="uid://champgymbg01" path="res://assets/gym_map_bg.png" id="2_jsrsj"]
+[ext_resource type="Texture2D" uid="uid://be3py0fptner4" path="res://assets/gym_map.png" id="2_jsrsj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3f0"]
 size = Vector2(918, 321.5)

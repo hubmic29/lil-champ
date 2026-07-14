@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://clprsstn0001" path="res://scenes/stations/leg_press_station.tscn" id="18_lprs"]
 [ext_resource type="PackedScene" uid="uid://clcrlstn0001" path="res://scenes/stations/leg_curl_station.tscn" id="19_lcrl"]
 [ext_resource type="PackedScene" uid="uid://ccrnchstn001" path="res://scenes/stations/crunch_station.tscn" id="20_crnch"]
+[ext_resource type="AudioStream" uid="uid://cqt6jm563cju6" path="res://sfx/hauntsync-heavy-german-techno-beat-dark-industrial-instrumental-403003.mp3" id="20_iuvwo"]
 
 [sub_resource type="RectangleShape2D" id="RS_top_main"]
 size = Vector2(721, 117)
@@ -51,7 +52,7 @@ size = Vector2(111, 39.5)
 size = Vector2(45, 65)
 
 [sub_resource type="RectangleShape2D" id="RS_plant_right"]
-size = Vector2(50, 70)
+size = Vector2(48, 66)
 
 [sub_resource type="RectangleShape2D" id="RS_changing_left"]
 size = Vector2(15, 132)
@@ -157,7 +158,7 @@ position = Vector2(32, 107)
 shape = SubResource("RS_plant_left")
 
 [node name="PlantRight" type="CollisionShape2D" parent="Walls" unique_id=611364235]
-position = Vector2(375, 340)
+position = Vector2(376, 348)
 shape = SubResource("RS_plant_right")
 
 [node name="ChangingLeftWall" type="CollisionShape2D" parent="Walls" unique_id=1090039661]
@@ -332,6 +333,12 @@ scale = Vector2(2, 2)
 
 [node name="dealer" parent="." unique_id=1472252270 instance=ExtResource("14_tsrpq")]
 position = Vector2(454, 127)
+
+[node name="GymMusic" type="AudioStreamPlayer" parent="." unique_id=1937358763]
+stream = ExtResource("20_iuvwo")
+volume_db = -40.0
+autoplay = true
+parameters/looping = true
 
 [editable path="BenchPressStation"]
 [editable path="DeadliftStation"]

@@ -37,6 +37,8 @@ func _ready() -> void:
 		
 	if continue_button:
 		continue_button.pressed.connect(_show_menu)
+		
+	_set_idle_pose()
 	_show_menu()
 
 func _process(delta: float) -> void:
@@ -187,6 +189,7 @@ func _show_menu() -> void:
 		tournament_list.add_child(button)
 
 func _start_tournament(_index: int) -> void:
+	
 	PlayerStats.spend_money(_cfg.entry_fees[_index])
 	PlayerStats.last_competition_day = GameCalendar.day
 	
@@ -200,6 +203,7 @@ func _start_tournament(_index: int) -> void:
 	spawn_timer = 0
 	player_score = 0
 	hits_in_a_row = 0
+	_set_idle_pose()
 	
 	var pose_label = get_node_or_null("%PoseLabel")
 	if pose_label:
@@ -207,7 +211,7 @@ func _start_tournament(_index: int) -> void:
 	var bonus_label = get_node_or_null("%BonusLabel")
 	if bonus_label:
 		bonus_label.text = "Muscle bonus: +%d pts" % int(PlayerStats.muscle_size() * 1.5)
-
+		
 func _trigger_flash(color: Color):
 	var flash = ColorRect.new()
 	flash.size = size
@@ -331,3 +335,24 @@ func _finalize_game() -> void:
 	stage_ui.hide()
 	var final_score = _calculate_final_score() 
 	_show_results_table(final_score)
+	
+func _set_idle_pose() -> void:
+	var tier = PlayerStats.evolution_tier
+	var prefix = "small_"
+	match tier:
+		0: prefix = "small_"
+		1: prefix = "med_"
+		2: prefix = "big_"
+	
+	var idle_anims = []
+	for anim in character.sprite_frames.get_animation_names():
+		if anim.begins_with(prefix) and "idle" in anim:
+			idle_anims.append(anim)
+			
+	if not idle_anims.is_empty():
+		character.play(idle_anims.pick_random())
+	else:
+		for anim in character.sprite_frames.get_animation_names():
+			if anim.begins_with(prefix):
+				character.play(anim)
+				break
